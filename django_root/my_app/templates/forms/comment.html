@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block title %}Add Comment{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}
+    <div class="profile_banner">
+        <div class="profile_title">Add Comment</div>
+    </div>
+    <span class="header_line"></span>
+    {% endblock %}
+</div>
+{% block content %}
+    <div class="grid-x grid-padding-x">
+        <div class="large-4 medium-4 small-12 cell"></div>
+        <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
+            <div class="centered">
+            <div class="altportfolio">
+            <form action="/comment/{{ hole_id }}/" method="post" class="log_form">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" class="button expanded" value="Add Comment"/>
+            </form>
+            </div>
+            </div>
+        <!-- </div> -->
+    <!-- </div> -->
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %} {{page_title}} {% endblock %}
+
+ <div id="heading-div" class = "centered">
+	{% block heading %} {{page_heading}} {% endblock %}
+	{% comment %} {% block subheading %} {{page_subheading}} {% endblock %}
+	{% block supptext %} {{page_text}} {% endblock %} {% endcomment %}
+</div> 
+
+
+{% block content %}
+
+<div>
+    <p class="bold-text lalligned">{{page_text}}</p>
+</div>
+
+
+{% endblock %}

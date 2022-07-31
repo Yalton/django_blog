@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}{{ page_heading }}{% endblock %}
+   {% block subheading %} {{page_subheading}}{% endblock %} 
+    {% block supptext %} {{page_text}}{% endblock %} 
+</div>
+{% block content %}
+    {% comment %} <h3>Functional Webassembly Implementations</h3> {% endcomment %}
+    <hr>
+    <ul>
+        <li>
+            <a href="/webassembly/helloworld">HelloWorld with C file</a>
+            <li>
+                <a href="/webassembly/add">Adding with C file</a>
+            </li>
+        </li>
+        <li>
+            <a href="/webassembly/rustHello">HelloWorld/Adding with Rust file</a>
+        </li>
+    </ul>
+{% endblock %}

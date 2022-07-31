@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %} 
+    <div class="post_banner">
+        <div class="post_title">
+            {{ page_heading }}
+        </div>
+    </div>
+    <span class="header_line"></span>
+    {% endblock %}
+    {% comment %} {% block subheading %} {{page_subheading}}
+    {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
+</div>
+{% block content %}
+    <!-- <div class="centered">
+  <span class="emphasized">Catalog Placeholder</span>
+
+</div> -->
+    <br>
+    <section>
+        <div class="featured-image-block-grid">
+            <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+            <div class="row large-up-4 small-up-2 align">
+                {% for cat in categories %}
+                    <div class="catalog_card" onclick="location.href='/categoryCatalog/{{ cat.id }}';">
+                        <div class="pad">
+                            <img class="catalog-img" src="{{ cat.image }}" alt="{{ cat.title }}">
+                            <h3 class="catalog-title">{{ cat.title }}</h3>
+                            <span class = "profile_line"></span>
+                            <p class="catalog-desc">
+                                {{ cat.desc }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% comment %} <hr>
+  <div class="paginationdiv">
+    <ul class="pagination pagination-circular" role="navigation" aria-label="Pagination">
+      <li class="disabled">� <span class="show-for-sr">Previous page</span></li>
+      <li class="current"><span class="show-for-sr">Page</span> 1</li>
+      <li><a href="/testhole" aria-label="Page 2">2</a></li>
+      <li><a href="/testhole" aria-label="Page 3">3</a></li>
+      <li><a href="/testhole" aria-label="Page 4">4</a></li>
+      <li><a href="/testhole" aria-label="Page 5">5</a></li>
+      <li><a href="/testhole" aria-label="Next page">� <span class="show-for-sr">Next page</span></a></li>
+    </ul>
+        </div> {% endcomment %}
+    </section>
+{% endblock %}

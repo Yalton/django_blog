@@ -1,0 +1,1 @@
+emcc -Os –closure 1 -Wall -pedantic -g -o game.html player.cpp event.cpp main.cpp  

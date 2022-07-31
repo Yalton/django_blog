@@ -1,0 +1,14 @@
+Django
+google-api-core
+google-auth
+google-cloud-core
+google-cloud-storage
+google-crc32c
+google-resumable-media
+googleapis-common-protos
+Pillow
+pylint
+pylint-django
+pylint-plugin-utils
+channels
+//channels_redis

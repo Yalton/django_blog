@@ -1,0 +1,94 @@
+{% load static %}
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="description" content="Dalton Bailey's personal blog">
+    <meta name="author" content="Dalton Bailey">
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title class="title">
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/foundations.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/protovis-r3.3.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/n-body/OBJLoader.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/n-body/OrbitControls.js' %}"></script>
+
+    {% block css %}{% endblock %}
+</head>
+
+<body>
+    {% comment %} <div id="topnav" class="topnav sticky">
+        <div class="topnav-right">
+            <form method=POST action="/search/">
+                {% csrf_token %}
+                <button class="search-button">
+                    <i class="fa fa-search"></i>
+                </button>
+                <input name="searchbox" type="text" placeholder="Search.." />
+            </form>
+            {% if request.user.is_authenticated %}<a href="/submit/">Submit</a>{% endif %}
+            
+
+
+            {% if request.user.is_authenticated %}
+            <a href="/chat/">Chat</a>
+            <a href="/logout/">Logout</a>
+
+            {% else %}
+            <a href="/login/">Login</a>
+            {% endif %}
+            {% if request.user.is_authenticated %}
+
+            <a href="/accounts/profile">Welcome {{ request.user.username }}</a>
+            {% else %}
+            <span>Welcome Guest</span>
+            {% endif %}
+            {% if request.user.is_authenticated %}{%if request.user.is_superuser %} <a href="/admin/">Administration</a>{% endif%} {% endif%} 
+        </div>
+    </div> {% endcomment %}
+    <div class="main heading">
+        <h1 class="centered">
+            {% block heading %}{% endblock %}
+        </h1>
+        <h2>
+            {% block subheading %}{% endblock %}
+        </h2>
+        <p>
+            {% block supptext %}{% endblock %}
+        </p>
+    </div>
+    <div class="sidenav">
+        <a class="active" href="/">Home</a>
+        {% comment %} <a href="/404/">Search</a> {% endcomment %}
+        <a href="/404/">Projects</a>
+        <a href="/categoryCatalog/0/">Blogposts</a>
+        <a href="/404">Archives</a>
+        <a href="/404/">A_Game</a>
+        <a href="/404/">About</a>
+        <a href="/404/">Contact</a>
+        
+    </div>
+    <div class="main content">
+        {% block content %}{% endblock %}
+    </div>
+    <script src="http://threejs.org/build/three.min.js"></script>
+    <script src="{% static 'js/vendor/jquery.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/foundations.js' %}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/sticky.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+    {% comment %}
+    <script type="text/javascript" src="{% static 'js/assn5.js' %}"></script> {% endcomment %}
+    {% block scripts %}{% endblock %}
+</body>
+
+</html>

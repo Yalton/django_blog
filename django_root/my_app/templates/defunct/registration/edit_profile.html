@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="centered">
+    <h3>Edit Profile Information</h3>
+    <div class="altportfolio">
+          <form action="/accounts/profile/edit/" method="post">
+            {% csrf_token %}
+            
+        <div class="registration">
+            <div>
+              <label class="register"> {{ form.username.label_tag }} </label>
+              {{ form.username }}
+            </div>
+            <div>
+              <label class="register"> {{ form.email.label_tag }} </label>
+              {{ form.email }}
+            </div>
+            <div class="rpass">
+              <label class="register"> {{ form.password1.label_tag }} </label>
+              {{ form.password1 }}
+            </div>
+            <div>
+              <label class="register"> {{ form.password2.label_tag }} </label>
+              {{ form.password2 }}
+            </div>
+            <div>
+              <input type="submit" class="button expanded" value="Submit" />
+            </div>
+            <div class = "logregerrors">
+              {{ form.errors }}
+            </div>
+      </div>
+    </form>
+  </div>
+</div>
+{% endblock %}

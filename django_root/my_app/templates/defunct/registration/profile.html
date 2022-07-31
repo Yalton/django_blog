@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} {{page_title}} {% endblock %}
+{% block heading %} 
+<div class="profile_banner">
+	<div class="profile_title">
+	  Profile
+	</div>
+	<div class="profile_name">
+	  {{ request.user.username }}
+	</div>
+	<div class="profile_logout">
+		<input id="color_theme_toggle" type="checkbox" name="">
+	</div>
+</div>
+<span class="header_line"></span>
+{% endblock %}
+{% block content %}
+    <section>
+        <div class="profile_card one">
+            <img src= '{{ profile_picture }}' alt="Avatar" class="card_image">
+            <div class="pad">
+            <div class="card_name">
+                <b>{{ request.user.username }}</b>
+            </div>
+            <span class = "profile_line"></span>
+            <div class="card_title">Username: {{ request.user.username }}</div>
+            <span class = "profile_line"></span>
+            <div class="card_email">email: {{ request.user.email }}</div>
+            </div>
+            <div>
+                <button class="spoiler centered" onclick="location.href='/editProfile';">
+                    <div class="card_button_text">
+                        <i class="material-icons"
+                            style="font-size: larger;
+                            margin: 0 5px 0 -5px;">person
+                        </i> Edit Profile
+                    </div>
+            </button>
+        </div>
+    </div>
+    <div class="vline"></div>
+    <div class = "profile_card two">
+        <div class="pad">
+        <div class="card_name">
+            <b>Saved Rabbitholes</b>
+        </div>
+        <span class = "profile_line"></span>
+        <div>
+            {% if rabbitholes|length == 0 %}
+                <div class="card_title"> As you save rabbitholes, they'll pop up here for you to check out and revisit! <br><br><br><br></div>
+            {% endif %}
+
+            {% for hole in rabbitholes %}
+                {% if 6 >= forloop.counter %}
+                <div class="flip-card">
+                    <a href="/rabbithole/{{ hole.id }}">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <img src="{{ hole.image }}" alt="{{ hole.title }}" class = "flip_image">
+                            </div>
+                            <div class="flip-card-back">
+                                {{ hole.title }}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        <span class = "profile_line"></span>
+        {% if rabbitholes|length == 0 %}
+            <div class="card_title">You haven't saved any rabbitholes yet. Get out there and explore!</div>
+        {% elif rabbitholes|length == 1 %}
+        <div class="card_title">You have saved {{ rabbitholes|length }} rabbithole!</div>
+        {% else %}
+        <div class="card_title">You have saved {{ rabbitholes|length }} rabbitholes!</div>
+        {% endif %}
+        </div>
+        <div>
+            <button class="spoiler centered">
+                <div class="card_button_text">
+                    <i class="material-icons"
+                       style="font-size: larger;
+                              margin: 0 5px 0 -5px;">download</i> View All Saved Rabbitholes
+            </div>
+        </button>
+    </div>
+</div>
+<div class = "profile_card three">
+    <div class="pad">
+    <div class="card_name">
+        <b>Your Rabbitholes</b>
+    </div>
+    <span class = "profile_line"></span>
+    <div class="card_title">
+        <p style="margin-bottom: 10px;">
+            Think you have a good idea for a rabbithole we should add? Submit one! We'll read over your idea and consider it for publishing. If approved, an admin will actually push your rabbithole onto the site!
+        </p>
+        <span class = "profile_line" style="margin-left: -10px;"></span>
+        <p style="margin: 10px auto 5px auto;">
+            You will be prompted to enter the following:
+        </p>
+        <div style="margin-left: 25px;">
+            <li>A descriptive title</li>
+            <li>An informative description (the more the better)</li>
+            <li>A brief, creative introduction to act as an attention grabber</li>
+        </div>
+    </div>
+    </div>
+    <div>
+        <button onclick="location.href='/submit';" class="spoiler centered">
+            <div class="card_button_text">
+                <i class="material-icons"
+                   style="font-size: larger;
+                          margin: 0 5px 0 -5px;">cruelty_free</i> Submit A Rabbithole!
+        </div>
+    </button>
+</div>
+</div>
+<br>
+</section>
+{% endblock %}
+
+{% block scripts %}
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+{% endblock %}

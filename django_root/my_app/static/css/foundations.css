@@ -1,0 +1,330 @@
+.work-feature-block {
+    padding: 10px 0;
+    border-top: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
+}
+
+.work-feature-block-image {
+    display: block;
+    margin: auto;
+    padding: 10px 0;
+}
+
+.plus-minus-input {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.plus-minus-input .input-group-field {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+}
+
+.plus-minus-input .input-group-field::-webkit-inner-spin-button,
+.plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.plus-minus-input .input-group-button .circle {
+    border-radius: 50%;
+    padding: 0.25em 0.8em;
+}
+
+.featured-image-block-grid-header {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.featured-image-block {
+    margin-bottom: 20px;
+}
+
+.featured-image-block .featured-image-block-title {
+    font-weight: 600;
+    margin-top: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 1em;
+    color: #404040;
+}
+
+.featured-image-block a:hover p {
+    color: #1779ba;
+}
+
+.button-like {
+    border: 2px solid #8a8a8a;
+    background-color: transparent;
+    text-decoration: none;
+    padding: 1rem;
+    position: relative;
+    vertical-align: middle;
+    text-align: center;
+    display: inline-block;
+    border-radius: 3rem;
+    color: #8a8a8a;
+    transition: all ease 0.4s;
+}
+
+.button-like span {
+    margin-left: 0.5rem;
+}
+
+.button-like .fa,
+.button-like span {
+    transition: all ease 0.4s;
+}
+
+.button-like:focus {
+    background-color: transparent;
+}
+
+.button-like:focus .fa,
+.button-like:focus span {
+    color: #8a8a8a;
+}
+
+.button-like:hover {
+    border-color: #cc4b37;
+    background-color: transparent;
+}
+
+.button-like:hover .fa,
+.button-like:hover span {
+    color: #cc4b37;
+}
+
+.liked {
+    background-color: #cc4b37;
+    border-color: #cc4b37;
+}
+
+.liked .fa,
+.liked span {
+    color: #fefefe;
+}
+
+.liked:focus {
+    background-color: #cc4b37;
+}
+
+.liked:focus .fa,
+.liked:focus span {
+    color: #fefefe;
+}
+
+.liked:hover {
+    background-color: #cc4b37;
+    border-color: #cc4b37;
+}
+
+.liked:hover .fa,
+.liked:hover span {
+    color: #fefefe;
+}
+
+.pagination-circular li.current {
+    border: 1px solid #1779ba;
+    border-radius: 5000px;
+    padding: 0.285em 0.8em;
+    font-size: 18px;
+}
+
+.pagination-circular li.disabled {
+    border: 1px solid #cacaca;
+    padding: 0.285em 0.8em;
+    border-radius: 5000px;
+    font-size: 18px;
+}
+
+.pagination-circular a {
+    border-radius: 5000px;
+    padding: 0.285em 0.8em;
+    border: 1px solid #1779ba;
+    font-size: 18px;
+}
+
+.pagination-circular li:not(.disabled):hover a {
+    background: #1779ba;
+    color: #fefefe;
+}
+
+.pagination-circular li a {
+    transition: background 0.15s ease-in, color 0.15s ease-in;
+}
+
+.button-add-cart {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-add-cart.is-adding {
+    border-radius: 25px;
+    max-width: 50px;
+    max-height: 50px;
+    cursor: default;
+}
+
+.button-add-cart.is-adding::after {
+    -webkit-animation: fadeIn 0.3s ease-in, spin 1.3s infinite ease-in-out;
+    animation: fadeIn 0.3s ease-in, spin 1.3s infinite ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.button-add-cart.is-adding span {
+    opacity: 0;
+}
+
+.button-add-cart::after {
+    content: " ";
+    border-top: solid 4px #17cae6;
+    border-right: solid 4px #17cae6;
+    border-bottom: solid 4px #17cae6;
+    border-left: solid 4px transparent;
+    border-radius: 50px;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    bottom: 7px;
+    left: 7px;
+    margin: auto;
+    max-width: 30px;
+    max-height: 30px;
+    opacity: 0;
+    z-index: 1;
+}
+
+@-webkit-keyframes spin {
+    0%,
+    5% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    95%,
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0%,
+    5% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    95%,
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.button-add-cart {
+    position: relative;
+    overflow: hidden;
+}
+
+.button-add-cart.is-adding {
+    border-radius: 25px;
+    max-width: 50px;
+    max-height: 50px;
+    cursor: default;
+}
+
+.button-add-cart.is-adding::after {
+    -webkit-animation: fadeIn 0.3s ease-in, spin 1.3s infinite ease-in-out;
+    animation: fadeIn 0.3s ease-in, spin 1.3s infinite ease-in-out;
+    -webkit-animation-fill-mode: forwards;
+    animation-fill-mode: forwards;
+}
+
+.button-add-cart.is-adding span {
+    opacity: 0;
+}
+
+.button-add-cart::after {
+    content: " ";
+    border-top: solid 4px #17cae6;
+    border-right: solid 4px #17cae6;
+    border-bottom: solid 4px #17cae6;
+    border-left: solid 4px transparent;
+    border-radius: 50px;
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    bottom: 7px;
+    left: 7px;
+    margin: auto;
+    max-width: 30px;
+    max-height: 30px;
+    opacity: 0;
+    z-index: 1;
+}
+
+@-webkit-keyframes spin {
+    0%,
+    5% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    95%,
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0%,
+    5% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    95%,
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-webkit-keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}

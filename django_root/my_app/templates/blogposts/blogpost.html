@@ -1,0 +1,60 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% block title %}
+  {{ page_title }}
+{%endblock %}
+<div id="heading-div" class="centered">
+  {% block heading %}
+  <div class="title_banner">
+    <div class="page_title">{{ page_heading }}</div>
+  </div>
+  <span class="header_line"></span>
+  {% endblock %}
+</div>
+{% block content %}
+<div class="post_card">
+  <div class="pad">
+    <div class="invisible_box">
+      <div class="card_name emphasized">Introduction</div>
+      <div class="card_title">{{ intro }}</div>
+      <span class="profile_line buffer"></span>
+      <div class="card_name emphasized buffer">Description</div>
+      <div class="card_title">{{ desc }}</div>
+      <span class="profile_line buffer"></span>
+      <div class="card_name emphasized buffer">Supporting Media</div>
+      <div class="row large-up-4 small-up-2 align">
+        <a href="{{ media0 }}">
+          <img class="post_image" src="{{ media0 }}" alt="img0" />
+        </a>
+        <ahref="{{ media1 }}">
+          <img class="post_image" src="{{ media1 }}" alt="img1" />
+        </a>
+        <a href="{{ media2 }}">
+          <img class="post_image" src="{{ media2 }}" alt="img2" />
+        </a>
+        <a href="{{ media3 }}">
+          <img class="post_image" src="{{ media3 }}" alt="img3" />
+        </a>
+        <a href="{{ media4 }}">
+          <img class="post_image" src="{{ media4 }}" alt="img4" />
+        </a>
+        <a href="{{ media5 }}">
+          <img class="post_image" src="{{ media5 }}" alt="img4" />
+        </a>
+      </div>
+      <span class="profile_line"></span>
+      <div class="card_name emphasized buffer">References</div>
+      <div class="card_title pad">
+        {% for ref in refs %}
+        <li>
+          <a href="{{ ref }}">{{ ref }}</a>
+          <br /><br />
+        </li>
+        {% endfor %}
+      </div>
+      <br />
+    </div>
+  </div>
+    {% endblock %}
+  </div>
+</div>

@@ -1,0 +1,57 @@
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block title %} {{page_title}} {% endblock %}
+
+ <div id="heading-div" class = "centered">
+	{% block heading %} {{page_heading}} {% endblock %}
+  {% comment %} {% block subheading %} {{page_subheading}} 
+	{% block supptext %} {{page_text}} {% endblock %}  {% endcomment %}
+</div> 
+
+
+{% block content %}
+
+
+<div class = "centered">
+  <span class = "emphasized" >Total Ethereum Profit</span></center>
+  <form>
+    <input type="text" id="number" disabled value="0"/>
+    {% comment %} <input type="button" onclick="incrementValue()" value="Increment Value" /> {% endcomment %}
+  </form>
+</div>
+<br>
+  <div class = "centered">
+    <div class="row">
+      <div class="column">
+        <div class ="alt-portfolio"><a id='monke1' href="#" onclick="removeMonke((document.getElementById('monke1')));" name="monke1"> <img id='monke1' class ="monke img" src="{% static 'img/nft/ape1.png' %}" alt="Monke1"></a> </div>
+        <div class ="alt-portfolio"><a id='monke2' href="#" onclick="removeMonke((document.getElementById('monke2')));" name="monke2"> <img id='monke2' class ="monke img" src="{% static 'img/nft/ape2.jpg' %}" alt="Monke2"></a> </div>
+        <div class ="alt-portfolio"><a id='monke3' href="#" onclick="removeMonke((document.getElementById('monke3')));" name="monke3"> <img id='monke3' class ="monke img" src="{% static 'img/nft/ape3.png' %}" alt="Monke3"></a> </div>
+      </div>
+      <div class="column">
+        <div class ="alt-portfolio"><a id='monke4' href="#" onclick="removeMonke((document.getElementById('monke4')));" name="monke4"> <img id='monke4' class ="monke img" src="{% static 'img/nft/ape4.jpg' %}" alt="Monke4"></a> </div>
+        <div class ="alt-portfolio"><a id='monke5' href="#" onclick="removeMonke((document.getElementById('monke5')));" name="monke5"> <img id='monke5' class ="monke img" src="{% static 'img/nft/ape5.png' %}" alt="Monke5"></a> </div>
+        <div class ="alt-portfolio"><a id='monke6' href="#" onclick="removeMonke((document.getElementById('monke6')));" name="monke6"> <img id='monke6' class ="monke img" src="{% static 'img/nft/ape6.jpg' %}" alt="Monke6"></a></div>
+      </div>
+      <div class="column">
+        <div class ="alt-portfolio"><a id='monke7' href="#" onclick="removeMonke((document.getElementById('monke7')));" name="monke7"> <img id='monke7' class ="monke img" src="{% static 'img/nft/ape7.png' %}" alt="Monke4"></a> </div>
+        <div class ="alt-portfolio"><a id='monke8' href="#" onclick="removeMonke((document.getElementById('monke8')));" name="monke8"> <img id='monke8' class ="monke img" src="{% static 'img/nft/ape8.png' %}" alt="Monke5"></a> </div>
+        <div class ="alt-portfolio"><a id='monke9' href="#" onclick="removeMonke((document.getElementById('monke9')));" name="monke9"> <img id='monke9' class ="monke img" src="{% static 'img/nft/ape9.png' %}" alt="Monke6"></a> </div>
+      </div>
+      <div class="column">
+        <div class ="alt-portfolio"><a id='monke10' href="#" onclick="removeMonke((document.getElementById('monke10')));" name="monke10"> <img id='monke10' class ="monke img" src="{% static 'img/nft/ape10.png' %}" alt="Monke4"></a> </div>
+        <div class ="alt-portfolio"><a id='monke11' href="#" onclick="removeMonke((document.getElementById('monke11')));" name="monke11"> <img id='monke11' class ="monke img" src="{% static 'img/nft/ape11.png' %}" alt="Monke5"></a> </div>
+        <div class ="alt-portfolio"><a id='monke12' href="#" onclick="removeMonke((document.getElementById('monke12')));" name="monke12"> <img id='monke12' class ="monke img" src="{% static 'img/nft/ape12.png' %}" alt="Monke6"></a></div>
+      </div>
+    </div>
+  
+  </div>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="{% static 'js/assn5.js' %}"></script> 
+{% comment %} <script type="text/javascript" language="JavaScript"  src="/js/jquery-1.2.6.min.js"></script>
+<script type="text/javascript" src="/js/jquery-ui-personalized-1.5.2.packed.js"></script>
+<script type="text/javascript" src="/js/sprinkle.js"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.6.0.min.js"></script> {% endcomment %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}{{ page_heading }}{% endblock %}
+    {% block subheading %}{{ page_subheading }}{% endblock %}
+</div>
+{% block content %}
+    <p>
+        Hello World User Input - Rust
+    </p>
+    <script type="module">
+        // Import our outputted wasm ES6 module
+        // Which, export default's, an initialization function
+        import init from "{% static 'js/wasm/rust/userinput/pkg/userinput.js' %}";
+
+        const runWasm = async() => {
+
+            const userinput = await init("{% static 'js/wasm/rust/userinput/pkg/userinput_bg.wasm' %}");
+
+            const inputout = userinput.main();
+
+
+            // document.body.textContent = `${inputout}`;
+        };
+        runWasm();
+    </script>
+{% endblock %}

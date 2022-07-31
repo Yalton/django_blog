@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}{{ page_heading }}{% endblock %}
+    {% block subheading %}{{ page_subheading }}{% endblock %}
+</div>
+{% block content %}
+    <p>
+        Hello World - Rust
+    </p>
+    <script type="module">
+  // Import our outputted wasm ES6 module
+  // Which, export default's, an initialization function
+  import init from "{% static 'js/wasm/rust/helloworld/pkg/hello_world.js' %}";
+  {% comment %} var a = prompt("First Number?");
+  var b = prompt("Second Number?"); {% endcomment %}
+  const runWasm = async () => {
+    // Instantiate our wasm module
+    const helloWorld = await init("{% static 'js/wasm/rust/helloworld/pkg/hello_world_bg.wasm' %}");
+
+    var a = prompt("First Number?");
+    var b = prompt("Second Number?");
+
+    // Call the Add function export from wasm, save the result
+    const addResult = helloWorld.add(a, b);
+
+    // Set the result onto the body
+    document.body.textContent = `Hello World! addResult: ${addResult}`;
+  };
+  runWasm();
+
+    </script>
+{% endblock %}

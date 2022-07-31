@@ -1,0 +1,151 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}
+    <div class="profile_banner">
+        <div class="profile_title">{{ page_heading }}</div>
+    </div>
+    <span class="header_line"></span>
+    {% endblock %}
+</div>
+{% block content %}
+<div class="rabbit_card">
+    <div class="pad">
+        <div class="invisible_box">
+            <div class="card_name emphasized">Introduction</div>
+            <div class="card_title">{{ intro }}</div>
+            <span class="profile_line buffer"></span>
+            <div class="card_name emphasized buffer">Description</div>
+            <div class="card_title">{{ desc }}</div>
+            <span class="profile_line buffer"></span>
+            <div class="card_name emphasized buffer">Supporting Media</div>
+            <div class="row large-up-4 small-up-2 align">
+                <img class='rabbit_image' src='{{ media0 }}' alt='img0'>
+                <img class='rabbit_image' src='{{ media1 }}' alt='img1'>
+                <img class='rabbit_image' src='{{ media2 }}' alt='img2'>
+                <img class='rabbit_image' src='{{ media3 }}' alt='img3'>
+                <img class='rabbit_image' src='{{ media4 }}' alt='img4'>
+            </div>
+            <span class="profile_line"></span>
+            <div class="card_name emphasized buffer">References</div>
+            <div class="card_title pad">
+                {% for ref in refs %}<li>
+                    <a href="{{ ref }}">{{ ref }}</a>
+                    <br><br>
+                </li>{% endfor %}
+            </div>
+            <br>
+        </div>
+    </div>
+    <div id="spoiler" style="display:none">
+        <!-- comments -->
+        <div class="pad invisible_box">
+            <span class="profile_line buffer"></span>
+            <div class="card_name emphasized buffer">Comments ({{comment_list|length}})</div>
+            {% for comm in comment_list %}
+            <div>
+                <div class="comment-section-author">
+                    <div class="comment-section-name">
+                        <div class="card_name buffer"><h5>
+                            <a href="">{{ comm.author }}</a>
+                        </h5></div>
+                        <div class="card_name">
+                            {{ comm.created_on }}
+                        </div>
+                    </div>
+                </div>
+                <div class="comment-section-text">
+                    <div class="card_title">
+                        {{ comm.comment }}
+                    </div>
+                </div>
+            </div>
+            <span class="profile_line buffer short"></span>
+            {% endfor %}
+            <form class="comment-section-form">
+                <div class="comment-section-box">
+                    <div class="row">
+                        <div class="small-12 column">
+                            {% comment %} <h4>Leave a Comment</h4> {% endcomment %}
+                            {% comment %} <form method="post">
+                                {% csrf_token %}
+                                {{ form }}
+                                <button>Submit</button>
+                            </form> {% endcomment %}
+                            <a class="plain" href="/comment/{{hole_id}}">
+                                <div class="comment_button">Leave a Comment</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!--/comment box-->
+        </div>
+    </div>
+    <button class="spoiler centered" title="Click to Show/Hide Content" type="button"
+        onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">
+        Show/Hide
+        Comments
+    </button>
+    <div class="portfolio right">
+        <div class="centered {{ page_title }}-div">
+            <img id='{{ portfolio_image }}' class='portfolioimg' src='{{ portfolio_image }}' alt='img'>
+        </div>
+        <div>
+            <p class="portfolio_info">
+                {{ portfolio_text }}
+            </p>
+        </div>
+        <hr>
+        <div class="centered user-interactions">
+            <div class="likediv">
+                <span class="emphasized">Rabbitscore:</span>
+                <p>
+                    {{ likes }}
+                </p>
+            </div>
+            <div>
+                {% if user_liked %}
+                <button onclick="location.href='/like/{{ hole_id }}/';" class="button liked button-like">
+                    <i class="fa fa-thumbs-o-up"></i>
+                    <span>Like</span>
+                </button>
+                <button onclick="location.href='/dislike/{{ hole_id }}/';" class="button button-like">
+                    <i class="fa fa-thumbs-o-down"></i>
+                    <span>Dislike</span>
+                </button>
+                {% elif user_disliked %}
+                <button onclick="location.href='/like/{{ hole_id }}/';" class="button button-like">
+                    <i class="fa fa-thumbs-o-up"></i>
+                    <span>Like</span>
+                </button>
+                <button onclick="location.href='/dislike/{{ hole_id }}/';" class="button liked button-like">
+                    <i class="fa fa-thumbs-o-down"></i>
+                    <span>Dislike</span>
+                </button>
+                {% else %}
+                <button onclick="location.href='/like/{{ hole_id }}/';" class="button button-like">
+                    <i class="fa fa-thumbs-o-up"></i>
+                    <span>Like</span>
+                </button>
+                <button onclick="location.href='/dislike/{{ hole_id }}/';" class="button button-like">
+                    <i class="fa fa-thumbs-o-down"></i>
+                    <span>Dislike</span>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            {% if profile_saved %}
+            <button onclick="location.href='/profilesave/{{ hole_id }}/';" class="button liked button-like">
+                <span>Saved to profile</span>
+            </button>
+            {% else %}
+            <button onclick="location.href='/profilesave/{{ hole_id }}/';" class="button button-like">
+                <span>Save to profile</span>
+            </button>
+            {% endif %}
+            <!-- <div class="save-to-profile">Placeholder</div>
+        <div class="leave-comment">Placeholder</div> -->
+        </div>
+        {% endblock %}

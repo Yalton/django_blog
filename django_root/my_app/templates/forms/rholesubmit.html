@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}
+    <div class="profile_banner">
+        <div class="profile_title">
+            Submit Your Own Rabbithole!
+        </div>
+    </div>
+    <span class="header_line"></span>
+    {% endblock %}
+</div>
+
+{% block content %}
+<div class="submit_card">
+    <div class="grid-x grid-padding-x">
+        <div class="large-4 medium-4 small-12 large-offset-4 medium-offset-4 cell">
+            <form action="/submit/" method="post">
+                {% csrf_token %}
+                <div class="submit">
+                    {{ form }}
+                    <button type="submit" class="form">Submit Rabbithole</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<br><br>
+{% endblock %}

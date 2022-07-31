@@ -1,0 +1,21 @@
+{% extends "base.html" %} 
+{% load static %} 
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">   
+ 
+
+	
+{% block title %} {{page_title}} {% endblock %}
+
+<div id="heading-div" class = "centered">
+	{% block heading %} {{page_heading}} {% endblock %}
+	{% block subheading %} {{page_subheading}} {% endblock %}
+	{% block supptext %} {{page_text}} {% endblock %}
+</div>
+
+{% block content %}
+<form class="input-form lalligned" action="/assn4/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input class="green-button" type="submit" value="Submit">
+</form>
+{% endblock %}

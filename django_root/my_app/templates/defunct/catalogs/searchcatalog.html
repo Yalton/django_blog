@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+
+<div id="heading-div" class="centered">
+    {% block heading %}
+        <div class="title_banner">
+            <div class="page_title">Searching for: "{{ page_heading }}"</div>
+        </div>
+        <span class="header_line"></span>
+    {% endblock %}
+    {% comment %} {% block subheading %} {{page_subheading}}
+    {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
+</div>
+{% block content %}
+    <!-- <div class="centered">
+  <span class="emphasized">Catalog Placeholder</span>
+
+</div> -->
+    <br>
+    <section>
+        {% if results %}
+            <div class="featured-image-block-grid">
+                <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+                <div class="row large-up-4 small-up-2 align">
+                    {% for post in Blogposts %}
+                        <div class="catalog_card pad" onclick="location.href='/blogpost/{{ post.id }}';">
+                                <img class="catalog-img" src="{{ post.image }}" alt="{{ post.title }}">
+                                <h3 class="catalog-title">{{ post.title }}</h3>
+                                <span class="profile_line"></span>
+                                <p class="catalog-desc">
+                                    {{ post.desc }}
+                                </p>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        {% else %}
+            <div class="centered">
+                <hr>
+                <span>No results for <span class="emphasized">{{ page_heading }}</span> </span>
+            </div>
+        {% endif %}
+        {% comment %} {% if results %}
+  <hr>
+    <div class="paginationdiv">
+        <ul class="pagination pagination-circular" role="navigation" aria-label="Pagination">
+        <li class="disabled">� <span class="show-for-sr">Previous page</span></li>
+        <li class="current"><span class="show-for-sr">Page</span> 1</li>
+        <li><a href="/testpost" aria-label="Page 2">2</a></li>
+        <li><a href="/testpost" aria-label="Page 3">3</a></li>
+        <li><a href="/testpost" aria-label="Page 4">4</a></li>
+        <li><a href="/testpost" aria-label="Page 5">5</a></li>
+        <li><a href="/testpost" aria-label="Next page">� <span class="show-for-sr">Next page</span></a></li>
+        </ul>
+    </div>
+        {% endif %} {% endcomment %}
+    </section>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %} 
+{% load static %}
+ 
+
+	
+{% block title %} {{page_title}} {% endblock %}
+
+<div id="heading-div" class = "centered">
+	{% block heading %} {{page_heading}} {% endblock %}
+	{% block subheading %} {{page_subheading}} {% endblock %}
+</div>
+
+
+{% block content %}
+<section>
+	<div id="assn-div" class ="lalligned">
+        <p>{{page_text}}<p>
+	</div>
+</section>
+{% endblock %}
+
+	

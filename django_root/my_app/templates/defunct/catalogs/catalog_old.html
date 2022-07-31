@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %} {{page_title}} {% endblock %}
+
+<div id="heading-div" class="centered">
+  {% block heading %} {{page_heading}} {% endblock %}
+  {% comment %} {% block subheading %} {{page_subheading}}
+  {% block supptext %} {{page_text}} {% endblock %} {% endcomment %}
+</div>
+
+
+{% block content %}
+
+
+<!-- <div class="centered">
+  <span class="emphasized">Catalog Placeholder</span>
+
+</div> -->
+<br>
+
+<section>
+
+  <div class="featured-image-block-grid">
+    <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center">
+    </div>
+    <div class="row large-up-4 small-up-2">
+
+      {% for hole in rabbitholes %}
+
+        <div class="featured-image-block column">
+          <a href="/rabbithole/{{hole.id}}">
+            <img class="catalog-img" src="{{hole.image}}" alt="{{hole.title}}">
+            <h3 class="catalog-title"> {{hole.title}}</h3>
+            <p class="catalog-desc"> {{hole.desc}} </p>
+          </a>
+        </div>
+
+      {% endfor %}
+
+
+      
+     
+    </div>
+  </div>
+
+
+  <hr>
+  <div class="paginationdiv">
+    <ul class="pagination pagination-circular" role="navigation" aria-label="Pagination">
+      <li class="disabled">« <span class="show-for-sr">Previous page</span></li>
+      <li class="current"><span class="show-for-sr">Page</span> 1</li>
+      <li><a href="/testhole" aria-label="Page 2">2</a></li>
+      <li><a href="/testhole" aria-label="Page 3">3</a></li>
+      <li><a href="/testhole" aria-label="Page 4">4</a></li>
+      <li><a href="/testhole" aria-label="Page 5">5</a></li>
+      <li><a href="/testhole" aria-label="Next page">» <span class="show-for-sr">Next page</span></a></li>
+    </ul>
+</div>
+
+</section>
+
+{% endblock %}

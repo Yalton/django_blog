@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% load mptt_tags %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}
+        <div class="title_banner">
+            <div class="page_title">{{ page_heading }}</div>
+        </div>
+        <span class="header_line"></span>
+    {% endblock %}
+    {% comment %} {% block subheading %} {{page_subheading}}
+    {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
+</div>
+{% block content %}
+    <!-- <div class="centered">
+	  <span class="emphasized">Catalog Placeholder</span>
+	
+</div> -->
+    <br>
+    <section>
+        <div class="featured-image-block-grid">
+            <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+            <div class="row large-up-4 small-up-2 align">
+                {% for post in page_obj.object_list %}
+                    {% comment %} {% if post.approved %} {% endcomment %}
+                        <div class="catalog_card"
+                             onclick="location.href='/blogpost/{{ post.id }}';">
+                            <div class="pad">
+                                {% if post.p_media %}<img class="catalog-img"
+                                  src="{{ post.p_media.url }}"
+                                  alt="{{ post.title }}">{% endif %}
+                                <h3 class="catalog-title">{{ post.title }}</h3>
+                                <span class = "profile_line"></span>
+                                <p class="catalog-desc">
+                                    {{ post.summary }}
+                                </p>
+                            </div>
+                        </div>
+                    {% comment %} {% endif %} {% endcomment %}
+                {% endfor %}
+            </div>
+        </div>
+        <div class="paginationdiv">
+            <ul class="pagination pagination-circular"
+                role="navigation"
+                aria-label="Pagination">
+                {% if page_obj.has_previous %}
+                    {# whether the previous page exists #}
+                    <li class="show-for-sr">
+                        <a href="?page={{ page_obj.previous_page_number }}"><span class="show-for-sr">Previous page</span></a>
+                    </li>
+                {% endif %}
+                <li class="current">
+                    <span class="show-for-sr">Page</span> {{ page_obj.number }}
+            </li>
+            {% if page_obj.has_next %}
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}"><EFBFBD> <span class="show-for-sr">Next page</span></a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</section>
+{% endblock %}

@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-(d#5ts)r_s%%brc9h26gjc6aeg*6@#lufgenv(+nzfka4we+kz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.50.2', 'blog.daltonbailey.com','localhost', '127.0.0.1', 'rabbitholes.billbert.co']
+ALLOWED_HOSTS = ['192.168.50.111', 'daltonbailey.com','localhost', '127.0.0.1', '192.168.50.111:8000']
 
 
 LOGIN_URL = "/login/"
@@ -151,7 +151,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
-        "LOCATION": "redis://192.168.50.2:6379/1",
+        "LOCATION": "redis://192.168.50.122:6379/1",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient"
         },
@@ -164,7 +164,7 @@ CHANNEL_LAYERS = {
     'default': {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
-            "hosts": [('192.168.50.2', 6379)],
+            "hosts": [('192.168.50.122', 6379)],
         },
     },
 }

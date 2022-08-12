@@ -1,20 +1,20 @@
  version: "3" 
  
  services:
-  redis:
-    image: redis:latest
-    ports:
-      - 6379:6379
+#  redis:
+#    image: redis:latest
+#    ports:
+#      - 6379:6379
       
-  rholes:
-    image: rabbitholes:latest
-    links:
-       - redis:redis
-    depends_on:
-       - redis
+  blog:
+    image: blog:latest
+#    links:
+#       - redis:redis
+#    depends_on:
+#       - redis
     ports:
       - 8000:8000
     volumes:
-      - /mnt/nas/shared/Network/Mainframe/rabbithole_site/django_root:/usr/src/app
+      - /opt/django_blog/django_root:/usr/src/app
     working_dir: /usr/src/app
     command: python manage.py runserver 0.0.0.0:8000

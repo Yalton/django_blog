@@ -12,6 +12,7 @@ pylint-django
 pylint-plugin-utils
 channels
 channels_redis
-django_redis
-Django-mptt 
-Django-treebeard
+django-redis
+redis-simple-cache
+mysqlclient
+django-mptt

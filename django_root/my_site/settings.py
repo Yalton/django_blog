@@ -90,7 +90,7 @@ DATABASES = {
         'NAME': 'django',
         'USER': 'django',
         'PASSWORD': 'uKNeZTTo5xKiRHqyXxgCzVQkiccccK',
-        'HOST': '192.168.50.2',
+        'HOST': '192.168.50.131',
         'PORT': '3306',
     }
     # 'SQLLite': {

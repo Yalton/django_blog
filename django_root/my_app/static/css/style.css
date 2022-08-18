@@ -231,17 +231,12 @@ img {
 }
 
 .sub_content_block {
-    /* top: 35%;
-    right: 10%;
-    position: absolute; */
     display: flex;
     background-color: var(--color_main);
     color: var(--color_accent2);
+    position: relative;
     display: inline-block;
-    width: 75%;
-    /* padding: 1rem;
-    transition: .5s;
-    box-shadow: 0 0 1rem var(--color_accent); */
+    /* width: 75%; */
 }
 
 .simulation {

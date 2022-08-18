@@ -182,19 +182,45 @@ body {
     flex-wrap: wrap;
 } */
 
-img {
+/* img {
     max-width: 50%;
     max-height: 50%;
-}
+} */
 
 .portfolioimg {
     max-width: 50%;
     max-height: 50%;
-    border: 3px solid gray;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border: 0.5rem solid var(--color_accent);
 }
+
+.portfolioimg:hover {}
+
+
+.index-img {
+    height: 20vh;
+    /* max-height: 50%; */
+    border: 0.2rem solid var(--color_accent);
+    display: block;
+    margin: 0.6rem;
+}
+
+.index-img:hover {}
+
+
+.flexed-image{
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+
+
 
 .centered {
     text-align: center;
+    /* float: center; */
 }
 
 .likediv {
@@ -215,34 +241,39 @@ img {
     background: transparent;
 }
 
-.content_block {
+
+
+.content_container {
     top: 20%;
     right: 10%;
+    /* display: inline-block; */
     position: absolute;
     background-color: var(--color_main);
     color: var(--color_accent2);
-    display: inline-block;
     width: 75%;
-    border: 5px solid var(--color_accent);
+    border: 0.2rem solid var(--color_accent);
     border-radius: 1rem;
     padding: 1rem;
-    transition: .5s;
     /* box-shadow: 0 0 1rem var(--color_accent); */
 }
 
-.sub_content_block {
-    display: flex;
-    background-color: var(--color_main);
-    color: var(--color_accent2);
-    position: relative;
+.content_block {
+    /* display: flex; */
     display: inline-block;
-    /* width: 75%; */
+    /* white-space: nowrap */
 }
+
+.sub_content_block {
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: block;
+}
+    
 
 .simulation {
     background-color: var(--color_back);
-    border: 5px solid var(--color_accent);
-    display: block;
+    border: 0.2rem solid var(--color_accent);
+    display: inline-block; 
     border-radius: 1rem;
     padding: 10px;
     transition: .5s;
@@ -341,6 +372,14 @@ img {
     text-align: center;
 }
 
+.lfloat {
+    float: left;
+}
+
+.rfloat {
+    float: right;
+}
+
 .lalligned {
     text-align: left;
     /* margin-left: 4rem; */
@@ -350,6 +389,8 @@ img {
     text-align: right;
     /* margin-left: 4rem; */
 }
+
+
 
 label.register {
     float: left;
@@ -832,6 +873,7 @@ button:hover {
     display: block;
     border: 2px solid var(--color_accent2);
     height: 20vh;
+    width: 50%
 }
 
 .catalog-title {

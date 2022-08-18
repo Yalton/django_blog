@@ -231,7 +231,7 @@ def catalog(request, parent_id):
             cat_instance["desc"] = cat.cat_summary
             data_list["categories"].append(cat_instance)
             
-        p = Paginator(category_list, 8)  
+        p = Paginator(data_list["categories"], 8)  
         page_number = request.GET.get('page')
         try:
             page_obj = p.get_page(page_number) 

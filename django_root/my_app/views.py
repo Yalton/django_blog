@@ -38,7 +38,7 @@ def index(request):
 
 def about(request):
     page_title = "About"
-    page_heading = "About this blog"
+    page_heading = "About"
 
     context = {
         'page_title': page_title,
@@ -54,7 +54,7 @@ def contact(request):
         'page_title': page_title,
         'page_heading': page_heading,
     }
-    return render(request, 'other/about.html', context=context)
+    return render(request, 'other/contact.html', context=context)
 
 def nbody(request):
     return render(request, 'nbody.html')

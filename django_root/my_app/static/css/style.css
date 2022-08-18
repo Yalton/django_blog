@@ -155,12 +155,12 @@ body {
 
 /* Right-aligned section inside the top navigation */
 
-.topnav-right {
+/* .topnav-right {
     float: right;
     display: flex;
-}
+} */
 
-.top-bar {
+/* .top-bar {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -180,7 +180,7 @@ body {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
-}
+} */
 
 img {
     max-width: 50%;
@@ -215,12 +215,34 @@ img {
     background: transparent;
 }
 
-.intro-block {
-    padding: 10px 0;
-    border-top: 1px solid #cacaca;
-    border-bottom: 1px solid #cacaca;
+.content_block {
+    top: 20%;
+    right: 10%;
+    position: absolute;
+    background-color: var(--color_main);
+    color: var(--color_accent2);
+    display: inline-block;
+    width: 75%;
+    border: 5px solid var(--color_accent);
+    border-radius: 1rem;
+    padding: 1rem;
+    transition: .5s;
+    /* box-shadow: 0 0 1rem var(--color_accent); */
 }
 
+.sub_content_block {
+    /* top: 35%;
+    right: 10%;
+    position: absolute; */
+    display: flex;
+    background-color: var(--color_main);
+    color: var(--color_accent2);
+    display: inline-block;
+    width: 75%;
+    /* padding: 1rem;
+    transition: .5s;
+    box-shadow: 0 0 1rem var(--color_accent); */
+}
 
 .simulation {
     background-color: var(--color_back);
@@ -239,29 +261,41 @@ img {
     top: 5%;
     right: 5%;
     position: absolute;
-    background-color: var(--color_back);
-    color: white;
+    background-color: var(--color_main);
+    color: var(--color_accent2);
     display: inline-block;
     width: 25%;
     border: 5px solid var(--color_accent);
     border-radius: 1rem;
-    padding: 10px;
+    padding: 1rem;
     transition: .5s;
-    box-shadow: 0 0 1rem var(--color_accent);
+    /* box-shadow: 0 0 1rem var(--color_accent); */
 }
 
 .altportfolio {
     margin-top: 10%;
     display: inline-block;
     width: 25%;
-    background-color: var(--color_back);
-    color: white;
-    border: 5px solid gray;
-    padding: 10px;
+    background-color: var(--color_main);
+    color: var(--color_accent2);
+    border: 5px solid var(--color_accent);
+    padding: 1rem;
     border-radius: 1rem;
     box-shadow: 0 0 1rem var(--color_accent);
     transition: .5s;
     transform: scale(1.1, 1.1);
+}
+
+.breadcrumb {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1rem;
+    list-style: none;
+    background-color: var(--color_main);
+    border-radius: .25rem;
 }
 
 .chat {
@@ -273,7 +307,7 @@ img {
 }
 
 .chat_input {
-    border: 3px solid gray;
+    border: 3px solid var(--color_accent);
     border-radius: .5rem;
 }
 
@@ -314,12 +348,12 @@ img {
 
 .lalligned {
     text-align: left;
-    margin-left: 4rem;
+    /* margin-left: 4rem; */
 }
 
 .ralligned {
     text-align: right;
-    margin-left: 4rem;
+    /* margin-left: 4rem; */
 }
 
 label.register {
@@ -344,7 +378,7 @@ span.animated {
 }
 
 p.bold-text {
-    color: green;
+    color: var(--color_accent2);
     font-weight: bold;
     font-style: italic;
 }
@@ -373,21 +407,21 @@ input.green-button {
 /* unvisited link */
 
 a.themed:link {
-    color: #fc4545;
+    color: var(--color_accent);
 }
 
 
 /* visited link */
 
 a.themed:visited {
-    color: #631d1d;
+    color: var(--color_accent2);
 }
 
 
 /* mouse over link */
 
 a.themed:hover {
-    color: #fc0000;
+    color: var(--color_accent3);
 }
 
 
@@ -567,18 +601,6 @@ hr.divider {
     transition: .5s;
 }
 
-.one {
-    max-width: 15%;
-    margin: 15% auto 1.5% 11.5%;
-}
-
-.two {
-    margin: -25% 3% 3% 35.5%;
-}
-
-.three {
-    margin: 3% 3% 3% 35.5%;
-}
 
 .profile_card:hover {
     box-shadow: 0 0 2.5rem var(--color_accent), inset 0 0 5px var(--color_accent);
@@ -784,14 +806,14 @@ button:hover {
     text-align: left;
     padding-top: 20px;
     color: var(--color_accent2);
-    background-color: var(--color_accent3);
+    background-color: var(--color_main);
     border-radius: 20px;
     border: 2px solid var(--color_accent);
     position: relative;
     width: 20%;
     height: 15em;
     margin: 1.3%;
-    box-shadow: 0 0 15px var(--color_accent);
+    /* box-shadow: 0 0 15px var(--color_accent); */
     transition: .5s;
     overflow-y: hidden;
 }
@@ -844,7 +866,7 @@ button:hover {
     border: 2px solid var(--color_accent);
     position: relative;
     max-width: 90%;
-    box-shadow: 0 0 50rem var(--color_accent);
+    /* box-shadow: 0 0 50rem var(--color_accent); */
     transition: .5s;
 }
 

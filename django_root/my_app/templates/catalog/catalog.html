@@ -1,21 +1,63 @@
-{% extends "base.html" %} 
-{% load mptt_tags %}
-
-{% block title %}List of categories{% endblock %}
-
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %} 
+    <div class="title_header">
+        <div class="page_title">
+            {{ page_heading }}
+       </div>
+    </div>
+    <span class="header_line"></span>
+    {% endblock %}
+    {% comment %} {% block subheading %} {{page_subheading}}
+    {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
+</div>
 {% block content %}
 
-<ul class="root">
-    {% recursetree nodes %}
-        <li>
-            {{ node.name }}
-            {% if not node.is_leaf_node %}
-                <ul class="children">
-                    {{ children }}
-                </ul>
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+	<li class="breadcrumb-item"><a href="/">🏠</a></li>
+	{% for node in ancestors %}
+	<li class="breadcrumb-item"><a href="{{node.get_absolute_url}}">{{node.name}}</a></li>
+    	{% endfor %}
+	<li class="breadcrumb-item active" aria-current="page">{{ object }}</li>
+    </ol>
+</nav>
 
-               {% endif %}
-            </li>
-        {% endrecursetree %}
-    </ul>
+
+
+{% comment %} {% if not parent_id == None %}
+<div class = " centered breadcrumbs">
+    <a href="/catalog/{{grand_parent_id}}/">Parent</a>
+</div>
+{% endif %} {% endcomment %}
+
+    <br>
+    <section>
+        <div class="featured-image-block-grid">
+            <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+            <div class="row large-up-4 small-up-2 align">
+                {% for cat in categories %}
+                    <div class="catalog_card" onclick="location.href='/catalog/{{ cat.id }}';">
+                        <div class="pad">
+                            <img class="catalog-img" src="{{ cat.image }}" alt="{{ cat.title }}">
+                            <h3 class="catalog-title">{{ cat.title }}</h3>
+                            <span class = "profile_line"></span>
+                            <p class="catalog-desc">
+                                {{ cat.desc }}
+                            </p>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+     
+              {% if page_obj.has_next %}
+              <hr class="footer_line">
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}"><EFBFBD> <span class="show-for-sr">Next page</span></a>
+                </li>
+            {% endif %}
+    </section>
 {% endblock %}

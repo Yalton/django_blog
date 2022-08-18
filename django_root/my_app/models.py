@@ -57,7 +57,7 @@ class Category(MPTTModel):
         return ' -> '.join(full_path[::-1])
     
     def get_absolute_url(self):
-        return reverse('blogs-by-category', args=[str(self.slug)])
+        return reverse('catalog', args=[str(self.id)])
     
     def get_slug_list(self):
         try:

@@ -168,7 +168,7 @@ def blogpost(request, post_id):
     return render(request, 'blogposts/blogpost.html', context=context)
 
 
-def catalog(request):
+def catree(request):
     Blogpost_list = Blogpost.objects.filter(isProject=False)
     p = Paginator(Blogpost_list, 8)  
     page_number = request.GET.get('page')
@@ -184,7 +184,7 @@ def catalog(request):
         'page_obj': page_obj,
         'nodes': Category.objects.all()
     }
-    return render(request,'catalog/catalog.html', context=context)
+    return render(request,'catalog/catree.html', context=context)
 
 
 def show_category(request,hierarchy= None):
@@ -204,11 +204,12 @@ def show_category(request,hierarchy= None):
         return render(request, 'catalog/categories.html', {'instance':instance})
 
 
-def categoryCatalog(request, parent_id):
+def catalog(request, parent_id):
     data_list = {}
     data_list["categories"] = []
     cat_name = "Category"
     if parent_id == 0:
+        category = None
         parent_id = None
         grand_parent_id = None
     else: 
@@ -240,10 +241,11 @@ def categoryCatalog(request, parent_id):
             'page_heading': cat_name + " Catalog",
             'parent_id': parent_id,
             'grand_parent_id': grand_parent_id,
+            'node': category,
             'page_obj': page_obj,
             'categories':data_list["categories"]
         }
-        return render(request, 'catalog/categorycatalog.html', context=context)
+        return render(request, 'catalog/catalog.html', context=context)
     else:   
         data_list = {}
         data_list["Blogposts"] = []

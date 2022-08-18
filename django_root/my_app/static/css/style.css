@@ -1,15 +1,17 @@
 :root {
-    --color_main: #232323;
-    --color_card: #232323;
-    --color_accent: #144e73;
-    --color_accent2: white;
+    --color_back: #002E2C;
+    --color_main: #035E7B;
+    --color_accent: #EFF1C5;
+    --color_accent2: #E3E7AF;
+    --color_accent3: #A2A77F;
 }
 
 .light_mode {
-    --color_main: rgb(209, 208, 208);
-    --color_card: white;
-    --color_accent: #057068;
-    --color_accent2: black;
+    --color_back: #002E2C;
+    --color_main: #035E7B;
+    --color_accent: #EFF1C5;
+    --color_accent2: #E3E7AF;
+    --color_accent3: #A2A77F;
 }
 
 .title {
@@ -17,19 +19,26 @@
     margin-top: .5rem;
 }
 
-.topnav {
-    background-color: #232323;
+body {
+    background-color: var(--color_back);
+    color: var(--color_main);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* .topnav {
+    background-color: var(--color_back);
     overflow: hidden;
     z-index: 2;
     border-bottom: 4px solid gray;
-}
+} */
 
 
 /* Style the links inside the navigation bar */
 
-.topnav a {
+/* .topnav a {
     float: left;
-    color: #f2f2f2;
+    color: var(--color_main);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -38,7 +47,7 @@
 
 .topnav span {
     float: left;
-    color: #f2f2f2;
+    color: var(--color_main);
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
@@ -57,7 +66,7 @@
 
 /* Change the color of links on hover */
 
-.topnav a:hover {
+/* .topnav a:hover {
     background-color: #ddd;
     color: black;
 }
@@ -65,11 +74,17 @@
 
 /* Add a color to the active/current link */
 
-.topnav a.active {
+/* .topnav a.active {
     background-color: #144e73;
     color: var(--color_accent2);
+}  */
+.index_header {
+    color: var(--color_main);
+    font-size: 3rem;
+    padding: 1rem;
+    margin-right: 4.5%;
+    /* text-shadow: 0 0 1rem var(--color_accent); */
 }
-
 
 /* The sidebar menu */
 
@@ -80,9 +95,9 @@
     z-index: 2;
     top: 0;
     left: 0;
-    background-color: #494949;
+    background-color: var(--color_main);
     overflow-x: hidden;
-    border-right: 0.2rem solid #144e73;
+    border-right: 0.2rem solid var(--color_accent);
 }
 
 
@@ -92,9 +107,9 @@
     padding: 0.6rem 0.4rem 0.2rem 0.2rem;
     text-decoration: none;
     font-size: 150%;
-    color: #f2f2f2;
+    color: var(--color_accent2);
     display: block;
-    border-bottom: 0.2rem solid #144e73;
+    /* border-bottom: 0.2rem solid var(--color_accent); */
 }
 
 
@@ -109,8 +124,8 @@
 /* Add a color to the active/current link */
 
 .sidenav a.active {
-    background-color: #144e73;
-    color: white;
+    background-color: var(--color_accent);
+    color: var(--color_accent3);
 }
 
 
@@ -131,6 +146,7 @@
     .sidenav {
         padding-top: 15px;
     }
+
     .sidenav a {
         font-size: 120%;
     }
@@ -199,9 +215,17 @@ img {
     background: transparent;
 }
 
+.intro-block {
+    padding: 10px 0;
+    border-top: 1px solid #cacaca;
+    border-bottom: 1px solid #cacaca;
+}
+
+
 .simulation {
-    background-color: #232323;
-    border: 5px solid gray;
+    background-color: var(--color_back);
+    border: 5px solid var(--color_accent);
+    display: block;
     border-radius: 1rem;
     padding: 10px;
     transition: .5s;
@@ -215,11 +239,11 @@ img {
     top: 5%;
     right: 5%;
     position: absolute;
-    background-color: #232323;
+    background-color: var(--color_back);
     color: white;
     display: inline-block;
     width: 25%;
-    border: 5px solid gray;
+    border: 5px solid var(--color_accent);
     border-radius: 1rem;
     padding: 10px;
     transition: .5s;
@@ -230,7 +254,7 @@ img {
     margin-top: 10%;
     display: inline-block;
     width: 25%;
-    background-color: #232323;
+    background-color: var(--color_back);
     color: white;
     border: 5px solid gray;
     padding: 10px;
@@ -374,7 +398,7 @@ a.themed:active {
 }
 
 div.animated:hover {
-    background-color: #ffcccb;
+    background-color: var(--color_back);
 }
 
 p {
@@ -405,12 +429,7 @@ hr.divider {
     height: 2rem;
 }
 
-body {
-    background-color: var(--color_main);
-    color: var(--color_accent2);
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
+
 
 .row {
     display: flex;
@@ -539,7 +558,7 @@ body {
     text-align: left;
     padding: 20px 0 0 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     border-radius: 20px;
     border: 2px solid var(--color_accent);
     position: relative;
@@ -578,10 +597,17 @@ body {
 }
 
 .header_line {
-    border-bottom: 5px solid var(--color_accent);
+    border-bottom: 0.2rem solid var(--color_accent);
     display: block;
-    padding-top: 5.5%;
-    width: 100%;
+    padding-top: 2.5%;
+    width: 125%;
+    margin-left: -1.5%;
+}
+.footer_line {
+    border-bottom: 0.2rem solid var(--color_accent);
+    display: block;
+    padding-top: 2.5%;
+    width: 125%;
     margin-left: -1.5%;
 }
 
@@ -636,7 +662,7 @@ button.spoiler {
     border: none;
     border-top: 2px solid var(--color_accent);
     display: block;
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     color: var(--color_accent);
     text-align: center;
     cursor: pointer;
@@ -757,7 +783,7 @@ button:hover {
     text-align: left;
     padding-top: 20px;
     color: var(--color_accent2);
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     border-radius: 20px;
     border: 2px solid var(--color_accent);
     position: relative;
@@ -802,13 +828,7 @@ button:hover {
     margin-top: 3%;
 }
 
-.index_header {
-    color: var(--color_accent);
-    font-size: 3rem;
-    padding: 1rem;
-    margin-right: 4.5%;
-    text-shadow: 0 0 1rem var(--color_accent);
-}
+
 
 .index_card {
     margin-bottom: 2.5%;
@@ -818,7 +838,7 @@ button:hover {
     text-align: left;
     padding-top: 20px;
     color: var(--color_accent2);
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     border-radius: 20px;
     border: 2px solid var(--color_accent);
     position: relative;
@@ -866,7 +886,7 @@ button:hover {
     max-width: 90%;
     position: relative;
     margin-left: 5%;
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     color: var(--color_accent2);
     border: 2px solid var(--color_accent);
     border-radius: 20px;
@@ -894,7 +914,7 @@ button:hover {
     text-align: left;
     padding-top: 20px;
     color: var(--color_accent2);
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     border-radius: 20px;
     border: 2px solid var(--color_accent);
     position: relative;
@@ -1042,7 +1062,7 @@ input:checked[type="checkbox"]:before {
 }
 
 .comment_button {
-    background-color: var(--color_card);
+    background-color: var(--color_accent3);
     color: var(--color_accent);
     border: 2px solid var(--color_accent);
     border-radius: .5rem;
@@ -1061,7 +1081,7 @@ input:checked[type="checkbox"]:before {
 
 .comment_button:hover,
 .plain:hover {
-    color: var(--color_card);
+    color: var(--color_accent3);
     box-shadow: 0 0 0 var(--color_accent), inset 0 0 5rem var(--color_accent);
     text-decoration: none;
     transition: .5s;

@@ -18,6 +18,14 @@
   <span class="emphasized">Catalog Placeholder</span>
 
 </div> -->
+
+
+{% if not parent_id == None %}
+<div class = " centered breadcrumbs">
+    <a href="/categoryCatalog/{{grand_parent_id}}/">Parent</a>
+</div>
+{% endif %}
+
     <br>
     <section>
         <div class="featured-image-block-grid">
@@ -37,17 +45,12 @@
                 {% endfor %}
             </div>
         </div>
-        {% comment %} <hr>
-  <div class="paginationdiv">
-    <ul class="pagination pagination-circular" role="navigation" aria-label="Pagination">
-      <li class="disabled">� <span class="show-for-sr">Previous page</span></li>
-      <li class="current"><span class="show-for-sr">Page</span> 1</li>
-      <li><a href="/testhole" aria-label="Page 2">2</a></li>
-      <li><a href="/testhole" aria-label="Page 3">3</a></li>
-      <li><a href="/testhole" aria-label="Page 4">4</a></li>
-      <li><a href="/testhole" aria-label="Page 5">5</a></li>
-      <li><a href="/testhole" aria-label="Next page">� <span class="show-for-sr">Next page</span></a></li>
-    </ul>
-        </div> {% endcomment %}
+     
+              {% if page_obj.has_next %}
+              <hr class="footer_line">
+                <li>
+                    <a href="?page={{ page_obj.next_page_number }}"><EFBFBD> <span class="show-for-sr">Next page</span></a>
+                </li>
+            {% endif %}
     </section>
 {% endblock %}

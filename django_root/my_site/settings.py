@@ -27,7 +27,7 @@ SECRET_KEY = 'django-insecure-(d#5ts)r_s%%brc9h26gjc6aeg*6@#lufgenv(+nzfka4we+kz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.50.111', 'daltonbailey.com','localhost', '127.0.0.1', '192.168.50.111:8000']
+ALLOWED_HOSTS = ['192.168.50.97', '192.168.50.111', 'daltonbailey.com','localhost', '127.0.0.1', '192.168.50.111:8000']
 
 
 LOGIN_URL = "/login/"
@@ -85,18 +85,18 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'django',
-        'USER': 'django',
-        'PASSWORD': 'uKNeZTTo5xKiRHqyXxgCzVQkiccccK',
-        'HOST': '192.168.50.131',
-        'PORT': '3306',
-    }
-    # 'SQLLite': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.mysql',
+    #     'NAME': 'django',
+    #     'USER': 'django',
+    #     'PASSWORD': 'uKNeZTTo5xKiRHqyXxgCzVQkiccccK',
+    #     'HOST': '192.168.50.131',
+    #     'PORT': '3306',
     # }
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 

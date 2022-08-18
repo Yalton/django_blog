@@ -873,6 +873,7 @@ button:hover {
     display: block;
     border: 2px solid var(--color_accent2);
     height: 20vh;
+    width: 50%
 }
 
 .catalog-title {

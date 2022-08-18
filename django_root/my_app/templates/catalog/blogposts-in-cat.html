@@ -13,11 +13,11 @@
     {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
 </div>
 {% block content %}
-    <!-- <div class="centered">
-	  <span class="emphasized">Catalog Placeholder</span>
-	
-</div> -->
+
+{% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
+
     <br>
+    
     <section>
         <div class="featured-image-block-grid">
             <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>

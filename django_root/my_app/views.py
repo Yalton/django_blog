@@ -16,6 +16,10 @@ import sys, os
 import random
 from json import dumps
 
+import logging
+
+logger = logging.getLogger(__name__)
+
 from . import models
 from . import forms
 from my_app.forms import *
@@ -211,22 +215,21 @@ def catalog(request, parent_id):
     if parent_id == 0:
         category = None
         parent_id = None
-        grand_parent_id = None
+        ancestors = None
     else: 
         category = Category.objects.get(id=parent_id)
         cat_name = category.name
         parent_id = category.id
-        grand_parent_id = category.getParentId()
+        ancestors=category.get_ancestors()
     category_list = Category.objects.filter(parent=parent_id)
     if category_list:
         for cat in category_list:
-            # if cat.hasParent(parent): 
-                cat_instance = {}
-                cat_instance["id"] = cat.id
-                cat_instance["title"] = cat.name
-                cat_instance["image"] = cat.category_image.url
-                cat_instance["desc"] = cat.cat_summary
-                data_list["categories"].append(cat_instance)
+            cat_instance = {}
+            cat_instance["id"] = cat.id
+            cat_instance["title"] = cat.name
+            cat_instance["image"] = cat.category_image.url
+            cat_instance["desc"] = cat.cat_summary
+            data_list["categories"].append(cat_instance)
             
         p = Paginator(category_list, 8)  
         page_number = request.GET.get('page')
@@ -236,12 +239,14 @@ def catalog(request, parent_id):
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
+        
+        logger.debug('Do dis show up in the logs doe')
         context = {
             'page_title': cat_name + " Catalog",
             'page_heading': cat_name + " Catalog",
             'parent_id': parent_id,
-            'grand_parent_id': grand_parent_id,
-            'node': category,
+            'ancestors': ancestors,
+            'object': category,
             'page_obj': page_obj,
             'categories':data_list["categories"]
         }
@@ -250,7 +255,7 @@ def catalog(request, parent_id):
         data_list = {}
         data_list["Blogposts"] = []
         category = Category.objects.get(id=parent_id)
-        # Blogpost_list = Blogpost.objects.filter(category_id=parent_id)
+        ancestors=category.get_ancestors()
         Blogpost_list = category.blog_in_cat()
         p = Paginator(Blogpost_list, 8)  
         page_number = request.GET.get('page')
@@ -263,7 +268,9 @@ def catalog(request, parent_id):
         context = {
             'page_title': category.name + " Catalog",
             'page_heading': category.name +" Catalog",
-            'page_obj': page_obj
+            'page_obj': page_obj,
+            'ancestors': ancestors,
+            'object': category
         }
         return render(request, 'catalog/blogposts-in-cat.html', context=context)
 

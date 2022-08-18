@@ -15,16 +15,8 @@
 </div>
 {% block content %}
 
-<nav aria-label="breadcrumb">
-    <ol class="breadcrumb">
-	<li class="breadcrumb-item"><a href="/">🏠</a></li>
-	{% for node in ancestors %}
-	<li class="breadcrumb-item"><a href="{{node.get_absolute_url}}">{{node.name}}</a></li>
-    	{% endfor %}
-	<li class="breadcrumb-item active" aria-current="page">{{ object }}</li>
-    </ol>
-</nav>
 
+{% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 
 
 {% comment %} {% if not parent_id == None %}
@@ -53,11 +45,25 @@
             </div>
         </div>
      
-              {% if page_obj.has_next %}
-              <hr class="footer_line">
+    <div class="paginationdiv">
+            <ul class="pagination pagination-circular"
+                role="navigation"
+                aria-label="Pagination">
+                {% if page_obj.has_previous %}
+                    {# whether the previous page exists #}
+                    <li class="show-for-sr">
+                        <a href="?page={{ page_obj.previous_page_number }}"><span class="show-for-sr">Previous page</span></a>
+                    </li>
+                {% endif %}
+                <li class="current">
+                    <span class="show-for-sr">Page</span> {{ page_obj.number }}
+            </li>
+            {% if page_obj.has_next %}
                 <li>
                     <a href="?page={{ page_obj.next_page_number }}"><EFBFBD> <span class="show-for-sr">Next page</span></a>
                 </li>
             {% endif %}
+        </ul>
+    </div>
     </section>
 {% endblock %}

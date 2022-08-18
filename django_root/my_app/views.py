@@ -36,6 +36,26 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+def about(request):
+    page_title = "About"
+    page_heading = "About this blog"
+
+    context = {
+        'page_title': page_title,
+        'page_heading': page_heading,
+    }
+    return render(request, 'other/about.html', context=context)
+
+def contact(request):
+    page_title = "Contact"
+    page_heading = "Contact Me"
+
+    context = {
+        'page_title': page_title,
+        'page_heading': page_heading,
+    }
+    return render(request, 'other/about.html', context=context)
+
 def nbody(request):
     return render(request, 'nbody.html')
 

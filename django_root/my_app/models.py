@@ -126,7 +126,7 @@ class Blogpost(models.Model):
     def __str__(self):
          return self.title
     def get_searchset(self, term):
-        return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(description__icontains=term)| Q(introduction__icontains=term))
+        return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(field1_title__icontains=term)| Q(field1_content__icontains=term)| Q(field2_title__icontains=term)| Q(field2_content__icontains=term)| Q(field3_title__icontains=term)| Q(field3_content__icontains=term)| Q(field4_title__icontains=term)| Q(field4_content__icontains=term)| Q(field5_title__icontains=term)| Q(field5_content__icontains=term))
     def get_absolute_url(self):
         kwargs = {
         'slug': self.slug

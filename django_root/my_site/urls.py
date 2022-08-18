@@ -24,14 +24,14 @@ from my_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name="homepage"), 
+    path('about/', views.about, name="about"),
+    path('contact/', views.contact, name="contact"),
     path('404/', views.four_Oh_four),
     path('nbody/', views.nbody),
     path('chat/', views.chat, name='chat'),
     path('chat/<str:room_name>/', views.chatRoom, name='chatRoom'),
     path('blogpost/<int:post_id>/', views.blogpost, name="blogpost"),
     path('search/', views.searchCatalog, name="search"),
-    
-    
     path('webassembly/', views.webAssembly, name="webassembly"),
     path('webassembly/<str:page>/', views.webassembly, name="webassembly"),
 

@@ -1,13 +1,12 @@
 {% extends "base.html" %} {% load static %} {% block title %}{{ page_title }}
 {%endblock %} {% block heading %}
-<div class="index_header">{{ page_heading }}</div>
+<div class="title_header"><div class="page_title">{{ page_heading }}</div></div>
+<span class="header_line"></span>
 {% endblock %}
 
 
 
 {% block content %}
-
-
 
 <div class="centered">
     <form method=POST action="/search/">

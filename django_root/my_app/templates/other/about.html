@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}
+        <div class="title_header">
+            <div class="page_title">{{ page_heading }}</div>
+        </div>
+        <span class="header_line"></span>
+    {% endblock %}
+</div>
+{% block content %}
+
+
+
+{% endblock %}
+
+{% comment %} {% block scripts %}
+    <script type="text/javascript" src="{% static 'js/chatLobby.js' %}"></script>
+{% endblock %} {% endcomment %}

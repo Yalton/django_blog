@@ -78,7 +78,7 @@ body {
     background-color: #144e73;
     color: var(--color_accent2);
 }  */
-.index_header {
+.title_header {
     color: var(--color_main);
     font-size: 3rem;
     padding: 1rem;
@@ -90,7 +90,7 @@ body {
 
 .sidenav {
     height: 100%;
-    width: 10.5%;
+    width: 8.5%;
     position: fixed;
     z-index: 2;
     top: 0;
@@ -125,7 +125,7 @@ body {
 
 .sidenav a.active {
     background-color: var(--color_accent);
-    color: var(--color_accent3);
+    color: var(--color_main);
 }
 
 
@@ -599,10 +599,11 @@ hr.divider {
 .header_line {
     border-bottom: 0.2rem solid var(--color_accent);
     display: block;
-    padding-top: 2.5%;
+    padding-top: 1%;
     width: 125%;
-    margin-left: -1.5%;
+    margin-left: -3.5%;
 }
+
 .footer_line {
     border-bottom: 0.2rem solid var(--color_accent);
     display: block;

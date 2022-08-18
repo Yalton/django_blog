@@ -26,9 +26,12 @@ class Category(MPTTModel):
         related_name='child',
         on_delete=models.CASCADE
     )
-    class Meta:
-        unique_together = ('slug', 'parent',)    
-        verbose_name_plural = "categories"   
+    class MPTTMeta:
+        order_insertion_by = ['name']
+
+    # class Meta:
+    #     unique_together = ('slug', 'parent',)    
+    #     verbose_name_plural = "categories"   
         
     def blog_in_cat(self):
         return Blogpost.objects.filter(category=self)
@@ -39,6 +42,12 @@ class Category(MPTTModel):
         else: 
             return False
 
+    def getParentId(self):
+        if(self.parent is not None):
+            return self.parent.id
+        else:
+            return 0
+   
     def __str__(self):
         full_path = [self.name]
         k = self.parent
@@ -48,7 +57,7 @@ class Category(MPTTModel):
         return ' -> '.join(full_path[::-1])
     
     def get_absolute_url(self):
-        return reverse('blogs-by-category', args=[str(self.slug)])
+        return reverse('catalog', args=[str(self.id)])
     
     def get_slug_list(self):
         try:
@@ -67,14 +76,46 @@ class Category(MPTTModel):
 class Blogpost(models.Model):
     title = models.CharField(max_length=100)
     summary = models.CharField(max_length=300, default="NULL")
-    introduction = models.TextField(default="NULL")
-    description = models.TextField(default="NULL")
-    s_media0 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/', null=True)
-    s_media1 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
-    s_media2 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
-    s_media3 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
-    s_media4 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
-    s_media5 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
+    field1_title = models.CharField(max_length=100, default="NULL")
+    field1_content = models.TextField(default="NULL")
+    f1_m0 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/', null=True)
+    f1_m1 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f1_m2 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f1_m3 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f1_m4 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f1_m5 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    field2_title = models.CharField(max_length=100, default="NULL")
+    field2_content = models.TextField(default="NULL")
+    f2_m0 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/', null=True)
+    f2_m1 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f2_m2 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f2_m3 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f2_m4 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f2_m5 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    field3_title = models.CharField(max_length=100, default="NULL")
+    field3_content = models.TextField(default="NULL")
+    f3_m0 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/', null=True)
+    f3_m1 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f3_m2 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f3_m3 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f3_m4 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f3_m5 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    field4_title = models.CharField(max_length=100, default="NULL")
+    field4_content = models.TextField(default="NULL")
+    f4_m0 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/', null=True)
+    f4_m1 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f4_m2 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f4_m3 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f4_m4 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f4_m5 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    field5_title = models.CharField(max_length=100, default="NULL")
+    field5_content = models.TextField(default="NULL")
+    f5_m0 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/', null=True)
+    f5_m1 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f5_m2 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f5_m3 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f5_m4 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
+    f5_m5 = models.ImageField(upload_to='uploads/posts/%Y/%m/%d/',null=True)
     references = models.TextField(default="NULL")
     created_on = models.DateTimeField(auto_now_add=True)
     category = models.ForeignKey(Category,null=True,blank=True, on_delete=models.CASCADE)
@@ -85,7 +126,7 @@ class Blogpost(models.Model):
     def __str__(self):
          return self.title
     def get_searchset(self, term):
-        return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(description__icontains=term)| Q(introduction__icontains=term))
+        return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(field1_title__icontains=term)| Q(field1_content__icontains=term)| Q(field2_title__icontains=term)| Q(field2_content__icontains=term)| Q(field3_title__icontains=term)| Q(field3_content__icontains=term)| Q(field4_title__icontains=term)| Q(field4_content__icontains=term)| Q(field5_title__icontains=term)| Q(field5_content__icontains=term))
     def get_absolute_url(self):
         kwargs = {
         'slug': self.slug
@@ -118,70 +159,7 @@ class Message(models.Model):
       
 
 
-# class Category(MPTTModel):
-#     name = models.CharField(max_length=settings.BLOG_TITLE_MAX_LENGTH, unique=True)
-#     parent = TreeForeignKey('self', on_delete=models.CASCADE, null=True, blank=True, related_name='children')
-#     slug = models.SlugField(max_length=settings.BLOG_TITLE_MAX_LENGTH, null=True, blank=True)
-#     description = models.TextField(null=True, blank=True)
-    
-#     class MPTTMeta:
-#         order_insertion_by = ['name']
-
-#     class Meta:
-#         verbose_name_plural = 'Categories'
-
-#     def __str__(self):
-#         return self.name
-
-#     def save(self, *args, **kwargs):
-#         value = self.title
-#         if not self.slug:
-#             self.slug = slugify(value, allow_unicode=True)
-#             super().save(*args, **kwargs)
-
-#     def get_absolute_url(self):
-#         return reverse('items-by-category', args=[str(self.slug)])
-
 # class Blogpost(models.Model):
-#     title = models.CharField(max_length=settings.BLOG_TITLE_MAX_LENGTH)
-#     category = TreeForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True)
-#     slug = models.SlugField(
-#       max_length=settings.BLOG_TITLE_MAX_LENGTH,
-#     )
-
-#     def __str__(self):
-#       return self.title
-
-#     def get_absolute_url(self):
-#       kwargs = {
-#         'slug': self.slug
-#       }
-#       return reverse('item-detail', kwargs=kwargs)
-
-#     def save(self, *args, **kwargs):
-#       if not self.slug:
-#         value = self.title
-#         self.slug = slugify(value, allow_unicode=True)
-#       super().save(*args, **kwargs)
-
-# class SubCategory(models.Model):
-#     name = models.CharField(max_length=100)
-#     category_image = models.ImageField(upload_to='uploads/categories/%Y/%m/%d/', null=True)
-#     cat_summary = models.CharField(max_length=300)
-#     description = models.TextField()
-#     parent_category = models.ForeignKey(Category, on_delete=models.CASCADE,default=1)
-    
-#     def blog_in_cat(self):
-#         return Blogpost.objects.filter(category=self).count()
-
-
-# class UserInfo(models.Model):
-#     user = models.ForeignKey(auth_user, on_delete=models.CASCADE)
-#     bio = models.TextField(null=True)
-#     profile_image = models.ImageField(upload_to='uploads/profiles/%Y/%m/%d/', default='default/default.jpg')
-#     created = models.DateTimeField(auto_now_add=True)
-    
-# class Rabbithole(models.Model):
 #     title = models.CharField(max_length=100)
 #     summary = models.CharField(max_length=300, default="NULL")
 #     introduction = models.TextField(default="NULL")
@@ -193,38 +171,21 @@ class Message(models.Model):
 #     s_media4 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
 #     s_media5 = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
 #     references = models.TextField(default="NULL")
-#     p_media = models.ImageField(upload_to='uploads/rholes/%Y/%m/%d/',null=True)
-#     p_description = models.TextField(default="NULL")
 #     created_on = models.DateTimeField(auto_now_add=True)
-#     category = models.ForeignKey(Category, on_delete=models.CASCADE,default=1)
-#     approved = models.BooleanField(default=False)
-    
-#     def like_count(self):
-#         return Like.objects.filter(rabbithole=self).count() - Dislike.objects.filter(rabbithole=self).count()
-    
+#     category = models.ForeignKey(Category,null=True,blank=True, on_delete=models.CASCADE)
+#     isProject = models.BooleanField(default=False)
+#     slug = models.SlugField(
+#       max_length=100,
+#     )
+#     def __str__(self):
+#          return self.title
 #     def get_searchset(self, term):
-#         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(description__icontains=term)| Q(introduction__icontains=term)| Q(p_description__icontains=term))
-
+#         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(description__icontains=term)| Q(introduction__icontains=term))
+#     def get_absolute_url(self):
+#         kwargs = {
+#         'slug': self.slug
+#         }
+#         return reverse('blog-detail', kwargs=kwargs)
+    
 #     class Meta:
 #         ordering = ['-created_on']
-        
-
-
-#class Like(models.Model):
-    #     user = models.ForeignKey( auth_user, on_delete=models.CASCADE,null=True)
-#     rabbithole = models.ForeignKey(Rabbithole, on_delete=models.CASCADE)
-#     created_on = models.DateTimeField(auto_now_add=True)
-
-# class Dislike(models.Model):
-#     user = models.ForeignKey( auth_user, on_delete=models.CASCADE,null=True)
-#     rabbithole = models.ForeignKey(Rabbithole, on_delete=models.CASCADE)
-#     created_on = models.DateTimeField(auto_now_add=True)
-
-# class SavetoProfile(models.Model):
-#     user = models.ForeignKey( auth_user, on_delete=models.CASCADE,null=True)
-#     rabbithole = models.ForeignKey(Rabbithole, on_delete=models.CASCADE)
-#     created_on = models.DateTimeField(auto_now_add=True)
-    
-#     def count(self):
-#         return SavetoProfile.objects.filter(rabbithole=self).count()
-

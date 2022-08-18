@@ -27,14 +27,34 @@ from my_app.models import *
 DJANGO_ROOT = Path(__file__).resolve().parent.parent
 
 def index(request):
-    page_title = "Blogbert"
-    page_heading = "Blogbert"
+    page_title = "Dalton's Blog"
+    page_heading = "Dalton's Blog"
 
     context = {
         'page_title': page_title,
         'page_heading': page_heading,
     }
     return render(request, 'index.html', context=context)
+
+def about(request):
+    page_title = "About"
+    page_heading = "About this blog"
+
+    context = {
+        'page_title': page_title,
+        'page_heading': page_heading,
+    }
+    return render(request, 'other/about.html', context=context)
+
+def contact(request):
+    page_title = "Contact"
+    page_heading = "Contact Me"
+
+    context = {
+        'page_title': page_title,
+        'page_heading': page_heading,
+    }
+    return render(request, 'other/about.html', context=context)
 
 def nbody(request):
     return render(request, 'nbody.html')
@@ -148,7 +168,7 @@ def blogpost(request, post_id):
     return render(request, 'blogposts/blogpost.html', context=context)
 
 
-def catalog(request):
+def catree(request):
     Blogpost_list = Blogpost.objects.filter(isProject=False)
     p = Paginator(Blogpost_list, 8)  
     page_number = request.GET.get('page')
@@ -164,7 +184,7 @@ def catalog(request):
         'page_obj': page_obj,
         'nodes': Category.objects.all()
     }
-    return render(request,'catalog/catalog.html', context=context)
+    return render(request,'catalog/catree.html', context=context)
 
 
 def show_category(request,hierarchy= None):
@@ -184,15 +204,22 @@ def show_category(request,hierarchy= None):
         return render(request, 'catalog/categories.html', {'instance':instance})
 
 
-def categoryCatalog(request, parent_id):
+def catalog(request, parent_id):
     data_list = {}
     data_list["categories"] = []
+    cat_name = "Category"
     if parent_id == 0:
+        category = None
         parent_id = None
+        grand_parent_id = None
+    else: 
+        category = Category.objects.get(id=parent_id)
+        cat_name = category.name
+        parent_id = category.id
+        grand_parent_id = category.getParentId()
     category_list = Category.objects.filter(parent=parent_id)
     if category_list:
         for cat in category_list:
-            
             # if cat.hasParent(parent): 
                 cat_instance = {}
                 cat_instance["id"] = cat.id
@@ -201,12 +228,24 @@ def categoryCatalog(request, parent_id):
                 cat_instance["desc"] = cat.cat_summary
                 data_list["categories"].append(cat_instance)
             
+        p = Paginator(category_list, 8)  
+        page_number = request.GET.get('page')
+        try:
+            page_obj = p.get_page(page_number) 
+        except PageNotAnInteger:
+            page_obj = p.page(1)
+        except EmptyPage:
+            page_obj = p.page(p.num_pages)
         context = {
-            'page_title': "Category Catalog",
-            'page_heading': "Category Catalog",
+            'page_title': cat_name + " Catalog",
+            'page_heading': cat_name + " Catalog",
+            'parent_id': parent_id,
+            'grand_parent_id': grand_parent_id,
+            'node': category,
+            'page_obj': page_obj,
             'categories':data_list["categories"]
         }
-        return render(request, 'catalog/categorycatalog.html', context=context)
+        return render(request, 'catalog/catalog.html', context=context)
     else:   
         data_list = {}
         data_list["Blogposts"] = []
@@ -222,8 +261,8 @@ def categoryCatalog(request, parent_id):
         except EmptyPage:
             page_obj = p.page(p.num_pages)
         context = {
-            'page_title': category.name+ " Catalog",
-            'page_heading': category.name+" Catalog",
+            'page_title': category.name + " Catalog",
+            'page_heading': category.name +" Catalog",
             'page_obj': page_obj
         }
         return render(request, 'catalog/blogposts-in-cat.html', context=context)
@@ -257,19 +296,19 @@ def searchCatalog(request):
     else: 
        return HttpResponseRedirect(reverse('Blogpost', args=[str(id)]))
    
-def registration_view(request):
-    if request.method == "POST":
-        form = RegistrationForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect("/login/")
-    else:
-        form = RegistrationForm()
-    context = {
-        "title": "Register",
-        "form": form,
-    }
-    return render(request, "registration/registration.html", context=context)
+# def registration_view(request):
+#     if request.method == "POST":
+#         form = RegistrationForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             return redirect("/login/")
+#     else:
+#         form = RegistrationForm()
+#     context = {
+#         "title": "Register",
+#         "form": form,
+#     }
+#     return render(request, "registration/registration.html", context=context)
 
 # def pagination(request):
 

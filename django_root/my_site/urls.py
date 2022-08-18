@@ -24,20 +24,20 @@ from my_app import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index, name="homepage"), 
+    path('about/', views.about, name="about"),
+    path('contact/', views.contact, name="contact"),
     path('404/', views.four_Oh_four),
     path('nbody/', views.nbody),
     path('chat/', views.chat, name='chat'),
     path('chat/<str:room_name>/', views.chatRoom, name='chatRoom'),
     path('blogpost/<int:post_id>/', views.blogpost, name="blogpost"),
     path('search/', views.searchCatalog, name="search"),
-    
-    
     path('webassembly/', views.webAssembly, name="webassembly"),
     path('webassembly/<str:page>/', views.webassembly, name="webassembly"),
 
-    path('catalog/', views.catalog, name="catalog"),
+    path('catree/', views.catree, name="catree"),
     path('show_category/<hierarchy>/', views.show_category, name="show_category"),
-    path('categoryCatalog/<int:parent_id>/', views.categoryCatalog, name="categoryCatalog"),
+    path('catalog/<int:parent_id>/', views.catalog, name="catalog"),
         # path('catalog/', CategoryListView.as_view() , name='category-list'),
     # path('catalog/<str:slug>/', ItemsByCategoryView.as_view() , name='category-detail'),
     # path('pagination/', views.pagination, name="pagination"),

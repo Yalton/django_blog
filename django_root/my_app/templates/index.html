@@ -1,13 +1,12 @@
 {% extends "base.html" %} {% load static %} {% block title %}{{ page_title }}
 {%endblock %} {% block heading %}
-<div class="index_header">{{ page_heading }}</div>
+<div class="title_header"><div class="page_title">{{ page_heading }}</div></div>
+<span class="header_line"></span>
 {% endblock %}
 
 
 
 {% block content %}
-
-
 
 <div class="centered">
     <form method=POST action="/search/">
@@ -20,7 +19,9 @@
 
 
 
-<div class="simulation">
+
+<div class="centered content_block">
+{% comment %} <div class="simulation">
     <script type="text/javascript+protovis">
 
         var w = document.body.clientWidth * 0.85,
@@ -60,6 +61,29 @@
             vis.render();
           }, 42);
       </script>
+</div> {% endcomment %}
+
+
+
+  <div class="lalligned sub_content_block">
+        <h2 class="work-feature-block-header">Project Description</h2>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce sodales diam ac hendrerit aliquet. Phasellus pretium libero vel molestie maximus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam quis est quam. Aenean blandit a urna laoreet tincidunt.</p>
+        <h2>Project Details</h2>
+        <ul>
+        <li>Item 1</li>
+        <li>Item 2</li>
+        <li>Item 3</li>
+        <li>Item 4</li>
+        </ul>
+  </div>
+
+  <div class="simulation">
+    <p>N-body simulation will go here</p>
 </div>
+
+
+
+
+
 
 {% endblock %}

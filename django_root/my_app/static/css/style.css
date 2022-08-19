@@ -4,6 +4,7 @@
     --color_accent: #EFF1C5;
     --color_accent2: #E3E7AF;
     --color_accent3: #A2A77F;
+    --color_shaddow: #001010;
 }
 
 .light_mode {
@@ -109,7 +110,7 @@ body {
     background-color: var(--color_main);
     overflow-x: hidden;
     border-right: 0.2rem solid var(--color_accent);
-    box-shadow: 0 0.5rem 0.5rem 0 var(--color_back);
+    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shaddow);
 }
 
 
@@ -253,7 +254,19 @@ body {
     background: transparent;
 }
 
-
+.sm_content_container {
+    top: 20%;
+    right: 32%;
+    /* display: inline-block; */
+    position: absolute;
+    background-color: var(--color_main);
+    color: var(--color_accent2);
+    width: 30%;
+    border: 0.2rem solid var(--color_accent);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 0.5rem 0.5rem var(--color_shaddow);
+}
 
 .content_container {
     top: 20%;
@@ -266,7 +279,7 @@ body {
     border: 0.2rem solid var(--color_accent);
     border-radius: 1rem;
     padding: 1rem;
-    /* box-shadow: 0 0 1rem var(--color_accent); */
+    box-shadow: 0 0 0.5rem 0.5rem var(--color_shaddow);
 }
 
 .content_block {

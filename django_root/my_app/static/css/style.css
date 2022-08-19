@@ -79,7 +79,8 @@ hr.divider {
     background-color: var(--color_accent);
     overflow: hidden;
     z-index: 2;
-    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow);
+    box-shadow: 0 0.5rem 1rem 0 var(--color_shadow);
+    height: 6%
     /* border-bottom: 4px solid gray; */
 }
 
@@ -163,7 +164,7 @@ hr.divider {
     width: 8.5%;
     position: fixed;
     z-index: 1;
-    top: auto;
+    top: 6%;
     left: 0;
 
     background-color: var(--color_main);

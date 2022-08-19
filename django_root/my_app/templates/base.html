@@ -47,6 +47,15 @@
         <a href="/404/">A_Game</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
+        <div class="searchdiv">
+            <form method=POST action="/search/">
+                {% csrf_token %}
+            <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
+        </div>
+
+         {% comment %} <button class="search-button">
+            <i class="fa fa-search"></i>
+        </button>  {% endcomment %}
         
     </div>
     <div class="main content">

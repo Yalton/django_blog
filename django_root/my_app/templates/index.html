@@ -8,12 +8,7 @@
 {% block content %}
 
 <div class="centered">
-    <form method=POST action="/search/">
-        {% csrf_token %}
-    <input name="searchbox" type="text" placeholder="Search..." />
-    <button class="search-button">
-        <i class="fa fa-search"></i>
-    </button>
+
 </div>
 
 
@@ -82,12 +77,6 @@
     </div>
 </div>
 
-
-
-
-
-
-{% endblock %}
 {% comment %} <div class="simulation">
     <script type="text/javascript+protovis">
 
@@ -129,3 +118,8 @@
           }, 42);
       </script>
 </div>  {% endcomment %}
+
+
+
+
+{% endblock %}

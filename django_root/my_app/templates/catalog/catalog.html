@@ -8,24 +8,17 @@
             {{ page_heading }}
        </div>
     </div>
-    <span class="header_line"></span>
+    {% comment %} <span class="header_line"></span> {% endcomment %}
     {% endblock %}
     {% comment %} {% block subheading %} {{page_subheading}}
     {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
 </div>
 {% block content %}
 
+<section class="breadcrumbctr" >
+    {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
+</section>
 
-{% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
-
-
-{% comment %} {% if not parent_id == None %}
-<div class = " centered breadcrumbs">
-    <a href="/catalog/{{grand_parent_id}}/">Parent</a>
-</div>
-{% endif %} {% endcomment %}
-
-    <br>
     <section>
         <div class="featured-image-block-grid">
             <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
@@ -51,7 +44,7 @@
                 aria-label="Pagination">
                 {% if page_obj.has_previous %}
                     {# whether the previous page exists #}
-                    <li class="show-for-sr">
+                    <li class="previous show-for-sr">
                         <a href="?page={{ page_obj.previous_page_number }}"><span class="show-for-sr">Previous page</span></a>
                     </li>
                 {% endif %}
@@ -59,7 +52,7 @@
                     <span class="show-for-sr">Page</span> {{ page_obj.number }}
             </li>
             {% if page_obj.has_next %}
-                <li>
+                <li class="next">
                     <a href="?page={{ page_obj.next_page_number }}"><EFBFBD> <span class="show-for-sr">Next page</span></a>
                 </li>
             {% endif %}

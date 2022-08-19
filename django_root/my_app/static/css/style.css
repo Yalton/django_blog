@@ -75,23 +75,24 @@ hr.divider {
     margin-top: 0.5rem;
 }
 
-/* .topnav {
-    background-color: var(--color_back);
+.topnav {
+    background-color: var(--color_accent);
     overflow: hidden;
     z-index: 2;
-    border-bottom: 4px solid gray;
-} */
+    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow);
+    /* border-bottom: 4px solid gray; */
+}
 
 
 /* Style the links inside the navigation bar */
 
-/* .topnav a {
+.topnav a {
     float: left;
-    color: var(--color_main);
-    text-align: center;
-    padding: 14px 16px;
+    padding: 0.6rem 0.4rem 0.2rem 0.2rem;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 150%;
+    color: var(--color_main);
+    display: block;
 }
 
 .topnav span {
@@ -129,10 +130,30 @@ hr.divider {
 }  */
 .title_header {
     color: var(--color_main);
-    font-size: 3rem;
-    padding: 1rem;
+    font-size: 2.2rem;
+    /* padding: 1rem; */
     margin-right: 4.5%;
-    text-shadow: 0 0 1rem var(--color_shadow);
+    /* text-shadow: 0 0 1rem var(--color_shadow); */
+}
+
+.page_title {
+    color: var(--color_main);
+    font-weight: bold;
+    /* top: 5px; */
+}
+
+.title_banner {
+    position: absolute;
+    width: 89%;
+    color: var(--color_accent);
+    text-shadow: 0 0 .5rem var(--color_accent);
+}
+
+.paginationdiv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2rem;
 }
 
 /* The sidebar menu */
@@ -141,9 +162,10 @@ hr.divider {
     height: 100%;
     width: 8.5%;
     position: fixed;
-    z-index: 2;
-    top: 0;
+    z-index: 1;
+    top: auto;
     left: 0;
+
     background-color: var(--color_main);
     overflow-x: hidden;
     border-right: 0.2rem solid var(--color_accent);
@@ -292,7 +314,7 @@ hr.divider {
 }
 
 .sm_content_container {
-    top: 20%;
+    top: 8%;
     right: 32%;
     /* display: inline-block; */
     position: absolute;
@@ -306,7 +328,7 @@ hr.divider {
 }
 
 .content_container {
-    top: 20%;
+    top: 8%;
     right: 10%;
     /* display: inline-block; */
     position: absolute;
@@ -337,11 +359,11 @@ hr.divider {
     border: 0.2rem solid var(--color_accent);
     display: inline-block;
     border-radius: 1rem;
-    padding: 10px;
-    transition: .5s;
+    padding: 2rem;
     margin-right: 2rem;
     margin-left: 2rem;
     margin-top: 1rem;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
 }
 
 .portfolio {
@@ -374,6 +396,12 @@ hr.divider {
     transform: scale(1.1, 1.1);
 }
 
+.breadcrumbctr {
+    top: 8%;
+    position: sticky;
+}
+
+
 .breadcrumb {
     display: -ms-flexbox;
     display: flex;
@@ -381,6 +409,8 @@ hr.divider {
     flex-wrap: wrap;
     padding: .75rem 1rem;
     margin-bottom: 1rem;
+    width: 90%;
+    margin-left: 5.5rem;
     list-style: none;
     background-color: var(--color_main);
     border-radius: .25rem;
@@ -544,24 +574,7 @@ div.animated:hover {
     padding: 0 4px;
 }
 
-.page_title {
-    color: var(--color_accent);
-    top: 5px;
-}
 
-.title_banner {
-    position: absolute;
-    width: 89%;
-    color: var(--color_accent);
-    text-shadow: 0 0 .5rem var(--color_accent);
-}
-
-.paginationdiv {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 2rem;
-}
 
 
 /* Create four equal columns that sits next to each other */
@@ -694,9 +707,10 @@ div.animated:hover {
 .header_line {
     border-bottom: 0.2rem solid var(--color_accent);
     display: block;
-    padding-top: 1%;
+    /* padding-top: 1%; */
     width: 125%;
     margin-left: -3.5%;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
 }
 
 .footer_line {
@@ -931,13 +945,30 @@ button:hover {
     border-radius: 5000px;
     padding: 0.285em 0.8em;
     font-size: 1rem;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
 }
+
+/* .pagination-circular li.previous {
+    border: 0.1rem solid var(--color_main);
+    border-radius: 5000px;
+    padding: 0.285em 0.8em;
+    font-size: 1rem;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
+}
+.pagination-circular li.next {
+    border: 0.1rem solid var(--color_main);
+    border-radius: 5000px;
+    padding: 0.285em 0.8em;
+    font-size: 1rem;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
+} */
 
 .pagination-circular li.disabled {
     border: 0.1rem solid var(--color_accent3);
     padding: 0.285em 0.8em;
     border-radius: 5000px;
     font-size: 1rem;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
 }
 
 .pagination-circular a {
@@ -945,6 +976,7 @@ button:hover {
     padding: 0.285em 0.8em;
     border: 1px solid var(--color_main);
     font-size: 1rem;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
 }
 
 .pagination-circular li:not(.disabled):hover a {

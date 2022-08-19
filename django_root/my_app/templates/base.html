@@ -27,10 +27,18 @@
 
 <body>
     <div id="loading"></div>
-    <div class="main heading">
+    <div id="topnav" class="topnav sticky">
+        <div class="lfloat">
+            <a class="active" href="/">Home</a>
+        </div>
         <h1 class="centered">
             {% block heading %}{% endblock %}
         </h1>
+    </div>
+    <div class="main heading">
+        {% comment %} <h1 class="centered">
+            {% block heading %}{% endblock %}
+        </h1> {% endcomment %}
         <h2>
             {% block subheading %}{% endblock %}
         </h2>
@@ -39,7 +47,7 @@
         </p>
     </div>
     <div class="sidenav">
-        <a class="active" href="/">Home</a>
+        {% comment %} <a class="active" href="/">Home</a> {% endcomment %}
         {% comment %} <a href="/404/">Search</a> {% endcomment %}
         <a href="/404/">Projects</a>
         <a href="/catalog/0/">Blogposts</a>

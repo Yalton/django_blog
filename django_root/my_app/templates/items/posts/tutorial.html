@@ -1,0 +1,110 @@
+{% extends "base.html" %} 
+{% load static %} 
+{% load embed_video_tags %}
+{% block title %}
+  {{ page_title }}
+{%endblock %}
+<div id="heading-div" class="centered">
+  {% block heading %}
+  <div class="title_header">
+    <div class="page_title">{{ page_heading }}</div>
+  </div>
+  {% endblock %}
+</div>
+{% block content %}
+
+<section class="breadcrumbctr" >
+    {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
+</section>
+
+<section class = "catalogctr">
+    <div class="post_card">
+        <div class="pad">
+            <div class="invisible_box">
+                <div class="centertext card_name emphasized">{{sub_title}}</div>
+
+            {% comment %} {% if videoURL is not None %} {% endcomment %}
+            <div class="video_viv">
+                {% video videoURL '800x600' %}
+            
+            </div>
+            {% comment %} {% endif %} {% endcomment %}
+
+
+            {% for field, content in field_content_dict.items %}   
+
+                <div class="card_name emphasized buffer">{{field.title}}</div>
+
+                {% for block, media in content.items %}   
+
+                    <p> {{block.content}} </p>
+                    {% for image in media %}
+                        <img class="card_image" src="{{ image.media.url }}" alt="{{image.name}}" />
+                    {% endfor %}
+                    
+                {% endfor %}
+
+            {% endfor %}
+             
+         
+            <div class="card_name emphasized buffer">References</div>
+            <div class="card_title pad">
+                {% for ref in refs %}
+                    <li>
+                    <a href="{{ ref }}">{{ ref }}</a>
+                    <br/><br />
+                    </li>
+                {% endfor %}
+            </div>
+        <!-- comments -->   
+        <button class="spoiler" title="Click to Show/Hide Content" type="button"
+        onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">
+        Show/Hide Comments
+    </button>
+            <div id="spoiler" style="display:none">
+                
+                <div class="pad invisible_box">
+                    <div class="card_name emphasized buffer">Comments ({{comment_list|length}})</div>
+                    {% for comm in comment_list %}
+                    <div>
+                        <div class="comment-section-author">
+                            <div class="comment-section-name">
+                                <div class="card_name buffer"><h5>
+                                    <a href="">{{ comm.author }}</a>
+                                </h5></div>
+                                <div class="card_name">
+                                    {{ comm.created_on }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="comment-section-text">
+                            <div class="card_title">
+                                {{ comm.comment }}
+                            </div>
+                        </div>
+                    </div>
+                    <span class="profile_line buffer short"></span>
+                    {% endfor %}
+                    <form class="comment-section-form">
+                        <div class="comment-section-box">
+                            <div class="row">
+                                <div class="small-12 column">
+                                     <form method="post">
+                                        {% csrf_token %}
+                                        {{ form }}
+                                    </form> 
+                                    <a class="plain" href="/comment/{{post_id}}">
+                                        <div class="comment_button">Leave a Comment</div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <!--/comment box-->
+                </div>
+            </div>
+
+    </div>
+</section>
+    {% endblock %}
+

@@ -38,10 +38,11 @@ LOGOUT_REDIRECT_URL = "/login/"
 # Application definition
 
 INSTALLED_APPS = [
+    'my_app',
     'channels',
     'channels_redis',
+    'embed_video',
     'mptt',
-    'my_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,6 +72,7 @@ TEMPLATES = [
             'context_processors': [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
+                # 'django.core.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],

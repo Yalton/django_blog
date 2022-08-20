@@ -5,9 +5,8 @@
 <div id="heading-div" class="centered">
     {% block heading %}
         <div class="title_header">
-            <div class="page_title">Searching for: "{{ page_heading }}"</div>
+            <div class="page_title">Querying: "{{ page_heading }}"</div>
         </div>
-        <span class="header_line"></span>
     {% endblock %}
     {% comment %} {% block subheading %} {{page_subheading}}
     {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
@@ -19,26 +18,56 @@
 </div> -->
     <section>
         {% if results %}
-            <div class="featured-image-block-grid">
-                <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
-                <div class="row large-up-4 small-up-2 align">
-                    {% for post in Blogposts %}
-                        <div class="catalog_card pad" onclick="location.href='/blogpost/{{ post.id }}';">
-                                <img class="catalog-img" src="{{ post.image }}" alt="{{ post.title }}">
-                                <h3 class="catalog-title">{{ post.title }}</h3>
-                                <span class="profile_line"></span>
-                                <p class="catalog-desc">
-                                    {{ post.desc }}
-                                </p>
+            {% if post_results %}
+                <section class = "catalogctr">
+                    <div class="featured-image-block-grid">
+                        <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+                        <div class="row large-up-4 small-up-2 align">
+                            {% for post in posts %}
+                                <div class="catalog_card pad" onclick="location.href='/post/{{post.post_type}}/{{ post.id }}';">
+                                        <img class="catalog-img" src="{{ post.item_image.url }}" alt="{{ post.title }}">
+                                        <h3 class="catalog-title">{{ post.title }}</h3>
+                                        <span class="profile_line"></span>
+                                        <p class="catalog-desc">
+                                            {{ post.desc }}
+                                        </p>
+                                </div>
+                            {% endfor %}
                         </div>
-                    {% endfor %}
-                </div>
-            </div>
+                    </div>
+                <section>
+            {% endif %}
+            {% if service_results %}
+                <section class = "catalogctr">
+                    <div class="featured-image-block-grid">
+                        <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+                        <div class="row large-up-4 small-up-2 align">
+                            {% for service in services %}
+                                <div class="catalog_card pad" onclick="location.href='/blogpost/{{ service.id }}';">
+                                        <img class="catalog-img" src="{{ service.item_image.url }}" alt="{{ service.title }}">
+                                        <h3 class="catalog-title">{{ service.title }}</h3>
+                                        <span class="profile_line"></span>
+                                        <p class="catalog-desc">
+                                            {{ service.desc }}
+                                        </p>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                <section>
+            {% endif %}
         {% else %}
-            <div class="centered">
-                <hr>
-                <span>No results for <span class="emphasized">{{ page_heading }}</span> </span>
+        <div class="centered sm_content_container">
+            <div class="centertext ">
+                <h3 class="title">
+                    Found nothing...
+                </h3>
+                <p class="subtitle">
+                    <span>No results for <span class="emphasized">{{ page_heading }}</span> </span>
+                </p>
             </div>
+        </div>
+    
         {% endif %}
         {% comment %} {% if results %}
   <hr>

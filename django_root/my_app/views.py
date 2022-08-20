@@ -40,6 +40,15 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+def four_Oh_four(request):
+    page_title = "Whoops"
+    page_heading = "Whoops"
+    context = {
+        'page_title': page_title,
+        'page_heading': page_heading,
+    }
+    return render(request, "404.html", context=context)
+
 def about(request):
     page_title = "About"
     page_heading = "About"
@@ -52,55 +61,13 @@ def about(request):
 
 def contact(request):
     page_title = "Contact"
-    page_heading = "Contact Me"
+    page_heading = "Contact"
 
     context = {
         'page_title': page_title,
         'page_heading': page_heading,
     }
     return render(request, 'other/contact.html', context=context)
-
-def nbody(request):
-    return render(request, 'nbody.html')
-
-def four_Oh_four(request):
-    page_title = "Whoops"
-    page_heading = "Whoops"
-    context = {
-        'page_title': page_title,
-        'page_heading': page_heading,
-    }
-    return render(request, "404.html", context=context)
-
-
-def webAssembly(request):
-    page_title = "Webassembly"
-    page_heading = "Webassembly"
-    page_subheading = "Functional Webassembly Implementations"
-    page_text = "Below are the few Webassembly projects which were used to educate the developers of this site on how to use the Webassembly/Rust/Emscripten"
-    context = {
-        'page_title': page_title,
-        'page_heading': page_heading,
-        'page_subheading': page_subheading,
-        'page_text': page_text,
-    }
- 
-    return render(request, "webassembly/webassembly.html", context=context)
-
-def webassembly(request, page):
-    page_title = "Webassembly"
-    page_heading = "Webassembly"
-    page_subheading = "Purpose"
-    context = {
-        'page_title': page_title,
-        'page_heading': page_heading,
-        'page_subheading': page_subheading,
-    }
-    url = 'webassembly/' + page + '.html'
- 
-    return render(request, url, context=context)
-
-
 
 def chat(request):
     data_list = {}
@@ -126,7 +93,7 @@ def chatRoom(request, room_name):
 
 
 
-def blogpost(request, post_id):
+def post(request, post_type, post_id):
     if request.method == "POST":
         print(request.POST)
         form = CommentForm(request.POST)
@@ -137,39 +104,86 @@ def blogpost(request, post_id):
     else: 
         print(request.GET)
         form = CommentForm()
-        blogpost = Blogpost.objects.get(id=post_id) 
-        page_title = blogpost.title
-        page_heading = blogpost.title
-        intro = blogpost.introduction
-        desc = blogpost.description
-        media0 = blogpost.s_media0.url
-        media1 = blogpost.s_media1.url
-        media2 = blogpost.s_media2.url
-        media3 = blogpost.s_media3.url
-        media4 = blogpost.s_media4.url
-        media5 = blogpost.s_media5.url
-        refs = blogpost.references
-        refLinks = refs.split('\n')
-        comment_list = Comment.objects.filter(blogpost=blogpost)
+        if post_type == "articles":
+            article = Article.objects.get(id=post_id) 
+            category =  article.get_category()
+            ancestors = category.get_ancestors()
+            page_title = article.title
+            page_heading = article.title
+            sub_title = article.sub_title
+            main_image = article.main_image.url
+            article_content = article.article_content
+            article_content_paragraphs = article_content.split('\n')
+            sub_reqd = article.sub_reqd
+            sub_image = article.sub_image
+            sub_content = article.sub_content
+            refs = article.references
+            refLinks = refs.split('\n')
+            comment_list = Comment.objects.filter(article=article)
+            context = {
+                'post_id': post_id,
+                'page_title': page_title,
+                'ancestors': ancestors,
+                'object': category,
+                'page_heading': page_heading,
+                'sub_title': sub_title,
+                'main_image': main_image,
+                'article_content': article_content,
+                'article_content_paragraphs': article_content_paragraphs,
+                'sub_reqd': sub_reqd,
+                'sub_image': sub_image,
+                'sub_content': sub_content,
+                'refs': refLinks,
+                'comment_list': comment_list,
+                'form': form,
+            }
+            return render(request, 'items/posts/article.html', context=context)
+
+        elif post_type == "tutorials":
+            tutorial = Tutorial.objects.get(id=post_id) 
+            category =  tutorial.get_category()
+            ancestors = category.get_ancestors()
+            page_title = tutorial.title
+            sub_title = tutorial.sub_title
+            page_heading = tutorial.title
+            videoURL =  tutorial.videoURL
+            field_list = tutorial.fields.all()
+            field_content_dict = {}
+            for field in tutorial.fields.all():
+                field_content_dict[field] = {}
+                for content in field.content.all():
+                    field_content_dict[field][content] = {}
+                    image_list = []
+                    for image in content.images.all():
+                        image_list.append(image)
+                    field_content_dict[field][content] = image_list
+                    
+            refs = tutorial.references
+            refLinks = refs.split('\n')
+            comment_list = Comment.objects.filter(tutorial=tutorial)
+            context = {
+                'post_id': post_id,
+                'page_title': page_title,
+                'sub_title': sub_title,
+                'page_heading': page_heading,
+                'ancestors': ancestors,
+                'object': category,
+                'field_list': field_list,
+                'field_content_dict': field_content_dict,
+                'refs': refLinks,
+                'comment_list': comment_list,
+                'form': form,
+            }
+            return render(request, 'items/posts/tutorial.html', context=context)
         
-        context = {
-            'post_id': post_id,
-            'page_title': page_title,
-            'page_heading': page_heading,
-            'intro': intro,
-            'desc': desc,
-            'media0': media0,
-            'media1': media1,
-            'media2': media2,
-            'media3': media3,
-            'media4': media4,
-            'media5': media5,
-            'refs': refLinks,
-            'comment_list': comment_list,
-            'form': form,
-        }
-        
-    return render(request, 'blogposts/blogpost.html', context=context)
+        else:
+            page_title = "Whoops"
+            page_heading = "Whoops"
+            context = {
+                'page_title': page_title,
+                'page_heading': page_heading,
+            }
+            return render(request, "404.html", context=context)
 
 
 def catree(request):
@@ -191,27 +205,10 @@ def catree(request):
     return render(request,'catalog/catree.html', context=context)
 
 
-def show_category(request,hierarchy= None):
-    category_slug = hierarchy.split('/')
-    parent = None
-    root = Category.objects.all()
-
-    for slug in category_slug[:-1]:
-        parent = root.get(parent=parent, slug = slug)
-
-    try:
-        instance = Category.objects.get(parent=parent,slug=category_slug[-1])
-    except:
-        instance = get_object_or_404(Blogpost, slug = category_slug[-1])
-        return render(request, "blogposts/blogpost.html", {'instance':instance})
-    else:
-        return render(request, 'catalog/categories.html', {'instance':instance})
-
-
 def catalog(request, parent_id):
     data_list = {}
     data_list["categories"] = []
-    cat_name = "Category"
+    cat_name = "Categories"
     if parent_id == 0:
         category = None
         parent_id = None
@@ -242,8 +239,8 @@ def catalog(request, parent_id):
         
         logger.debug('Do dis show up in the logs doe')
         context = {
-            'page_title': cat_name + " Catalog",
-            'page_heading': cat_name + " Catalog",
+            'page_title': cat_name,
+            'page_heading': cat_name,
             'parent_id': parent_id,
             'ancestors': ancestors,
             'object': category,
@@ -252,11 +249,13 @@ def catalog(request, parent_id):
         }
         return render(request, 'catalog/catalog.html', context=context)
     else:   
-        data_list = {}
-        data_list["Blogposts"] = []
         category = Category.objects.get(id=parent_id)
         ancestors=category.get_ancestors()
-        Blogpost_list = category.blog_in_cat()
+        Blogpost_list = category.post_in_cat()
+        if(len(Blogpost_list) > 0):
+            empty = False
+        else:
+            empty = True
         p = Paginator(Blogpost_list, 8)  
         page_number = request.GET.get('page')
         try:
@@ -265,44 +264,111 @@ def catalog(request, parent_id):
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
+            
         context = {
-            'page_title': category.name + " Catalog",
-            'page_heading': category.name +" Catalog",
+            'page_title': category.name,
+            'page_heading': category.name,
+            'empty': empty,
             'page_obj': page_obj,
             'ancestors': ancestors,
             'object': category
         }
-        return render(request, 'catalog/blogposts-in-cat.html', context=context)
+        return render(request, 'catalog/posts-in-cat.html', context=context)
 
 
 def searchCatalog(request):
     if request.method == "POST":
         results = False
+        post_results = False
+        service_results = False
         term = request.POST['searchbox']
         data_list = {}
-        data_list["Blogposts"] = []
-        Blogpost_list = Blogpost.get_searchset(Blogpost, term)
-        print ("Searching for " + term + " Blogpost searchlist size = " + str(Blogpost_list.count())) 
-        if Blogpost_list.count() > 0:
+        data_list["posts"] = []
+        data_list["services"] = []
+        
+        post_list = list(chain(Tutorial.get_searchset(Tutorial, term), Article.get_searchset(Article, term)))
+        service_list = Service.get_searchset(Service, term)
+        if len(post_list) > 0 or len(service_list) > 0:
             results = True
-        for post in Blogpost_list:
+            if len(post_list) > 0:
+                post_results = True
+            if len(service_list) > 0:
+                service_results = True
+        for post in post_list:
             post_instance = {}
             post_instance["id"] = post.id
             post_instance["title"] = post.title
             post_instance["desc"] = post.summary
-            post_instance["isProject"] = post.isProject
-            data_list["Blogposts"].append(post_instance)
+            post_instance["image"] = post.item_image.url
+            data_list["posts"].append(post_instance)
+
+        for service in service_list:
+            service_instance = {}
+            service_instance["id"] = service.id
+            service_instance["title"] = service.title
+            service_instance["desc"] = service.summary
+            data_list["services"].append(service_instance)
             
         context = {
-            'page_title': "Search: "+term,
+            'page_title': "Search: "+ term,
             'page_heading': term,
+            'post_results': post_results,
+            'service_results': service_results,
             'results': results,
-            'Blogposts':data_list["Blogposts"]
+            'posts': post_list,
+            'services': service_list,
+            # 'posts': data_list["posts"],
+            # 'services': data_list["services"],
         }
         return render(request, 'catalog/searchcatalog.html', context=context)
     else: 
        return HttpResponseRedirect(reverse('Blogpost', args=[str(id)]))
-   
+
+# def show_category(request,hierarchy= None):
+#     category_slug = hierarchy.split('/')
+#     parent = None
+#     root = Category.objects.all()
+
+#     for slug in category_slug[:-1]:
+#         parent = root.get(parent=parent, slug = slug)
+
+#     try:
+#         instance = Category.objects.get(parent=parent,slug=category_slug[-1])
+#     except:
+#         instance = get_object_or_404(Blogpost, slug = category_slug[-1])
+#         return render(request, "blogposts/blogpost.html", {'instance':instance})
+#     else:
+#         return render(request, 'catalog/categories.html', {'instance':instance})
+
+# def nbody(request):
+#     return render(request, 'nbody.html')
+
+# def webAssembly(request):
+#     page_title = "Webassembly"
+#     page_heading = "Webassembly"
+#     page_subheading = "Functional Webassembly Implementations"
+#     page_text = "Below are the few Webassembly projects which were used to educate the developers of this site on how to use the Webassembly/Rust/Emscripten"
+#     context = {
+#         'page_title': page_title,
+#         'page_heading': page_heading,
+#         'page_subheading': page_subheading,
+#         'page_text': page_text,
+#     }
+ 
+#     return render(request, "webassembly/webassembly.html", context=context)
+
+# def webassembly(request, page):
+#     page_title = "Webassembly"
+#     page_heading = "Webassembly"
+#     page_subheading = "Purpose"
+#     context = {
+#         'page_title': page_title,
+#         'page_heading': page_heading,
+#         'page_subheading': page_subheading,
+#     }
+#     url = 'webassembly/' + page + '.html'
+ 
+#     return render(request, url, context=context)
 # def registration_view(request):
 #     if request.method == "POST":
 #         form = RegistrationForm(request.POST)

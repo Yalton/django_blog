@@ -6,7 +6,7 @@
         <div class="title_header">
             <div class="page_title">{{ page_heading }}</div>
         </div>
-        <span class="header_line"></span>
+        {% comment %} <span class="header_line"></span> {% endcomment %}
     {% endblock %}
 </div>
 {% block content %}
@@ -15,14 +15,14 @@
 {% comment %} <div class="centered portfolio"> {% endcomment %}
     <div class="centered sm_content_container">
           
-               
+        <div class="centertext">
                     <h3 class="title">
                         404 Error
                     </h3>
                     <p class="subtitle">
                     Sorry, the desired page was not found
                     </p>
-               
+        </div >
    
     </div>
 {% comment %} </div> {% endcomment %}

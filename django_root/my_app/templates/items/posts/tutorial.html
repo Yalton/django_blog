@@ -13,15 +13,16 @@
 </div>
 {% block content %}
 
-<section class="sec_ctr_alph" >
+<section class="sec_ctr" >
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
 
-<section class = "sec_ctr_beta">
+<section class = "sec_ctr">
     <div class="content_container">
         <div class="pad">
 
                 <div class="centertext card_name emphasized">{{sub_title}}</div>
+                <span class = "hline"></span>
 
             {% comment %} {% if videoURL is not None %} {% endcomment %}
             <div class="video_viv">
@@ -34,12 +35,15 @@
             {% for field, content in field_content_dict.items %}   
 
                 <div class="card_name emphasized buffer">{{field.title}}</div>
+                <br>
 
                 {% for block, media in content.items %}   
 
                     <p> {{block.content}} </p>
+                    <br>
                     {% for image in media %}
                         <img class="card_image" src="{{ image.media.url }}" alt="{{image.name}}" />
+                        <br>
                     {% endfor %}
                     
                 {% endfor %}

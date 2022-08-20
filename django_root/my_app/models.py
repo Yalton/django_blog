@@ -16,27 +16,17 @@ class NameModel(models.Model):
         return "%s"%(self.your_name)
 
 class Category(MPTTModel):
-    name = models.CharField(max_length=100)
-    slug = models.SlugField(unique=True)
+    name = models.CharField(max_length=100, null=True,blank=True,)
+    slug = models.SlugField(unique=True, null=True,blank=True,)
     category_image = models.ImageField(upload_to='uploads/categories/%Y/%m/%d/', null=True)
-    cat_summary = models.CharField(max_length=300)
+    cat_summary = models.CharField(max_length=300, null=True,blank=True,)
     description = models.TextField()
-    parent = TreeForeignKey(
-        'self',
-        blank=True,
-        null=True,
-        related_name='child',
-        on_delete=models.CASCADE
-    )
+    parent = TreeForeignKey('self',blank=True,null=True,related_name='child', on_delete=models.CASCADE)
     class MPTTMeta:
         order_insertion_by = ['name']
+        unique_together = ('slug', 'parent',)    
+        verbose_name_plural = "categories"   
 
-    # class Meta:
-    #     unique_together = ('slug', 'parent',)    
-    #     verbose_name_plural = "categories"   
-        
-    # def blog_in_cat(self):
-    #     return Blogpost.objects.filter(category=self)
     def item_in_cat(self):
         return Item.objects.filter(category=self)
     def post_in_cat(self):

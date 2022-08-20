@@ -13,27 +13,27 @@
 </div>
 {% block content %}
 
-<section class="sec_ctr_alph" >
+<section class="sec_ctr" >
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
     <br>
     
 
     {% if empty is False %} 
-        <section class = "sec_ctr_beta">
+        <section class = "sec_ctr">
             <div class="featured-image-block-grid">
                 <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
                 <div class="row large-up-4 small-up-2 align">
                     {% for post in page_obj.object_list %}
                         {% comment %} {% if post.approved %} {% endcomment %}
                             <div class="catalog_card"
-                                onclick="location.href='/post/{{post.post_type}}/{{ post.id }}';">
+                                onclick="location.href='/posts/{{post.post_type}}/{{ post.id }}';">
                                 <div class="pad">
                                     {% if post.item_image %}
                                         <img class="catalog-img"src="{{ post.item_image.url }}" alt="{{ post.title }}">
                                     {% endif %}
                                     <h3 class="catalog-title">{{ post.title }}</h3>
-                                    <span class = "profile_line"></span>
+                                    <span class = "hline"></span>
                                     <p class="catalog-desc">
                                         {{ post.summary }}
                                     </p>

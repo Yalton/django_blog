@@ -8,8 +8,9 @@
 {% block content %}
 
 
-<section class="sec_ctr_alph" >
-<div class=" content_container">
+{% comment %} <section class="sec_ctr_alph" > {% endcomment %}
+<section class = "sec_ctr">
+<div class="content_container">
 
     <div class="content_block">
 
@@ -20,6 +21,7 @@
 
         <div class="lalligned block">
                 <h2>Welcome.</h2>
+                <br>
                 <p> My name is Dalton bailey, and you have found your way onto my blog. I am currently studying Computer Science at Chico State, and I have a few hobbies I would like to share.</p>
                 <p> This blog is still very much under development, so please stay tuned for future improvements and articles.</p>
                 <p> For now enjoy this neat N-Body simulation</p>
@@ -33,8 +35,8 @@
          <div class="simulation">
             <script type="text/javascript+protovis">
 
-                var w = document.body.clientWidth * 0.60,
-                    h = document.body.clientWidth * 0.30,
+                var w = document.body.clientWidth * 0.49,
+                    h = document.body.clientWidth * 0.2,
                     nodes = pv.range(200).map(function(i) {
                     return {x: w * Math.random(),
                             y: h * Math.random(),

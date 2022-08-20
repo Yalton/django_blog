@@ -30,7 +30,7 @@ urlpatterns = [
     # path('nbody/', views.nbody),
     path('chat/', views.chat, name='chat'),
     path('chat/<str:room_name>/', views.chatRoom, name='chatRoom'),
-    path('post/<str:post_type>/<int:post_id>/', views.post, name="post"),
+    path('posts/<str:post_type>/<int:post_id>/', views.post, name="post"),
     path('search/', views.searchCatalog, name="search"),
 
 

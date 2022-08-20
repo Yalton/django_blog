@@ -7,6 +7,9 @@
     --color_shadow: #001010;
     --border_width: 0.3rem;
     --img_border_width: 0.15rem;
+    --border_rad: 1rem;
+    --font_set: Verdana, Geneva, Tahoma, sans-serif;
+    
 }
 
 .light_mode {
@@ -43,10 +46,20 @@ body.loaded .fadein {
 
 p {
     font-size: inherit;
+    font-family: var(--font_set);
+    margin-left: 0.4rem;
+    font-weight: 400;
+    /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
+}
+
+
+p:first-line{
+    text-indent: 0.6rem;
 }
 
 a {
     font-size: inherit;
+    font-family: var(--font_set);
     font-weight: 400;
     color: var(--color_accent2);
 }
@@ -64,23 +77,28 @@ a:hover {
 ul {
     margin-left: 0rem;
     margin-bottom: 0rem;
+    font-family: var(--font_set);
 }
 
 h1 {
     font-size: 3rem;
     text-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow);
+    font-family: var(--font_set);
 }
 
 h2 {
     font-size: 2rem;
+    font-family: var(--font_set);
 }
 
 h3 {
     font-size: 1.25rem;
+    font-family: var(--font_set);
 }
 
 h4 {
-    font-size: 1rem;
+    font-size: 1.1rem;
+    font-family: var(--font_set);
 }
 
 hr.divider {
@@ -120,7 +138,7 @@ div.animated:hover {
     font-weight: 800;
     color: var(--color_accent2);
     background-color: var(--color_main);
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
 }
 
 .search-button {
@@ -230,9 +248,9 @@ div.animated:hover {
 /* Change the color of links on hover */
 
 .sidenav a:hover {
+    font-weight: 600;
     background-color: var(--color_accent);
     color: var(--color_main);
-    font-weight: 600;
 }
 /* Add a color to the active/current link */
 
@@ -309,57 +327,81 @@ text-align: center;
 .sm_content_container {
     width: 30%;
     top: 8%;
-    right: 35%;
+    right: -30%;
     /* display: inline-block; */
-    position: absolute;
+    margin-bottom: 2rem;
+    margin-left: 5%;
+    font-family: var(--font_set);
+    color: var(--color_accent);
     background-color: var(--color_main);
-    color: var(--color_accent2);
-    border:  var(--border_width) solid var(--color_accent);
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
+    border: var(--border_width) solid var(--color_accent);
     padding: 1rem;
+    text-align: left;
+    position: relative;
     box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
 }
 
 .med_content_container {
-    width: 30%;
-    top: 8%;
-    right: 60%;
-    /* display: inline-block; */
-    position: absolute;
+    margin-bottom: 2rem;
+    margin-left: 5%;
+    font-family: var(--font_set);
+    text-align: left;
+    padding-top: 1rem;
+    color: var(--color_accent);
     background-color: var(--color_main);
-    color: var(--color_accent2);
+    border-radius:  var(--border_rad);
     border: var(--border_width) solid var(--color_accent);
-    border-radius: 1rem;
+    position: relative;
+    max-width: 60%;
     padding: 1rem;
-    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+    box-shadow: 0 0 2rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
 }
 
 .content_container {
     margin-bottom: 2rem;
     margin-left: 5%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: left;
-    padding-top: 1rem;
+    font-family: var(--font_set);
     color: var(--color_accent);
     background-color: var(--color_main);
-    border-radius: 1rem;
-    border: var(--border_width) solid var(--color_accent);
+    border-radius:  var(--border_rad);
+    /* border: var(--border_width) solid var(--color_accent); */
+    box-shadow: 0 0 2rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+    padding: 1rem;
+    text-align: left;
     position: relative;
     max-width: 90%;
-    padding: 1rem;
-    box-shadow: 0 0 2rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+    
 }
 
-.sec_ctr_alph {
+
+
+.page-container
+{
     top: 8%;
     position: absolute;
     width: 80%;
     right: 10%;
 }
 
+.rss-container
+{
+top: 8%;
+position: absolute;
+width: 18%;
+right: 2%;
+}
+
+
+.sec_ctr {
+    position: relative;
+    width: 80%;
+    right: -10%;
+  }
+
 .sec_ctr_beta {
     top: 15%;
-    position: absolute;
+    position: relative;
     width: 80%;
     height: 100%;
     right: 10%;
@@ -385,9 +427,9 @@ text-align: center;
 
 .simulation {
     background-color: var(--color_back);
-    border: var(--border_width) solid var(--color_accent);
+    /* border: var(--img_border_width) solid var(--color_accent); */
     display: inline-block;
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
     padding: 2rem;
     margin-right: 2rem;
     margin-left: 2rem;
@@ -405,7 +447,7 @@ text-align: center;
     display: inline-block;
     width: 25%;
     border: var(--border_width) solid var(--color_accent);
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
     padding: 1rem;
     transition: .5s;
     /* box-shadow: 0 0 1rem var(--color_accent); */
@@ -419,7 +461,7 @@ text-align: center;
     color: var(--color_accent2);
     border: var(--border_width) solid var(--color_accent);
     padding: 1rem;
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
     box-shadow: 0 0 1rem var(--color_accent);
     transition: .5s;
     transform: scale(1.1, 1.1);
@@ -432,20 +474,21 @@ text-align: center;
     padding: .75rem 1rem;
     margin-bottom: 1rem;
     width: 90%;
-    margin-left: 5.5rem;
+    margin-left: 5%;
     list-style: none;
     background-color: var(--color_main);
-    border-radius: .25rem;
+    border-radius:  var(--border_rad);
+    /* border: var(--img_border_width) solid var(--color_accent); */
     box-shadow: 0 0 1rem 0.25rem var(--color_shadow),  inset 0 0 .5em var(--color_shadow);
 }
 .catalog_card {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: var(--font_set);
     text-align: left;
     padding-top: 1rem;
     color: var(--color_accent2);
     background-color: var(--color_main);
-    border-radius: 20px;
-    border: var(--img_border_width) solid var(--color_accent);
+    border-radius:  var(--border_rad);
+    /* border: var(--img_border_width) solid var(--color_accent); */
     position: relative;
     width: 20%;
     height: 15em;
@@ -461,6 +504,11 @@ text-align: center;
     transform: scale(1.1, 1.1);
 }
 
+.hline {
+    border-bottom: 0.1rem solid var(--color_accent);
+    display: block;
+} 
+
 .align {
     justify-content: center;
     align-items: center;
@@ -473,7 +521,7 @@ text-align: center;
     object-fit: cover;
     border-radius: 5%;
     display: block;
-    border: var(--img_border_width) solid var(--color_accent2);
+    /* border: var(--img_border_width) solid var(--color_accent2); */
     height: 20vh;
     width: 50%
 }
@@ -498,7 +546,7 @@ text-align: center;
     padding-top: 1rem;
     color: var(--color_accent);
     background-color: var(--color_main);
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
     border: var(--border_width) solid var(--color_accent);
     position: relative;
     max-width: 90%;
@@ -510,7 +558,7 @@ text-align: center;
     height: 30%;
     box-shadow: 0 0 1rem var(--color_shadow);
     border: var(--img_border_width) solid var(--color_accent);
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
     margin: 1rem;
 }
 
@@ -525,7 +573,7 @@ text-align: center;
     object-fit: cover;
     margin: 0 auto 20px auto;
     display: block;
-    border: 4px solid var(--color_accent);
+    /* border: 4px solid var(--color_accent); */
     box-shadow: 0 0 0.6rem var(--color_shadow);
     background-color: var(--color_accent);
 }
@@ -535,7 +583,7 @@ text-align: center;
     object-fit: cover;
     margin: 0 auto 20px auto;
     display: block;
-    border: var(--img_border_width) solid var(--color_accent);
+    /* border: var(--img_border_width) solid var(--color_accent); */
     box-shadow: 0 0 0.6rem var(--color_shadow);
     background-color: var(--color_accent);
 }
@@ -543,7 +591,7 @@ text-align: center;
 .card_name {
     font-size: 1.1em;
     font-weight: bold;
-    margin: auto auto 0.6rem 0.6rem;
+    margin: auto auto auto auto;
 }
 
 .emphasized {
@@ -776,7 +824,7 @@ button.spoiler {
     cursor: pointer;
     width: 100%;
     font-size: 1rem;
-    border-radius: 1rem 1rem 1rem 1rem;
+    border-radius:  var(--border_rad) 1rem 1rem 1rem;
 }
 
 button.spoiler:hover{
@@ -793,7 +841,7 @@ button.spoiler:hover{
     border: var(--img_border_width) solid var(--color_accent);
     color: var(--color_accent);
     cursor: pointer;
-    border-radius: 20px;
+    border-radius:  var(--border_rad);
 }
 
 button:hover {
@@ -860,13 +908,13 @@ button:hover {
 .index_card {
     margin-bottom: 2.5%;
     margin-left: 5%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: var(--font_set);
     font-style: italic;
     text-align: left;
     padding-top: 20px;
     color: var(--color_accent2);
     background-color: var(--color_accent3);
-    border-radius: 20px;
+    border-radius:  var(--border_rad);
     border: var(--border_width) solid var(--color_accent);
     position: relative;
     max-width: 90%;
@@ -915,7 +963,7 @@ button:hover {
     background-color: var(--color_accent3);
     color: var(--color_accent2);
     border: var(--img_border_width) solid var(--color_accent);
-    border-radius: 20px;
+    border-radius:  var(--border_rad);
     margin-bottom: 3rem;
 }
 
@@ -938,7 +986,7 @@ button:hover {
     padding: 2%;
     background-color: #232323;
     border: var(--img_border_width) solid gray;
-    border-radius: 1rem;
+    border-radius:  var(--border_rad);
     box-shadow: 0 0 2rem var(--color_accent);
     align-items: center;
     justify-content: center;
@@ -988,7 +1036,7 @@ textarea:hover,
 
 button.form {
     margin-top: 2rem;
-    font-family: sans-serif;
+    font-family: var(--font_set);
     border: var(--img_border_width) solid gray;
     border-radius: .5rem;
     background-color: rgb(220, 219, 219);
@@ -999,7 +1047,7 @@ button.form {
 
 button.login {
     margin-left: 75%;
-    font-family: sans-serif;
+    font-family: var(--font_set);
     border: var(--img_border_width) solid gray;
     border-radius: .5rem;
     background-color: rgb(220, 219, 219);
@@ -1024,7 +1072,7 @@ input[type="checkbox"] {
     height: 40px;
     -webkit-appearance: none;
     background: linear-gradient(0deg, var(--color_accent), #333);
-    border-radius: 20px;
+    border-radius:  var(--border_rad);
     box-shadow: 0 0 0 4px #353535, inset 0 0 5px black;
 }
 
@@ -1036,7 +1084,7 @@ input[type="checkbox"]:before {
     width: 67%;
     height: 100%;
     background: linear-gradient(0deg, black, #6b6b6b);
-    border-radius: 20px;
+    border-radius:  var(--border_rad);
     box-shadow: 0 0 0 1px black;
     transform: scale(.98, .95);
     transition: .5s;

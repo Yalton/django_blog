@@ -29,10 +29,7 @@
     box-shadow: 0 0 1rem var(--color_accent), inset 0 0 5px var(--color_accent);
     transition: .5s;
 }
-.profile_line {
-    border-bottom: 2px solid var(--color_accent);
-    display: block;
-} */
+
 
 /*
 .right {

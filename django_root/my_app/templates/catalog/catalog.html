@@ -15,11 +15,11 @@
 </div>
 {% block content %}
 
-<section class="sec_ctr_alph" >
+<section class="sec_ctr" >
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
 
-    <section class = "sec_ctr_beta">
+    <section class = "sec_ctr">
         <div class="featured-image-block-grid">
             <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
             <div class="row large-up-4 small-up-2 align">
@@ -28,7 +28,7 @@
                         <div class="pad">
                             <img class="catalog-img" src="{{ cat.image }}" alt="{{ cat.title }}">
                             <h3 class="catalog-title">{{ cat.title }}</h3>
-                            <span class = "profile_line"></span>
+                            <span class = "hline"></span>
                             <p class="catalog-desc">
                                 {{ cat.desc }}
                             </p>

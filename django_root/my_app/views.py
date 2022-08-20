@@ -69,28 +69,6 @@ def contact(request):
     }
     return render(request, 'other/contact.html', context=context)
 
-def chat(request):
-    data_list = {}
-    data_list["rooms"] = []
-    page_title = "RealTime Chat"
-    page_heading = "RealTime Chat"
-    messages = Message.objects.all()
-    for message in messages:
-        data_list["rooms"].append(message.room)
-    
-    context = {
-        'page_title': page_title,
-        'page_heading': page_heading,
-        'rooms':data_list["rooms"]
-    }
-    return render(request, 'chat/lobby.html', context=context)
-
-def chatRoom(request, room_name):
-    username = request.GET.get('username', 'Anonymous')
-    messages = Message.objects.filter(room=room_name)[0:25]
-
-    return render(request, 'chat/room.html', {'room_name': room_name, 'username': username, 'messages': messages})
-
 
 
 def post(request, post_type, post_id):
@@ -218,6 +196,8 @@ def catalog(request, parent_id):
         cat_name = category.name
         parent_id = category.id
         ancestors=category.get_ancestors()
+
+
     category_list = Category.objects.filter(parent=parent_id)
     if category_list:
         for cat in category_list:
@@ -251,12 +231,12 @@ def catalog(request, parent_id):
     else:   
         category = Category.objects.get(id=parent_id)
         ancestors=category.get_ancestors()
-        Blogpost_list = category.post_in_cat()
-        if(len(Blogpost_list) > 0):
+        post_list = category.post_in_cat()
+        if(len(post_list) > 0):
             empty = False
         else:
             empty = True
-        p = Paginator(Blogpost_list, 8)  
+        p = Paginator(post_list, 8)  
         page_number = request.GET.get('page')
         try:
             page_obj = p.get_page(page_number) 
@@ -323,6 +303,28 @@ def searchCatalog(request):
         return render(request, 'catalog/searchcatalog.html', context=context)
     else: 
        return HttpResponseRedirect(reverse('Blogpost', args=[str(id)]))
+
+def chat(request):
+    data_list = {}
+    data_list["rooms"] = []
+    page_title = "RealTime Chat"
+    page_heading = "RealTime Chat"
+    messages = Message.objects.all()
+    for message in messages:
+        data_list["rooms"].append(message.room)
+    
+    context = {
+        'page_title': page_title,
+        'page_heading': page_heading,
+        'rooms':data_list["rooms"]
+    }
+    return render(request, 'chat/lobby.html', context=context)
+
+def chatRoom(request, room_name):
+    username = request.GET.get('username', 'Anonymous')
+    messages = Message.objects.filter(room=room_name)[0:25]
+
+    return render(request, 'chat/room.html', {'room_name': room_name, 'username': username, 'messages': messages})
 
 # def show_category(request,hierarchy= None):
 #     category_slug = hierarchy.split('/')

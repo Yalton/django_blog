@@ -31,13 +31,15 @@
             {% comment %} {% endif %} {% endcomment %}
 
 
-            {% for field in field_list %}   
+            {% for field, content in field_content_dict.items %}   
 
-                <div class="card_name emphasized buffer">{{field.field_title}}</div>
-                {% for block, image_list  in field_content_dict.items %}   
-                    <p> {{block}} </p>
-                    {% for image in image_list %}
-                        <img class="card_image" src="{{ image.media0.url }}" alt="{{image.name}}" />
+                <div class="card_name emphasized buffer">{{field.title}}</div>
+
+                {% for block, media in content.items %}   
+
+                    <p> {{block.content}} </p>
+                    {% for image in media %}
+                        <img class="card_image" src="{{ image.media.url }}" alt="{{image.name}}" />
                     {% endfor %}
                     
                 {% endfor %}

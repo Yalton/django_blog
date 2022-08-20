@@ -38,11 +38,11 @@ LOGOUT_REDIRECT_URL = "/login/"
 # Application definition
 
 INSTALLED_APPS = [
+    'my_app',
     'channels',
     'channels_redis',
     'embed_video',
     'mptt',
-    'my_app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

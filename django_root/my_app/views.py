@@ -149,12 +149,14 @@ def post(request, post_type, post_id):
             videoURL =  tutorial.videoURL
             field_list = tutorial.fields.all()
             field_content_dict = {}
-            # image_list = {}
-            for field in field_list:
-                for image in field.images.all():
-                    for block in field.field_content.split('\n'):
-                        field_content_dict[block] = []
-                        field_content_dict[block].append(image)
+            for field in tutorial.fields.all():
+                field_content_dict[field] = {}
+                for content in field.content.all():
+                    field_content_dict[field][content] = {}
+                    image_list = []
+                    for image in content.images.all():
+                        image_list.append(image)
+                    field_content_dict[field][content] = image_list
                     
             refs = tutorial.references
             refLinks = refs.split('\n')
@@ -182,32 +184,6 @@ def post(request, post_type, post_id):
                 'page_heading': page_heading,
             }
             return render(request, "404.html", context=context)
-    #     blogpost = Blogpost.objects.get(id=post_id) 
-    #     page_title = blogpost.title
-    #     page_heading = blogpost.title
-    #     intro = blogpost.introduction
-    #     desc = blogpost.description
-    #     media0 = blogpost.s_media0.url
-    #     media1 = blogpost.s_media1.url
-    #     media2 = blogpost.s_media2.url
-    #     media3 = blogpost.s_media3.url
-    #     media4 = blogpost.s_media4.url
-    #     media5 = blogpost.s_media5.url
-    #     refs = blogpost.references
-    #     refLinks = refs.split('\n')
-    #     comment_list = Comment.objects.filter(blogpost=blogpost)
-        
-    #     context = {
-    #         'post_id': post_id,
-    #         'page_title': page_title,
-    #         'page_heading': page_heading,
-
-    #         'refs': refLinks,
-    #         'comment_list': comment_list,
-    #         'form': form,
-    #     }
-        
-    # return render(request, 'items/post.html', context=context)
 
 
 def catree(request):
@@ -227,9 +203,6 @@ def catree(request):
         'nodes': Category.objects.all()
     }
     return render(request,'catalog/catree.html', context=context)
-
-
-
 
 
 def catalog(request, parent_id):

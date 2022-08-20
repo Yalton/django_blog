@@ -93,7 +93,7 @@ def chatRoom(request, room_name):
 
 
 
-def post(request, post_id):
+def post(request, post_type, post_id):
     if request.method == "POST":
         print(request.POST)
         form = CommentForm(request.POST)
@@ -104,7 +104,7 @@ def post(request, post_id):
     else: 
         print(request.GET)
         form = CommentForm()
-        if Article.objects.filter(id=post_id).exists():
+        if post_type == "articles":
             article = Article.objects.get(id=post_id) 
             category =  article.get_category()
             ancestors = category.get_ancestors()
@@ -139,48 +139,75 @@ def post(request, post_id):
             }
             return render(request, 'items/posts/article.html', context=context)
 
-        elif Tutorial.objects.filter(id=post_id).exists():
+        elif post_type == "tutorials":
             tutorial = Tutorial.objects.get(id=post_id) 
+            category =  tutorial.get_category()
+            ancestors = category.get_ancestors()
+            page_title = tutorial.title
+            sub_title = tutorial.sub_title
+            page_heading = tutorial.title
+            videoURL =  tutorial.videoURL
+            field_list = tutorial.fields.all()
+            field_content_dict = {}
+            # image_list = {}
+            for field in field_list:
+                for block in field.field_content.split('\n'):
+                    for image in field.images.all():
+                        field_content_dict[block] = []
+                        field_content_dict[block].append(image)
+                    
             refs = tutorial.references
             refLinks = refs.split('\n')
             comment_list = Comment.objects.filter(tutorial=tutorial)
             context = {
                 'post_id': post_id,
                 'page_title': page_title,
+                'sub_title': sub_title,
                 'page_heading': page_heading,
-
+                'ancestors': ancestors,
+                'object': category,
+                'field_list': field_list,
+                'field_content_dict': field_content_dict,
                 'refs': refLinks,
                 'comment_list': comment_list,
                 'form': form,
             }
-            return render(request, 'items/post.html', context=context)
-
-        blogpost = Blogpost.objects.get(id=post_id) 
-        page_title = blogpost.title
-        page_heading = blogpost.title
-        intro = blogpost.introduction
-        desc = blogpost.description
-        media0 = blogpost.s_media0.url
-        media1 = blogpost.s_media1.url
-        media2 = blogpost.s_media2.url
-        media3 = blogpost.s_media3.url
-        media4 = blogpost.s_media4.url
-        media5 = blogpost.s_media5.url
-        refs = blogpost.references
-        refLinks = refs.split('\n')
-        comment_list = Comment.objects.filter(blogpost=blogpost)
+            return render(request, 'items/posts/tutorial.html', context=context)
         
-        context = {
-            'post_id': post_id,
-            'page_title': page_title,
-            'page_heading': page_heading,
-
-            'refs': refLinks,
-            'comment_list': comment_list,
-            'form': form,
-        }
+        else:
+            page_title = "Whoops"
+            page_heading = "Whoops"
+            context = {
+                'page_title': page_title,
+                'page_heading': page_heading,
+            }
+            return render(request, "404.html", context=context)
+    #     blogpost = Blogpost.objects.get(id=post_id) 
+    #     page_title = blogpost.title
+    #     page_heading = blogpost.title
+    #     intro = blogpost.introduction
+    #     desc = blogpost.description
+    #     media0 = blogpost.s_media0.url
+    #     media1 = blogpost.s_media1.url
+    #     media2 = blogpost.s_media2.url
+    #     media3 = blogpost.s_media3.url
+    #     media4 = blogpost.s_media4.url
+    #     media5 = blogpost.s_media5.url
+    #     refs = blogpost.references
+    #     refLinks = refs.split('\n')
+    #     comment_list = Comment.objects.filter(blogpost=blogpost)
         
-    return render(request, 'items/post.html', context=context)
+    #     context = {
+    #         'post_id': post_id,
+    #         'page_title': page_title,
+    #         'page_heading': page_heading,
+
+    #         'refs': refLinks,
+    #         'comment_list': comment_list,
+    #         'form': form,
+    #     }
+        
+    # return render(request, 'items/post.html', context=context)
 
 
 def catree(request):
@@ -294,7 +321,6 @@ def searchCatalog(request):
                 post_results = True
             if len(service_list) > 0:
                 service_results = True
-        
         for post in post_list:
             post_instance = {}
             post_instance["id"] = post.id
@@ -316,8 +342,10 @@ def searchCatalog(request):
             'post_results': post_results,
             'service_results': service_results,
             'results': results,
-            'posts': data_list["posts"],
-            'services': data_list["services"],
+            'posts': post_list,
+            'services': service_list,
+            # 'posts': data_list["posts"],
+            # 'services': data_list["services"],
         }
         return render(request, 'catalog/searchcatalog.html', context=context)
     else: 

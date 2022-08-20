@@ -7,6 +7,7 @@ from django.contrib.auth.models import User as auth_user
 from mptt.models import MPTTModel, TreeForeignKey
 from django.utils.text import slugify
 from itertools import chain
+from embed_video.fields  import  EmbedVideoField
 
 
 class NameModel(models.Model):
@@ -84,6 +85,7 @@ class Category(MPTTModel):
 
 class Item(models.Model):
     title = models.CharField(max_length=100, null=True,blank=True,)
+    sub_title = models.TextField( null=True,blank=True,)
     summary = models.CharField(max_length=300,  null=True,blank=True,)
     item_image = models.ImageField(upload_to='uploads/items/%Y/%m/%d/', null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True,blank=True,)
@@ -94,6 +96,7 @@ class Item(models.Model):
     class Meta:
         abstract = True
         ordering = ['-created_on']
+    
     def __str__(self):
          return self.title
     def get_searchset(self, term):
@@ -107,73 +110,21 @@ class Item(models.Model):
 
 
 class Tutorial(Item):
-    videoURL = models.URLField(max_length=200, null=True,blank=True,)
-    field1_reqd = models.BooleanField(default=False)
-    field1_title = models.CharField(max_length=100, null=True,blank=True,)
-    field1_content = models.TextField( null=True,blank=True,)
-    f1_m0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
-    f1_m1 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f1_m2 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f1_m3 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f1_m4 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f1_m5 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    field2_reqd = models.BooleanField(default=False)
-    field2_title = models.CharField(max_length=100, null=True,blank=True,)
-    field2_content = models.TextField( null=True,blank=True,)
-    f2_m0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
-    f2_m1 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f2_m2 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f2_m3 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f2_m4 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f2_m5 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    field3_reqd = models.BooleanField(default=False)
-    field3_title = models.CharField(max_length=100, null=True,blank=True,)
-    field3_content = models.TextField( null=True,blank=True,)
-    f3_m0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
-    f3_m1 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f3_m2 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f3_m3 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f3_m4 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f3_m5 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    field4_reqd = models.BooleanField(default=False)
-    field4_title = models.CharField(max_length=100, null=True,blank=True,)
-    field4_content = models.TextField( null=True,blank=True,)
-    f4_m0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
-    f4_m1 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f4_m2 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f4_m3 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f4_m4 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f4_m5 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    field5_reqd = models.BooleanField(default=False)
-    field5_title = models.CharField(max_length=100, null=True,blank=True,)
-    field5_content = models.TextField( null=True,blank=True,)
-    f5_m0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
-    f5_m1 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f5_m2 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f5_m3 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f5_m4 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f5_m5 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    field6_reqd = models.BooleanField(default=False)
-    field6_title = models.CharField(max_length=100, null=True,blank=True,)
-    field6_content = models.TextField( null=True,blank=True,)
-    f6_m0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
-    f6_m1 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f6_m2 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f6_m3 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f6_m4 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
-    f6_m5 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/',null=True,blank=True,)
+    videoURL = EmbedVideoField(null=True,blank=True)
     def get_searchset(self, term):
-         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(field1_title__icontains=term)| Q(field1_content__icontains=term)| Q(field2_title__icontains=term)| Q(field2_content__icontains=term)| Q(field3_title__icontains=term)| Q(field3_content__icontains=term)| Q(field4_title__icontains=term)| Q(field4_content__icontains=term)| Q(field5_title__icontains=term)| Q(field5_content__icontains=term)| Q(field6_title__icontains=term)| Q(field6_content__icontains=term))
+         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) )
     def get_category(self):
         return self.category
     def is_article(self):
         return False
     def is_tutorial(self):
         return True
-
+    def __str__(self):
+        return self.title
+    def post_type(self):
+        return "tutorials"
     
 class Article(Item):
-    sub_title = models.TextField( null=True,blank=True,)
     main_image = models.ImageField(upload_to='uploads/articles/%Y/%m/%d/', null=True,blank=True,)
     article_content = models.TextField( null=True,blank=True,)
     sub_reqd = models.BooleanField(default=False)
@@ -183,20 +134,36 @@ class Article(Item):
         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term)  | Q(article_content__icontains=term)| Q(sub_content__icontains=term))
     def get_category(self):
         return self.category
+    def post_type(self):
+        return "articles"
     def is_article(self):
         return True
     def is_tutorial(self):
         return False
+    def __str__(self):
+        return self.title
 
 
 class Service(Item):
     link = models.URLField(max_length=200, null=True,blank=True,)
-    # item = models.ForeignKey(Item,null=True,blank=True, on_delete=models.CASCADE)
     def get_searchset(self, term):
         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(link__icontains=term))
+    def __str__(self):
+        return self.title
 
+class TutorialField(models.Model):
+    tutorial = models.ForeignKey(Tutorial, related_name='fields', null=True,blank=True, on_delete=models.CASCADE)
+    field_title = models.CharField(max_length=100, null=True,blank=True,)
+    field_content = models.TextField( null=True,blank=True,)
+    def __str__(self):
+        return self.field_title
 
-
+class TutorialFieldMedia(models.Model):
+    field = models.ForeignKey(TutorialField, related_name='images', null=True,blank=True, on_delete=models.CASCADE)
+    name = models.CharField(max_length=100, null=True,blank=True,)
+    media0 = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
+    def __str__(self):
+        return self.name
 
 class Comment(models.Model):
     comment = models.CharField(max_length=240, null=True,blank=True,)
@@ -217,7 +184,10 @@ class Message(models.Model):
 
     class Meta:
         ordering = ('date_added',)
-     
+    
+    def __str__(self):
+        return self.username + " : " + self.content
+
     
 
 

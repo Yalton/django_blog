@@ -24,8 +24,8 @@
                         <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
                         <div class="row large-up-4 small-up-2 align">
                             {% for post in posts %}
-                                <div class="catalog_card pad" onclick="location.href='/post/{{ post.id }}';">
-                                        <img class="catalog-img" src="{{ post.image }}" alt="{{ post.title }}">
+                                <div class="catalog_card pad" onclick="location.href='/post/{{post.post_type}}/{{ post.id }}';">
+                                        <img class="catalog-img" src="{{ post.item_image.url }}" alt="{{ post.title }}">
                                         <h3 class="catalog-title">{{ post.title }}</h3>
                                         <span class="profile_line"></span>
                                         <p class="catalog-desc">
@@ -44,7 +44,7 @@
                         <div class="row large-up-4 small-up-2 align">
                             {% for service in services %}
                                 <div class="catalog_card pad" onclick="location.href='/blogpost/{{ service.id }}';">
-                                        <img class="catalog-img" src="{{ service.image }}" alt="{{ service.title }}">
+                                        <img class="catalog-img" src="{{ service.item_image.url }}" alt="{{ service.title }}">
                                         <h3 class="catalog-title">{{ service.title }}</h3>
                                         <span class="profile_line"></span>
                                         <p class="catalog-desc">

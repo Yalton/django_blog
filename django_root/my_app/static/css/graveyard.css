@@ -1,0 +1,208 @@
+/* 
+.profile_banner {
+    position: absolute;
+    width: 89%;
+    color: var(--color_accent);
+    text-shadow: 0 0 .5rem var(--color_accent), inset 0 0 5px var(--color_accent);
+}
+
+.profile_title {
+    position: absolute;
+    top: 5px;
+    text-align: left;
+}
+
+.profile_cards {
+    display: flex;
+}
+
+.profile_card {
+    font-family: sans-serif;
+    text-align: left;
+    padding: 20px 0 0 0;
+    box-shadow: 0 0 0.6rem rgba(0, 0, 0, 0.2);
+    background-color: var(--color_accent3);
+    border-radius: 20px;
+    border: 2px solid var(--color_accent);
+    position: relative;
+    max-width: 53%;
+    box-shadow: 0 0 1rem var(--color_accent), inset 0 0 5px var(--color_accent);
+    transition: .5s;
+}
+.profile_line {
+    border-bottom: 2px solid var(--color_accent);
+    display: block;
+} */
+
+/*
+.right {
+    position: absolute;
+    right: 0px;
+    width: 300px;
+    /* border: 3px solid #ffcccb; */
+    padding: 0.6rem;
+
+*/
+
+/* a.themed:link {
+    color: var(--color_accent);
+}
+
+a.themed:visited {
+    color: var(--color_accent2);
+}
+
+a.themed:hover {
+    color: var(--color_accent3);
+}
+
+a.themed:active {
+    color: rgb(65, 0, 0);
+
+} */
+/* Right-aligned section inside the top navigation */
+/* .top-bar {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-flex-wrap: nowrap;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    padding: 0.5rem;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+} */
+
+/* img {
+    max-width: 50%;
+    max-height: 50%;
+} */
+/* .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+/* Add a color to the active/current link */
+
+/* .topnav a.active {
+    background-color: #144e73;
+    color: var(--color_accent2);
+}  */
+
+
+
+/* .vline {
+    border-left: 4px solid var(--color_accent);
+    height: 70%;
+    margin: -25% auto auto 27%;
+    position: absolute;
+    box-shadow: 0 0 0.6rem var(--color_accent);
+}
+
+.flip-card {
+    background-color: transparent;
+    width: 75px;
+    height: 75px;
+    margin: 20px auto 20px 20px;
+    perspective: 1000px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.flip_image {
+    height: 75px;
+    width: 75px;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: var(--img_border_width) solid var(--color_accent);
+    display: inline-flex;
+}
+/* This container is needed to position the front and back side */
+/* 
+.flip-card-inner {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    box-shadow: 0 0 0.6rem var(--color_accent);
+}
+/* Do a horizontal flip when you move the mouse over the flip box container */
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+/* Position the front and back side */
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    -webkit-backface-visibility: hidden;
+    /* Safari */
+    backface-visibility: hidden;
+    overflow-x: hidden;
+}
+
+.flip-card-front {
+    background-color: var(--color_accent);
+}
+/* Style the back side */
+
+.flip-card-back {
+    background-color: #232323;
+    color: white;
+    transform: rotateY(180deg);
+    border: 3px solid var(--color_accent);
+    font-size: small;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+} */
+
+
+
+
+.plus-minus-input {
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.plus-minus-input .input-group-field {
+    text-align: center;
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+    padding: 1rem;
+}
+
+.plus-minus-input .input-group-field::-webkit-inner-spin-button,
+.plus-minus-input .input-group-field ::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.plus-minus-input .input-group-button .circle {
+    border-radius: 50%;
+    padding: 0.25em 0.8em;
+} */
+/* .sub_content_block {
+    /* display: flex;
+    flex-wrap: wrap; */
+    display: block;
+} */

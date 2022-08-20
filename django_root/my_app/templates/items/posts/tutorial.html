@@ -13,14 +13,14 @@
 </div>
 {% block content %}
 
-<section class="breadcrumbctr" >
+<section class="sec_ctr_alph" >
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
 
-<section class = "catalogctr">
-    <div class="post_card">
+<section class = "sec_ctr_beta">
+    <div class="content_container">
         <div class="pad">
-            <div class="invisible_box">
+
                 <div class="centertext card_name emphasized">{{sub_title}}</div>
 
             {% comment %} {% if videoURL is not None %} {% endcomment %}

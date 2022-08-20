@@ -28,12 +28,20 @@
 <body>
     <div id="loading"></div>
     <div id="topnav" class="topnav sticky">
+        <div class="topnav-right">
+            <div class="searchdiv">
+                <form method=POST action="/search/">
+                    {% csrf_token %}
+                <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
+            </div>
+        </div>
         <div class="lfloat">
             <a class="active" href="/">Home</a>
         </div>
         <h1 class="centered">
             {% block heading %}{% endblock %}
         </h1>
+
     </div>
     {% comment %} <div class="main heading">
          <h1 class="centered">
@@ -49,17 +57,17 @@
     <div class="sidenav">
         {% comment %} <a class="active" href="/">Home</a> {% endcomment %}
         {% comment %} <a href="/404/">Search</a> {% endcomment %}
+        <a href="/catalog/0/">Posts</a>
         <a href="/404/">Projects</a>
-        <a href="/catalog/0/">Blogposts</a>
         <a href="/404">Archives</a>
         <a href="/404/">A_Game</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
-        <div class="searchdiv">
+        {% comment %} <div class="searchdiv">
             <form method=POST action="/search/">
                 {% csrf_token %}
             <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
-        </div>
+        </div> {% endcomment %}
 
          {% comment %} <button class="search-button">
             <i class="fa fa-search"></i>

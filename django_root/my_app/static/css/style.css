@@ -27,12 +27,42 @@ body {
     overflow-x: hidden;
 }
 
+
+.fadein {
+    opacity: 0;
+    -moz-transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+    -o-transition: opacity 1.5s;
+    transition: opacity 1.5s;
+}
+
+body.loaded .fadein {
+    opacity: 1;
+}
+
 p {
     font-size: inherit;
 }
 
+a {
+    font-size: inherit;
+    font-weight: 400;
+    color: var(--color_accent2);
+}
+
+a:hover {
+    font-size: inherit;
+    font-weight: 600;
+    font-weight: inherit;
+    text-decoration: none;
+    transition: 0.2s;
+    text-shadow: 0 0 1rem 0 var(--color_accent);
+    color: var(--color_accent3);
+}
+
 ul {
-    margin-left: 1rem;
+    margin-left: 0rem;
+    margin-bottom: 0rem;
 }
 
 h1 {
@@ -56,13 +86,42 @@ hr.divider {
     height: 2rem;
 }
 
+/* unvisited link */
+
+a.themed:link {
+    color: var(--color_accent);
+}
+
+
+/* visited link */
+
+a.themed:visited {
+    color: var(--color_accent2);
+}
+
+
+/* mouse over link */
+
+a.themed:hover {
+    color: var(--color_accent3);
+}
+
+
+/* selected link */
+
+a.themed:active {
+    color: rgb(65, 0, 0);
+}
+
+div.animated:hover {
+    background-color: var(--color_back);
+}
+
 
 #loading {
-    background: url('spinner.gif') no-repeat center center;
+    background: url('loader.gif') no-repeat center center;
     position: absolute;
     top: 0;
-    /* left: 0; */
-    right: -5%;
     height: 100%;
     width: 100%;
     z-index: 9999999;
@@ -71,7 +130,13 @@ hr.divider {
 
 .searchbox {
     width: 90%;
-    margin-left: 0.3rem;
+    font-weight: 800;
+    color: var(--color_accent2);
+    background-color: var(--color_main);
+    border-radius: 1rem;
+}
+
+.search-button {
     margin-top: 0.5rem;
 }
 
@@ -79,9 +144,9 @@ hr.divider {
     background-color: var(--color_accent);
     overflow: hidden;
     z-index: 2;
-    box-shadow: 0 0.5rem 1rem 0 var(--color_shadow);
+    box-shadow: 0 0.5rem 1rem 0 var(--color_shadow),  inset 0 0 .5em var(--color_shadow);;
     height: 6%
-    /* border-bottom: 4px solid gray; */
+        /* border-bottom: 4px solid gray; */
 }
 
 
@@ -92,6 +157,7 @@ hr.divider {
     padding: 0.6rem 0.4rem 0.2rem 0.2rem;
     text-decoration: none;
     font-size: 150%;
+    font-weight: 800;
     color: var(--color_main);
     display: block;
 }
@@ -114,6 +180,10 @@ hr.divider {
     font-size: 17px;
 }
 
+.topnav-right {
+    float: right;
+    display: flex;
+}
 
 /* Change the color of links on hover */
 
@@ -133,14 +203,14 @@ hr.divider {
     color: var(--color_main);
     font-size: 2.2rem;
     /* padding: 1rem; */
-    margin-right: 4.5%;
+
     /* text-shadow: 0 0 1rem var(--color_shadow); */
 }
 
 .page_title {
     color: var(--color_main);
     font-weight: bold;
-    /* top: 5px; */
+    line-height: 1.5;
 }
 
 .title_banner {
@@ -155,13 +225,14 @@ hr.divider {
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
+    
 }
 
 /* The sidebar menu */
 
 .sidenav {
     height: 100%;
-    width: 8.5%;
+    width: 8%;
     position: fixed;
     z-index: 1;
     top: 6%;
@@ -170,7 +241,7 @@ hr.divider {
     background-color: var(--color_main);
     overflow-x: hidden;
     border-right: 0.2rem solid var(--color_accent);
-    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow);
+    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow),  inset 0 0 .5em var(--color_shadow);
 }
 
 
@@ -182,6 +253,8 @@ hr.divider {
     font-size: 150%;
     color: var(--color_accent2);
     display: block;
+    font-weight: 400;
+    text-shadow: 0 0 .5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
     /* border-bottom: 0.2rem solid var(--color_accent); */
 }
 
@@ -189,8 +262,9 @@ hr.divider {
 /* Change the color of links on hover */
 
 .sidenav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: var(--color_accent);
+    color: var(--color_main);
+    font-weight: 600;
 }
 
 
@@ -205,11 +279,7 @@ hr.divider {
 /* Style page content */
 
 .main {
-    /* margin-left: 160px; */
-    /* margin-top: 3.5rem; */
     margin-left: 12rem;
-    /* Same as the width of the sidebar */
-    /* padding: 0px 10px; */
 }
 
 
@@ -228,10 +298,6 @@ hr.divider {
 
 /* Right-aligned section inside the top navigation */
 
-/* .topnav-right {
-    float: right;
-    display: flex;
-} */
 
 /* .top-bar {
     display: -webkit-box;
@@ -292,8 +358,12 @@ hr.divider {
 
 
 .centered {
-    text-align: center;
-    /* float: center; */
+    right: 46%;
+    position: fixed;
+}
+
+.centertext {
+text-align: center;
 }
 
 .likediv {
@@ -315,31 +385,47 @@ hr.divider {
 }
 
 .sm_content_container {
+    width: 30%;
     top: 8%;
-    right: 32%;
+    right: 35%;
     /* display: inline-block; */
     position: absolute;
     background-color: var(--color_main);
     color: var(--color_accent2);
-    width: 30%;
     border: 0.2rem solid var(--color_accent);
     border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow);
+    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
 }
 
+
+.med_content_container {
+    width: 30%;
+    top: 8%;
+    right: 60%;
+    /* display: inline-block; */
+    position: absolute;
+    background-color: var(--color_main);
+    color: var(--color_accent2);
+    border: 0.2rem solid var(--color_accent);
+    border-radius: 1rem;
+    padding: 1rem;
+    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+}
+
+
 .content_container {
+    width: 75%;
     top: 8%;
     right: 10%;
     /* display: inline-block; */
     position: absolute;
     background-color: var(--color_main);
     color: var(--color_accent2);
-    width: 75%;
     border: 0.2rem solid var(--color_accent);
     border-radius: 1rem;
     padding: 1rem;
-    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow);
+    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
 }
 
 .content_block {
@@ -399,8 +485,11 @@ hr.divider {
 
 .breadcrumbctr {
     top: 8%;
-    position: sticky;
+    position: absolute;
+    width: 80%;
+    right: 10%;
 }
+
 
 
 .breadcrumb {
@@ -415,7 +504,80 @@ hr.divider {
     list-style: none;
     background-color: var(--color_main);
     border-radius: .25rem;
-    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow),  inset 0 0 .5em var(--color_shadow);
+}
+
+
+.sm_catalogctr{
+    top: 20%;
+    position: absolute;
+    width: 30%;
+    height: 100%;
+    right: 10%;
+
+    
+}
+
+
+.catalogctr {
+    top: 15%;
+    position: absolute;
+    width: 80%;
+    height: 100%;
+    right: 10%;
+}
+
+
+
+.catalog_card {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+    padding-top: 1rem;
+    color: var(--color_accent2);
+    background-color: var(--color_main);
+    border-radius: 20px;
+    border: 2px solid var(--color_accent);
+    position: relative;
+    width: 20%;
+    height: 15em;
+    margin: 1.3%;
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+    /* transition: .5s;
+    overflow-y: hidden; */
+}
+
+.catalog_card:hover {
+    box-shadow: 0 0 50px var(--color_accent);
+    transition: .5s;
+}
+
+.align {
+    justify-content: center;
+    align-items: center;
+}
+
+.catalog-img {
+    float: left;
+    background-color: var(--color_main);
+    margin: -3% 3% 3% 0;
+    object-fit: cover;
+    border-radius: 5%;
+    display: block;
+    border: 2px solid var(--color_accent2);
+    height: 20vh;
+    width: 50%
+}
+
+.catalog-title {
+    color: var(--color_accent);
+    font-size: 1.2rem;
+    padding: auto auto 10px auto;
+}
+
+.catalog-desc {
+    color: var(--color_accent);
+    font-size: 1rem;
+    margin-top: 3%;
 }
 
 .chat {
@@ -534,37 +696,6 @@ input.green-button {
 }
 
 
-/* unvisited link */
-
-a.themed:link {
-    color: var(--color_accent);
-}
-
-
-/* visited link */
-
-a.themed:visited {
-    color: var(--color_accent2);
-}
-
-
-/* mouse over link */
-
-a.themed:hover {
-    color: var(--color_accent3);
-}
-
-
-/* selected link */
-
-a.themed:active {
-    color: rgb(65, 0, 0);
-}
-
-div.animated:hover {
-    background-color: var(--color_back);
-}
-
 
 
 
@@ -593,9 +724,7 @@ div.animated:hover {
     width: 100%;
 } */
 
-.search-button {
-    margin-top: 0.5rem;
-}
+
 
 
 /* The sticky class is added to the navbar with JS when it reaches its scroll position */
@@ -633,6 +762,82 @@ div.animated:hover {
     }
 }
 
+
+
+.post_card {
+    margin-bottom: 2rem;
+    margin-left: 5%;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: left;
+    padding-top: 20px;
+    color: var(--color_accent);
+    background-color: var(--color_main);
+    border-radius: 20px;
+    border: 2px solid var(--color_accent);
+    position: relative;
+    max-width: 90%;
+    box-shadow: 0 0 2rem var(--color_shadow);
+    transition: .5s;
+}
+
+.post_image {
+    width: 30%;
+    height: 30%;
+    box-shadow: 0 0 1rem var(--color_accent);
+    border: 5px solid gray;
+    border-radius: 1rem;
+    margin: 1rem;
+    transition: .5s;
+}
+
+.post_image:hover {
+    box-shadow: 0 0 3rem var(--color_accent);
+    transform: scale(1.5, 1.5);
+    transition: .5s;
+}
+
+
+.main_card_image {
+    width: 80%;
+    height: 40vh;
+    object-fit: cover;
+    margin: 0 auto 20px auto;
+    display: block;
+    border: 4px solid var(--color_accent);
+    box-shadow: 0 0 10px var(--color_shadow);
+    background-color: var(--color_accent);
+}
+.card_image {
+    width: 40%;
+    height: 40vh;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto 20px auto;
+    display: block;
+    border: 4px solid var(--color_accent);
+    box-shadow: 0 0 10px var(--color_shadow);
+    background-color: var(--color_accent);
+}
+
+.card_name {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin: auto auto 10px 10px;
+}
+
+.emphasized {
+    color: var(--color_accent);
+}
+
+.card_title {
+    margin: 10px auto 10px 10px;
+}
+
+.card_email {
+    margin: 10px auto 10px 10px;
+    font-size: .8em;
+}
+
 .plus-minus-input {
     -webkit-align-items: center;
     -ms-flex-align: center;
@@ -661,7 +866,7 @@ div.animated:hover {
     position: absolute;
     width: 89%;
     color: var(--color_accent);
-    text-shadow: 0 0 .5rem var(--color_accent);
+    text-shadow: 0 0 .5rem var(--color_accent), inset 0 0 5px var(--color_accent);
 }
 
 .profile_title {
@@ -738,48 +943,26 @@ div.animated:hover {
     color: var(--color_accent);
 }
 
-.card_image {
-    width: 50%;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin: 0 auto 20px auto;
-    display: block;
-    border: 4px solid var(--color_accent);
-    box-shadow: 0 0 10px var(--color_accent);
-    background-color: var(--color_accent);
-}
 
-.card_name {
-    font-size: 1.1em;
-    font-weight: bold;
-    margin: auto auto 10px 10px;
-}
-
-.emphasized {
-    color: var(--color_accent);
-}
-
-.card_title {
-    margin: 10px auto 10px 10px;
-}
-
-.card_email {
-    margin: 10px auto 10px 10px;
-    font-size: .8em;
-}
 
 button.spoiler {
     border: none;
-    border-top: 2px solid var(--color_accent);
+    border-top: 0.1rem solid var(--color_accent);
     display: block;
-    background-color: var(--color_accent3);
-    color: var(--color_accent);
+    background-color: var(--color_accent);
+    color: var(--color_main);
     text-align: center;
+    font-weight: 600;
     cursor: pointer;
     width: 100%;
-    font-size: 16px;
-    border-radius: 0 0 20px 20px;
+    font-size: 1rem;
+    border-radius: 1rem 1rem 1rem 1rem;
+}
+
+button.spoiler:hover{
+    color: var(--color_shadow);
+    border-top: 0.1rem solid var(--color_accent3);
+    background-color: var(--color_accent3);
 }
 
 .logout_button {
@@ -887,59 +1070,6 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
-
-.catalog_card {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: left;
-    padding-top: 20px;
-    color: var(--color_accent2);
-    background-color: var(--color_main);
-    border-radius: 20px;
-    border: 2px solid var(--color_accent);
-    position: relative;
-    width: 20%;
-    height: 15em;
-    margin: 1.3%;
-    box-shadow: 0 0 1rem 0.25rem var(--color_shadow);
-    /* transition: .5s;
-    overflow-y: hidden; */
-}
-
-.catalog_card:hover {
-    box-shadow: 0 0 50px var(--color_accent);
-    transition: .5s;
-}
-
-.align {
-    justify-content: center;
-    align-items: center;
-}
-
-.catalog-img {
-    float: left;
-    background-color: var(--color_main);
-    margin: -3% 3% 3% 0;
-    object-fit: cover;
-    border-radius: 5%;
-    display: block;
-    border: 2px solid var(--color_accent2);
-    height: 20vh;
-    width: 50%
-}
-
-.catalog-title {
-    color: var(--color_accent);
-    font-size: 1.2rem;
-    padding: auto auto 10px auto;
-}
-
-.catalog-desc {
-    color: var(--color_accent);
-    font-size: 1rem;
-    margin-top: 3%;
-}
-
-
 
 .pagination-circular li.current {
     border: 0.1rem solid var(--color_main);
@@ -1067,37 +1197,7 @@ button:hover {
     transition: .5s;
 }
 
-.post_card {
-    margin-bottom: 2rem;
-    margin-left: 5%;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    text-align: left;
-    padding-top: 20px;
-    color: var(--color_accent2);
-    background-color: var(--color_accent3);
-    border-radius: 20px;
-    border: 2px solid var(--color_accent);
-    position: relative;
-    max-width: 90%;
-    box-shadow: 0 0 2rem var(--color_accent);
-    transition: .5s;
-}
 
-.post_image {
-    width: 30%;
-    height: 30%;
-    box-shadow: 0 0 1rem var(--color_accent);
-    border: 5px solid gray;
-    border-radius: 1rem;
-    margin: 1rem;
-    transition: .5s;
-}
-
-.post_image:hover {
-    box-shadow: 0 0 3rem var(--color_accent);
-    transform: scale(1.5, 1.5);
-    transition: .5s;
-}
 
 .submit_card {
     max-width: 90%;
@@ -1222,15 +1322,15 @@ input:checked[type="checkbox"]:before {
 }
 
 .comment_button {
-    background-color: var(--color_accent3);
-    color: var(--color_accent);
+    background-color: var(--color_accent);
+    color: var(--color_main);
     border: 2px solid var(--color_accent);
     border-radius: .5rem;
     margin: 1rem;
     text-decoration: none;
     font-size: large;
     text-align: center;
-    box-shadow: 0 0 1rem var(--color_accent), inset 0 0 .5em var(--color_accent);
+    box-shadow: 0 0 1rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
     transition: .5s;
     font-weight: bold;
 }
@@ -1242,7 +1342,7 @@ input:checked[type="checkbox"]:before {
 .comment_button:hover,
 .plain:hover {
     color: var(--color_accent3);
-    box-shadow: 0 0 0 var(--color_accent), inset 0 0 5rem var(--color_accent);
+    box-shadow: 0 0 0 var(--color_shadow), inset 0 0 5rem var(--color_shadow);
     text-decoration: none;
     transition: .5s;
     font-weight: bold;

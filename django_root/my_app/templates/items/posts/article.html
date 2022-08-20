@@ -80,7 +80,7 @@
                                         {% csrf_token %}
                                         {{ form }}
                                     </form> 
-                                    <a class="plain" href="/comment/{{post_id}}">
+                                    <a class="plain" href="/comment/{{slug}}">
                                         <div class="comment_button">Leave a Comment</div>
                                     </a>
                                 </div>
@@ -93,5 +93,5 @@
 
     </div>
 </section>
-    {% endblock %}
+{% endblock %}
 

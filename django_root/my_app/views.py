@@ -71,7 +71,7 @@ def contact(request):
 
 
 
-def post(request, post_type, post_id):
+def post(request, post_type, slug):
     if request.method == "POST":
         print(request.POST)
         form = CommentForm(request.POST)
@@ -83,7 +83,7 @@ def post(request, post_type, post_id):
         print(request.GET)
         form = CommentForm()
         if post_type == "articles":
-            article = Article.objects.get(id=post_id) 
+            article = Article.objects.get(slug=slug) 
             category =  article.get_category()
             ancestors = category.get_ancestors()
             page_title = article.title
@@ -99,7 +99,7 @@ def post(request, post_type, post_id):
             refLinks = refs.split('\n')
             comment_list = Comment.objects.filter(article=article)
             context = {
-                'post_id': post_id,
+                'slug': slug,
                 'page_title': page_title,
                 'ancestors': ancestors,
                 'object': category,
@@ -118,7 +118,7 @@ def post(request, post_type, post_id):
             return render(request, 'items/posts/article.html', context=context)
 
         elif post_type == "tutorials":
-            tutorial = Tutorial.objects.get(id=post_id) 
+            tutorial = Tutorial.objects.get(slug=slug) 
             category =  tutorial.get_category()
             ancestors = category.get_ancestors()
             page_title = tutorial.title
@@ -140,7 +140,7 @@ def post(request, post_type, post_id):
             refLinks = refs.split('\n')
             comment_list = Comment.objects.filter(tutorial=tutorial)
             context = {
-                'post_id': post_id,
+                'slug': slug,
                 'page_title': page_title,
                 'sub_title': sub_title,
                 'page_heading': page_heading,
@@ -183,16 +183,17 @@ def catree(request):
     return render(request,'catalog/catree.html', context=context)
 
 
-def catalog(request, parent_id):
+def catalog(request, slug):
     data_list = {}
     data_list["categories"] = []
+    cat_type = 'catalog'
     cat_name = "Categories"
-    if parent_id == 0:
+    if slug == 'None':
         category = None
         parent_id = None
         ancestors = None
     else: 
-        category = Category.objects.get(id=parent_id)
+        category = Category.objects.get(slug=slug)
         cat_name = category.name
         parent_id = category.id
         ancestors=category.get_ancestors()
@@ -201,12 +202,14 @@ def catalog(request, parent_id):
     category_list = Category.objects.filter(parent=parent_id)
     if category_list:
         for cat in category_list:
-            cat_instance = {}
-            cat_instance["id"] = cat.id
-            cat_instance["title"] = cat.name
-            cat_instance["image"] = cat.category_image.url
-            cat_instance["desc"] = cat.cat_summary
-            data_list["categories"].append(cat_instance)
+            if cat.show_in_posts:
+                cat_instance = {}
+                cat_instance["id"] = cat.id
+                cat_instance["slug"] = cat.slug
+                cat_instance["title"] = cat.name
+                cat_instance["image"] = cat.category_image.url
+                cat_instance["desc"] = cat.cat_summary
+                data_list["categories"].append(cat_instance)
             
         p = Paginator(data_list["categories"], 8)  
         page_number = request.GET.get('page')
@@ -220,8 +223,8 @@ def catalog(request, parent_id):
         logger.debug('Do dis show up in the logs doe')
         context = {
             'page_title': cat_name,
+            'cat_type': cat_type,
             'page_heading': cat_name,
-            'parent_id': parent_id,
             'ancestors': ancestors,
             'object': category,
             'page_obj': page_obj,
@@ -256,6 +259,82 @@ def catalog(request, parent_id):
         return render(request, 'catalog/posts-in-cat.html', context=context)
 
 
+def services(request, slug):
+    data_list = {}
+    cat_type = 'services'
+    data_list["categories"] = []
+    cat_name = "Categories"
+    if slug == 'None':
+        category = None
+        parent_id = None
+        ancestors = None
+    else: 
+        category = Category.objects.get(slug=slug)
+        cat_name = category.name
+        parent_id = category.id
+        ancestors=category.get_ancestors()
+
+    category_list = Category.objects.filter(parent=parent_id)
+    if category_list:
+        for cat in category_list:
+            if cat.show_in_services:
+                cat_instance = {}
+                cat_instance["id"] = cat.id
+                cat_instance["slug"] = cat.slug
+                cat_instance["title"] = cat.name
+                cat_instance["image"] = cat.category_image.url
+                cat_instance["desc"] = cat.cat_summary
+                data_list["categories"].append(cat_instance)
+            
+        p = Paginator(data_list["categories"], 8)  
+        page_number = request.GET.get('page')
+        try:
+            page_obj = p.get_page(page_number) 
+        except PageNotAnInteger:
+            page_obj = p.page(1)
+        except EmptyPage:
+            page_obj = p.page(p.num_pages)
+        
+        logger.debug('Do dis show up in the logs doe')
+        context = {
+            'page_title': cat_name,
+            'cat_type': cat_type,
+            'page_heading': cat_name,
+            'ancestors': ancestors,
+            'object': category,
+            'page_obj': page_obj,
+            'categories':data_list["categories"]
+        }
+        return render(request, 'catalog/catalog.html', context=context)
+    else:   
+        category = Category.objects.get(id=parent_id)
+        ancestors=category.get_ancestors()
+        serv_list = category.serv_in_cat()
+        if(len(serv_list) > 0):
+            empty = False
+        else:
+            empty = True
+        p = Paginator(serv_list, 8)  
+        page_number = request.GET.get('page')
+        try:
+            page_obj = p.get_page(page_number) 
+        except PageNotAnInteger:
+            page_obj = p.page(1)
+        except EmptyPage:
+            page_obj = p.page(p.num_pages)
+            
+        context = {
+            'page_title': category.name,
+            'page_heading': category.name,
+            'cat_slug': category.slug,
+            'empty': empty,
+            'page_obj': page_obj,
+            'ancestors': ancestors,
+            'object': category
+        }
+        return render(request, 'catalog/serv-in-cat.html', context=context)
+
+
 def searchCatalog(request):
     if request.method == "POST":
         results = False
@@ -277,6 +356,7 @@ def searchCatalog(request):
         for post in post_list:
             post_instance = {}
             post_instance["id"] = post.id
+            post_instance["slug"] = post.slug
             post_instance["title"] = post.title
             post_instance["desc"] = post.summary
             post_instance["image"] = post.item_image.url
@@ -285,6 +365,7 @@ def searchCatalog(request):
         for service in service_list:
             service_instance = {}
             service_instance["id"] = service.id
+            service_instance["slug"] = post.slug
             service_instance["title"] = service.title
             service_instance["desc"] = service.summary
             data_list["services"].append(service_instance)

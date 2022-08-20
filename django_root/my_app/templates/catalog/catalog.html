@@ -24,7 +24,7 @@
             <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
             <div class="row large-up-4 small-up-2 align">
                 {% for cat in page_obj.object_list %}
-                    <div class="catalog_card" onclick="location.href='/catalog/{{ cat.id }}';">
+                    <div class="catalog_card" onclick="location.href='/{{cat_type}}/{{ cat.slug }}';"> 
                         <div class="pad">
                             <img class="catalog-img" src="{{ cat.image }}" alt="{{ cat.title }}">
                             <h3 class="catalog-title">{{ cat.title }}</h3>

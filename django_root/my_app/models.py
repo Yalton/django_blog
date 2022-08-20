@@ -22,6 +22,8 @@ class Category(MPTTModel):
     cat_summary = models.CharField(max_length=300, null=True,blank=True,)
     description = models.TextField()
     parent = TreeForeignKey('self',blank=True,null=True,related_name='child', on_delete=models.CASCADE)
+    show_in_posts = models.BooleanField(default=False)
+    show_in_services = models.BooleanField(default=False)
     class MPTTMeta:
         order_insertion_by = ['name']
         unique_together = ('slug', 'parent',)    
@@ -55,7 +57,7 @@ class Category(MPTTModel):
         return ' -> '.join(full_path[::-1])
     
     def get_absolute_url(self):
-        return reverse('catalog', args=[str(self.id)])
+        return reverse('catalog', args=[str(self.slug)])
     
     def get_slug_list(self):
         try:
@@ -75,14 +77,13 @@ class Category(MPTTModel):
 
 class Item(models.Model):
     title = models.CharField(max_length=100, null=True,blank=True,)
-    sub_title = models.TextField( null=True,blank=True,)
+    # sub_title = models.TextField( null=True,blank=True,)
+    # references = models.TextField(null=True,blank=True,)
     summary = models.CharField(max_length=300,  null=True,blank=True,)
     item_image = models.ImageField(upload_to='uploads/items/%Y/%m/%d/', null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True,blank=True,)
     category = models.ForeignKey(Category,null=True,blank=True, on_delete=models.CASCADE)
-    references = models.TextField(null=True,blank=True,)
     slug = models.SlugField(max_length=100,null=True)
-    # typeslug = models.SlugField(max_length=100,null=True)
     class Meta:
         abstract = True
         ordering = ['-created_on']
@@ -92,15 +93,26 @@ class Item(models.Model):
     def get_searchset(self, term):
         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(field1_title__icontains=term)| Q(field1_content__icontains=term)| Q(field2_title__icontains=term)| Q(field2_content__icontains=term)| Q(field3_title__icontains=term)| Q(field3_content__icontains=term)| Q(field4_title__icontains=term)| Q(field4_content__icontains=term)| Q(field5_title__icontains=term)| Q(field5_content__icontains=term))
     def get_absolute_url(self):
-        kwargs = {
-        'slug': self.slug
-        }
+        kwargs = {'slug': self.slug}
         return reverse('item-detail', kwargs=kwargs)
     
 
 
+class Post(Item):
+    sub_title = models.TextField( null=True,blank=True,)
+    references = models.TextField(null=True,blank=True,)
+    class Meta:
+        abstract = True
 
-class Article(Item):
+class Service(Item):
+    link = models.URLField(max_length=200, null=True,blank=True,)
+    def get_searchset(self, term):
+        return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(link__icontains=term))
+    def __str__(self):
+        return self.title
+
+
+class Article(Post):
     main_image = models.ImageField(upload_to='uploads/articles/%Y/%m/%d/', null=True,blank=True,)
     article_content = models.TextField( null=True,blank=True,)
     sub_reqd = models.BooleanField(default=False)
@@ -119,15 +131,7 @@ class Article(Item):
     def __str__(self):
         return self.title
 
-
-class Service(Item):
-    link = models.URLField(max_length=200, null=True,blank=True,)
-    def get_searchset(self, term):
-        return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) | Q(link__icontains=term))
-    def __str__(self):
-        return self.title
-
-class Tutorial(Item):
+class Tutorial(Post):
     videoURL = EmbedVideoField(null=True,blank=True)
     def get_searchset(self, term):
          return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) )

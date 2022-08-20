@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load mptt_tags %}
 {% load static %}
 {% block title %}{{ page_title }}{% endblock %}
 
@@ -16,15 +17,15 @@
   <span class="emphasized">Catalog Placeholder</span>
 
 </div> -->
-    <section>
+
         {% if results %}
             {% if post_results %}
-                <section class = "catalogctr">
+                <section class = "sec_ctr">
                     <div class="featured-image-block-grid">
                         <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
                         <div class="row large-up-4 small-up-2 align">
                             {% for post in posts %}
-                                <div class="catalog_card pad" onclick="location.href='/posts/{{post.post_type}}/{{ post.id }}';">
+                                <div class="catalog_card pad" onclick="location.href='/posts/{{post.post_type}}/{{ post.slug }}';">
                                         <img class="catalog-img" src="{{ post.item_image.url }}" alt="{{ post.title }}">
                                         <h3 class="catalog-title">{{ post.title }}</h3>
                                         <span class="profile_line"></span>
@@ -35,15 +36,15 @@
                             {% endfor %}
                         </div>
                     </div>
-                <section>
+                </section>
             {% endif %}
             {% if service_results %}
-                <section class = "catalogctr">
+                <section class = "sec_ctr">
                     <div class="featured-image-block-grid">
                         <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
                         <div class="row large-up-4 small-up-2 align">
                             {% for service in services %}
-                                <div class="catalog_card pad" onclick="location.href='/posts/{{ service.id }}';">
+                                <div class="catalog_card pad" onclick="location.href='/services/{{ service.slug }}';">
                                         <img class="catalog-img" src="{{ service.item_image.url }}" alt="{{ service.title }}">
                                         <h3 class="catalog-title">{{ service.title }}</h3>
                                         <span class="profile_line"></span>
@@ -54,7 +55,7 @@
                             {% endfor %}
                         </div>
                     </div>
-                <section>
+                </section>
             {% endif %}
         {% else %}
         <div class="centered sm_content_container">
@@ -69,19 +70,5 @@
         </div>
     
         {% endif %}
-        {% comment %} {% if results %}
-  <hr>
-    <div class="paginationdiv">
-        <ul class="pagination pagination-circular" role="navigation" aria-label="Pagination">
-        <li class="disabled">� <span class="show-for-sr">Previous page</span></li>
-        <li class="current"><span class="show-for-sr">Page</span> 1</li>
-        <li><a href="/testpost" aria-label="Page 2">2</a></li>
-        <li><a href="/testpost" aria-label="Page 3">3</a></li>
-        <li><a href="/testpost" aria-label="Page 4">4</a></li>
-        <li><a href="/testpost" aria-label="Page 5">5</a></li>
-        <li><a href="/testpost" aria-label="Next page">� <span class="show-for-sr">Next page</span></a></li>
-        </ul>
-    </div>
-        {% endif %} {% endcomment %}
-    </section>
+
 {% endblock %}

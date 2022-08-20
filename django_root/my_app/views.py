@@ -151,8 +151,8 @@ def post(request, post_type, post_id):
             field_content_dict = {}
             # image_list = {}
             for field in field_list:
-                for block in field.field_content.split('\n'):
-                    for image in field.images.all():
+                for image in field.images.all():
+                    for block in field.field_content.split('\n'):
                         field_content_dict[block] = []
                         field_content_dict[block].append(image)
                     

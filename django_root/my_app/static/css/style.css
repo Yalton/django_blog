@@ -776,11 +776,11 @@ input.green-button {
     margin-left: 5%;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: left;
-    padding-top: 20px;
+    padding-top: 1rem;
     color: var(--color_accent);
     background-color: var(--color_main);
-    border-radius: 20px;
-    border: 2px solid var(--color_accent);
+    border-radius: 1rem;
+    border: 0.4rem solid var(--color_accent);
     position: relative;
     max-width: 90%;
     box-shadow: 0 0 2rem var(--color_shadow);
@@ -790,15 +790,15 @@ input.green-button {
 .post_image {
     width: 30%;
     height: 30%;
-    box-shadow: 0 0 1rem var(--color_accent);
-    border: 5px solid gray;
+    box-shadow: 0 0 1rem var(--color_shadow);
+    border: 5px solid var(--color_accent);
     border-radius: 1rem;
     margin: 1rem;
     transition: .5s;
 }
 
 .post_image:hover {
-    box-shadow: 0 0 3rem var(--color_accent);
+    box-shadow: 0 0 3rem var(--color_shadow);
     transform: scale(1.5, 1.5);
     transition: .5s;
 }

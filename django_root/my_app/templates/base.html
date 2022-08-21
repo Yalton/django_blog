@@ -28,19 +28,19 @@
 <body>
     <div id="loading"></div>
     <div id="topnav" class="topnav sticky">
-        <div class="topnav-right">
-            <div class="searchdiv">
+        <div class="topnav-item">
+            <a class="active" href="/">Home</a>
+        </div>
+        <div class="topnav-item">
+            <h1 class="page_title">
+                {% block heading %}{% endblock %}
+            </h1>
+        </div>
+        <div class="topnav-item">
                 <form method=POST action="/search/">
                     {% csrf_token %}
                 <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
-            </div>
         </div>
-        <div class="lfloat">
-            <a class="active" href="/">Home</a>
-        </div>
-        <h1 class="centered">
-            {% block heading %}{% endblock %}
-        </h1>
 
     </div>
     {% comment %} <div class="main heading">
@@ -62,37 +62,31 @@
         <a href="/404/">A_Game</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
-        {% comment %} <div class="searchdiv">
-            <form method=POST action="/search/">
-                {% csrf_token %}
-            <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
-        </div> {% endcomment %}
-
-         {% comment %} <button class="search-button">
-            <i class="fa fa-search"></i>
-        </button>  {% endcomment %}
         
     </div>
-    <section class="page-container">
-        {% block content %}{% endblock %}
-    </section>
+    <section class="base-container">
+        
+        <section class="page-container">
+            {% block content %}{% endblock %}
+        </section>
 
-    <section class = "rss-container">
-        <div class="content_container">
-            <h2>RSS Placeholder</h2>
-            <span class = "hline"></span>
-            <br>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        </div>
+        <section class = "rss-container">
+            <div class="content_container">
+                <h2>RSS Placeholder</h2>
+                <span class = "hline"></span>
+                <br>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            </div>
+        </section>
     </section>
     <script src="http://threejs.org/build/three.min.js"></script>
     <script src="{% static 'js/vendor/jquery.js' %}"></script>

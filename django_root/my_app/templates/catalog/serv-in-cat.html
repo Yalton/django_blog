@@ -27,7 +27,7 @@
                     {% for serv in page_obj.object_list %}
                         {% comment %} {% if serv.approved %} {% endcomment %}
                             <div class="catalog_card"
-                                onclick="location.href='/services/{{cat_slug}}/{{ serv.slug }}';">
+                                onclick="location.href='{{serv.link}}';">
                                 <div class="pad">
                                     {% if serv.item_image %}
                                         <img class="catalog-img"src="{{ serv.item_image.url }}" alt="{{ serv.title }}">

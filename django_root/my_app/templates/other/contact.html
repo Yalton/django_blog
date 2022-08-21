@@ -10,30 +10,31 @@
 </div>
 {% block content %}
 
-<div class="centered content_container">
-    <div class="content_block">
+<section class="sec_ctr" >
+    <div class=" content_container">
+        <div class="content_block">
 
 
-        <div class="rfloat sub_content_block">
-                <img class ="index-img" src="{% static 'img/maybe_50.JPG' %}" alt="MainPhoto"></a>
+            <div class="rfloat sub_content_block">
+                    <img class ="index-img" src="{% static 'img/maybe_50.JPG' %}" alt="MainPhoto"></a>
+            </div>
+
+            <div class="lalligned sub_content_block">
+                    <h2 class="work-feature-block-header">Wanna get ahold of me?</h2>
+                    <p>Have some questions about my tutorials, or maybe a job offer? You can do so through a variety of methods listed below, you can also leave a comment on any post of mine with your email attached and I will reach out to you.</p>      
+                    <h3>Contact Methods</h3>
+                    <ul>
+                        
+                        <li><a href="mailto:drbailey117@protonmail.com">Email</a></li>
+                        <li><a href="https://discord.gg/whMVueTJUj">Discord</a></li>
+                    </ul>
+            </div>
+
         </div>
 
-        <div class="lalligned sub_content_block">
-                <h2 class="work-feature-block-header">Wanna get ahold of me?</h2>
-                <p>Have some questions about my tutorials, or maybe a job offer? You can do so through a variety of methods listed below, you can also leave a comment on any post of mine with your email attached and I will reach out to you.</p>      
-                <h3>Contact Methods</h3>
-                <ul>
-                    
-                    <li><a href="mailto:drbailey117@protonmail.com">Email</a></li>
-                    <li><a href="https://discord.gg/whMVueTJUj">Discord</a></li>
-                </ul>
-        </div>
 
     </div>
-
-
-</div>
-
+</section>
 {% endblock %}
 
 {% comment %} {% block scripts %}

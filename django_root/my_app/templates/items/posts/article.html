@@ -12,13 +12,13 @@
 </div>
 {% block content %}
 
-<section class="breadcrumbctr" >
+<section class="sec_ctr" >
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
-<section class = "catalogctr">
-    <div class="post_card">
+<section class = "sec_ctr">
+    <div class="content_container">
         <div class="pad">
-            <div class="invisible_box">
+           
                 <div class="centertext card_name emphasized">{{sub_title}}</div>
                 <a href="{{ main_image }}">
                     <img class="main_card_image" src="{{ main_image }}" alt="main_image" />
@@ -42,6 +42,7 @@
                     </li>
                 {% endfor %}
             </div>
+        </div>
         <!-- comments -->   
         <button class="spoiler" title="Click to Show/Hide Content" type="button"
         onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">
@@ -79,7 +80,7 @@
                                         {% csrf_token %}
                                         {{ form }}
                                     </form> 
-                                    <a class="plain" href="/comment/{{post_id}}">
+                                    <a class="plain" href="/comment/{{slug}}">
                                         <div class="comment_button">Leave a Comment</div>
                                     </a>
                                 </div>
@@ -92,5 +93,5 @@
 
     </div>
 </section>
-    {% endblock %}
+{% endblock %}
 

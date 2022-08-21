@@ -30,13 +30,14 @@ urlpatterns = [
     # path('nbody/', views.nbody),
     path('chat/', views.chat, name='chat'),
     path('chat/<str:room_name>/', views.chatRoom, name='chatRoom'),
-    path('post/<str:post_type>/<int:post_id>/', views.post, name="post"),
+    path('posts/<str:post_type>/<slug:slug>/', views.post, name="post"),
     path('search/', views.searchCatalog, name="search"),
 
 
     path('catree/', views.catree, name="catree"),
 
-    path('catalog/<int:parent_id>/', views.catalog, name="catalog"),
+    path('catalog/<slug:slug>/', views.catalog, name="catalog"),
+    path('services/<slug:slug>/', views.services, name="services"),
     # path('show_category/<hierarchy>/', views.show_category, name="show_category"),
     # path('webassembly/', views.webAssembly, name="webassembly"),
     # path('webassembly/<str:page>/', views.webassembly, name="webassembly"),

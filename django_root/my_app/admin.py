@@ -15,6 +15,8 @@ class  tutorialAdmin(AdminVideoMixin, admin.ModelAdmin):
 admin.site.register(Category, DraggableMPTTAdmin)
 # admin.site.register(Item)
 # admin.site.register(Post)
+admin.site.register(PersonalData)
+admin.site.register(Notes)
 admin.site.register(Article)
 admin.site.register(Service)
 admin.site.register(Tutorial, tutorialAdmin)

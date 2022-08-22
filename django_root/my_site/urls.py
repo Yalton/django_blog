@@ -23,10 +23,12 @@ from my_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('404/', views.four_Oh_four),
     path('',views.index, name="homepage"), 
     path('about/', views.about, name="about"),
+    path('resume/', views.resume, name="resume"),
     path('contact/', views.contact, name="contact"),
-    path('404/', views.four_Oh_four),
+    
     # path('nbody/', views.nbody),
     path('chat/', views.chat, name='chat'),
     path('chat/<str:room_name>/', views.chatRoom, name='chatRoom'),

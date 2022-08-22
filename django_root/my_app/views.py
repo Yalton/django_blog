@@ -59,10 +59,21 @@ def about(request):
     }
     return render(request, 'other/about.html', context=context)
 
+
+def resume(request):
+    page_title = "Resume"
+    page_heading = "Resume"
+    data = PersonalData.objects.get(name="dalton") 
+    context = {
+        'page_title': page_title,
+        'data': data,
+        'page_heading': page_heading,
+    }
+    return render(request, 'other/resume.html', context=context)
+
 def contact(request):
     page_title = "Contact"
     page_heading = "Contact"
-
     context = {
         'page_title': page_title,
         'page_heading': page_heading,
@@ -124,7 +135,7 @@ def post(request, post_type, slug):
             page_title = tutorial.title
             sub_title = tutorial.sub_title
             page_heading = tutorial.title
-            videoURL =  tutorial.videoURL
+            videoURL =  tutorial.video
             field_list = tutorial.fields.all()
             field_content_dict = {}
             for field in tutorial.fields.all():

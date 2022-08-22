@@ -17,11 +17,12 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/foundations.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
     <script type="text/javascript" src="{% static 'js/protovis-r3.3.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/n-body/OBJLoader.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/n-body/OrbitControls.js' %}"></script>
-
+    
     {% block css %}{% endblock %}
 </head>
 
@@ -88,7 +89,8 @@
             </div>
         </section>
     </section>
-    <script src="http://threejs.org/build/three.min.js"></script>
+    
+    <script src="https://threejs.org/build/three.min.js"></script>
     <script src="{% static 'js/vendor/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/foundations.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>

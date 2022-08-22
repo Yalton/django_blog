@@ -1,7 +1,9 @@
 :root {
     --color_back: #002E2C;
+    /* --color_back: #EFF1C5; */
     --color_main: #035E7B;
     --color_accent: #EFF1C5;
+    /* --color_accent: #002E2C; */
     --color_accent2: #E3E7AF;
     --color_accent3: #A2A77F;
     --color_shadow: #001010;
@@ -9,7 +11,7 @@
     --img_border_width: 0.15rem;
     --border_rad: 1rem;
     --font_set: Verdana, Geneva, Tahoma, sans-serif;
-    
+
 }
 
 .light_mode {
@@ -48,12 +50,13 @@ p {
     font-size: inherit;
     font-family: var(--font_set);
     margin-left: 0.4rem;
+    overflow-wrap: break-word;
     font-weight: 400;
     /* font-family: Verdana, Geneva, Tahoma, sans-serif; */
 }
 
 
-p:first-line{
+p:first-line {
     text-indent: 0.6rem;
 }
 
@@ -104,6 +107,7 @@ h4 {
 hr.divider {
     height: 2rem;
 }
+
 div.animated:hover {
     background-color: var(--color_back);
 }
@@ -125,6 +129,7 @@ div.animated:hover {
     text-align: right;
     /* margin-left: 4rem; */
 }
+
 #loading {
     background: url('loader.gif') no-repeat center center;
     position: absolute;
@@ -133,6 +138,7 @@ div.animated:hover {
     width: 100%;
     z-index: 9999999;
 }
+
 .searchbox {
     width: 90%;
     font-weight: 800;
@@ -157,13 +163,15 @@ div.animated:hover {
     z-index: 2;
     box-shadow: 0 0.5rem 1rem 0 var(--color_shadow), inset 0 0 0.5em var(--color_shadow);
     display: flex;
-    height: 6% /* border-bottom: 4px solid gray; */;
+    height: 6%
+        /* border-bottom: 4px solid gray; */
+    ;
     align-items: stretch;
     justify-content: space-between;
     align-content: center;
     flex-wrap: nowrap;
     flex-direction: row;
-        /* border-bottom: 4px solid gray; */
+    /* border-bottom: 4px solid gray; */
 }
 
 /* Style the links inside the navigation bar */
@@ -227,7 +235,7 @@ div.animated:hover {
     align-items: center;
     justify-content: center;
     margin-top: 2rem;
-    
+
 }
 
 /* The sidebar menu */
@@ -244,8 +252,9 @@ div.animated:hover {
     background-color: var(--color_main);
     overflow-x: hidden;
     border-right: 0.2rem solid var(--color_accent);
-    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow),  inset 0 0 .5em var(--color_shadow);
+    box-shadow: 0 0.5rem 1.5rem 0 var(--color_shadow), inset 0 0 .5em var(--color_shadow);
 }
+
 /* The navigation menu links */
 
 .sidenav a {
@@ -258,6 +267,7 @@ div.animated:hover {
     text-shadow: 0 0 .5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
     /* border-bottom: 0.2rem solid var(--color_accent); */
 }
+
 /* Change the color of links on hover */
 
 .sidenav a:hover {
@@ -265,17 +275,20 @@ div.animated:hover {
     background-color: var(--color_accent);
     color: var(--color_main);
 }
+
 /* Add a color to the active/current link */
 
 .sidenav a.active {
     background-color: var(--color_accent);
     color: var(--color_main);
 }
+
 /* Style page content */
 
 .main {
     margin-left: 12rem;
 }
+
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 
 @media screen and (max-height: 450px) {
@@ -298,6 +311,7 @@ div.animated:hover {
 }
 
 .portfolioimg:hover {}
+
 .index-img {
     height: 20vh;
     max-height: 50%;
@@ -325,34 +339,47 @@ div.animated:hover {
 }
 
 .centertext {
-text-align: center;
+    text-align: center;
 }
 
 .likediv {
     display: flex;
     margin-left: 5rem;
 }
+
 .postscore {
     border: none;
     background: transparent;
 }
 
+.resume-embed {
+    width: 65rem;
+    height: 50rem;
+    box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+}
+
+.embed_block {
+    text-align: center;
+}
+
+
+
 .sm_content_container {
     width: 30%;
     top: 8%;
-    right: -30%;
-    /* display: inline-block; */
+    right: -27%;
     margin-bottom: 2rem;
-    margin-left: 5%;
     font-family: var(--font_set);
     color: var(--color_accent);
     background-color: var(--color_main);
-    border-radius:  var(--border_rad);
-    /* border: var(--border_width) solid var(--color_accent); */
+    border-radius: var(--border_rad);
     padding: 1rem;
     text-align: left;
     position: relative;
     box-shadow: 0 0 0.5rem 0.5rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
+    /* display: inline-block; */
+    /* margin-left: 5%; */
+    /* border: var(--border_width) solid var(--color_accent); */
 }
 
 .med_content_container {
@@ -363,7 +390,7 @@ text-align: center;
     padding-top: 1rem;
     color: var(--color_accent);
     background-color: var(--color_main);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     border: var(--border_width) solid var(--color_accent);
     position: relative;
     max-width: 60%;
@@ -377,18 +404,18 @@ text-align: center;
     font-family: var(--font_set);
     color: var(--color_accent);
     background-color: var(--color_main);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     /* border: var(--border_width) solid var(--color_accent); */
     box-shadow: 0 0 2rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
     padding: 1rem;
     text-align: left;
     position: relative;
     max-width: 90%;
-    
+
 }
 
 
-.base-container{
+.base-container {
     top: 10%;
     right: -8%;
     width: 100%;
@@ -401,15 +428,13 @@ text-align: center;
     align-items: flex-start;
 }
 
-.page-container
-{
+.page-container {
     position: relative;
     width: 85%;
     right: -2%;
 }
 
-.rss-container
-{
+.rss-container {
     top: 8%;
     position: relative;
     width: 15%;
@@ -421,7 +446,7 @@ text-align: center;
     position: relative;
     width: 90%;
     right: 2%;
-  }
+}
 
 .sec_ctr_beta {
     top: 15%;
@@ -429,9 +454,9 @@ text-align: center;
     width: 80%;
     height: 100%;
     right: 10%;
-} 
+}
 
-.sm_catalogctr{
+.sm_catalogctr {
     top: 20%;
     position: absolute;
     width: 30%;
@@ -453,7 +478,7 @@ text-align: center;
     background-color: var(--color_back);
     /* border: var(--img_border_width) solid var(--color_accent); */
     display: inline-block;
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     padding: 2rem;
     margin-right: 2rem;
     margin-left: 2rem;
@@ -471,7 +496,7 @@ text-align: center;
     display: inline-block;
     width: 25%;
     border: var(--border_width) solid var(--color_accent);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     padding: 1rem;
     transition: .5s;
     /* box-shadow: 0 0 1rem var(--color_accent); */
@@ -485,11 +510,12 @@ text-align: center;
     color: var(--color_accent2);
     border: var(--border_width) solid var(--color_accent);
     padding: 1rem;
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     box-shadow: 0 0 1rem var(--color_accent);
     transition: .5s;
     transform: scale(1.1, 1.1);
 }
+
 .breadcrumb {
     display: -ms-flexbox;
     display: flex;
@@ -501,17 +527,18 @@ text-align: center;
     margin-left: 5%;
     list-style: none;
     background-color: var(--color_main);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     /* border: var(--img_border_width) solid var(--color_accent); */
-    box-shadow: 0 0 1rem 0.25rem var(--color_shadow),  inset 0 0 .5em var(--color_shadow);
+    box-shadow: 0 0 1rem 0.25rem var(--color_shadow), inset 0 0 .5em var(--color_shadow);
 }
+
 .catalog_card {
     font-family: var(--font_set);
     text-align: left;
     padding-top: 1rem;
     color: var(--color_accent2);
     background-color: var(--color_main);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     /* border: var(--img_border_width) solid var(--color_accent); */
     position: relative;
     width: 20%;
@@ -531,7 +558,7 @@ text-align: center;
 .hline {
     border-bottom: 0.1rem solid var(--color_accent);
     display: block;
-} 
+}
 
 .align {
     justify-content: center;
@@ -582,7 +609,7 @@ text-align: center;
     height: 30%;
     box-shadow: 0 0 1rem var(--color_shadow);
     border: var(--img_border_width) solid var(--color_accent);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     margin: 1rem;
 }
 
@@ -591,6 +618,7 @@ text-align: center;
     transform: scale(1.5, 1.5);
     transition: .5s;
 }
+
 .main_card_image {
     width: 80%;
     height: 40vh;
@@ -601,6 +629,7 @@ text-align: center;
     box-shadow: 0 0 0.6rem var(--color_shadow);
     background-color: var(--color_accent);
 }
+
 .card_image {
     width: 40%;
     height: 40vh;
@@ -665,6 +694,7 @@ text-align: center;
     align-items: center;
     justify-content: center;
 }
+
 .chat {
     margin-top: 5%;
 }
@@ -759,11 +789,13 @@ input.green-button {
 .buffer {
     padding-top: 1rem;
 }
+
 .row {
     display: flex;
     flex-wrap: wrap;
     padding: 0 4px;
 }
+
 /* Create four equal columns that sits next to each other */
 
 .column {
@@ -771,6 +803,7 @@ input.green-button {
     max-width: 25%;
     padding: 0 4px;
 }
+
 /* .column img {
     margin-top: 8px;
     vertical-align: middle;
@@ -783,11 +816,13 @@ input.green-button {
     top: 0;
     width: 100%;
 }
+
 /* Add some top padding to the page content to prevent sudden quick movement (as the navigation bar gets a new position at the top of the page (position:fixed and top:0) */
 
 .sticky+.content {
     padding-top: 60px;
 }
+
 /* Responsive layout - makes a two column-layout instead of four columns */
 
 @media screen and (max-width: 800px) {
@@ -796,6 +831,7 @@ input.green-button {
         max-width: 50%;
     }
 }
+
 /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
 
 @media screen and (max-width: 600px) {
@@ -804,6 +840,7 @@ input.green-button {
         max-width: 100%;
     }
 }
+
 .header_line {
     border-bottom: 0.2rem solid var(--color_accent);
     display: block;
@@ -848,10 +885,10 @@ button.spoiler {
     cursor: pointer;
     width: 100%;
     font-size: 1rem;
-    border-radius:  var(--border_rad) 1rem 1rem 1rem;
+    border-radius: var(--border_rad) 1rem 1rem 1rem;
 }
 
-button.spoiler:hover{
+button.spoiler:hover {
     color: var(--color_shadow);
     border-top: 0.1rem solid var(--color_accent3);
     background-color: var(--color_accent3);
@@ -865,7 +902,7 @@ button.spoiler:hover{
     border: var(--img_border_width) solid var(--color_accent);
     color: var(--color_accent);
     cursor: pointer;
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
 }
 
 button:hover {
@@ -938,7 +975,7 @@ button:hover {
     padding-top: 20px;
     color: var(--color_accent2);
     background-color: var(--color_accent3);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     border: var(--border_width) solid var(--color_accent);
     position: relative;
     max-width: 90%;
@@ -966,9 +1003,14 @@ button:hover {
     z-index: 1;
 }
 
-.pad {
+.padded-flexed-div {
     padding-left: 0.6rem;
     padding-right: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-content: space-around;
+    justify-content: flex-start;
 }
 
 .welcome_image:hover {
@@ -987,7 +1029,7 @@ button:hover {
     background-color: var(--color_accent3);
     color: var(--color_accent2);
     border: var(--img_border_width) solid var(--color_accent);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     margin-bottom: 3rem;
 }
 
@@ -1010,7 +1052,7 @@ button:hover {
     padding: 2%;
     background-color: #232323;
     border: var(--img_border_width) solid gray;
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     box-shadow: 0 0 2rem var(--color_accent);
     align-items: center;
     justify-content: center;
@@ -1096,7 +1138,7 @@ input[type="checkbox"] {
     height: 40px;
     -webkit-appearance: none;
     background: linear-gradient(0deg, var(--color_accent), #333);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     box-shadow: 0 0 0 4px #353535, inset 0 0 5px black;
 }
 
@@ -1108,7 +1150,7 @@ input[type="checkbox"]:before {
     width: 67%;
     height: 100%;
     background: linear-gradient(0deg, black, #6b6b6b);
-    border-radius:  var(--border_rad);
+    border-radius: var(--border_rad);
     box-shadow: 0 0 0 1px black;
     transform: scale(.98, .95);
     transition: .5s;
@@ -1125,6 +1167,7 @@ input:checked[type="checkbox"]:before {
 .short {
     max-width: 25%;
 }
+
 .plain {
     color: var(--color_accent);
 }
@@ -1145,5 +1188,3 @@ input:checked[type="checkbox"]:before {
 }
 
 /*                                      CSS Graveyard                                               */
-
-

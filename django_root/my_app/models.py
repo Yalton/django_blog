@@ -15,6 +15,14 @@ class NameModel(models.Model):
     def __str__(self):
         return "%s"%(self.your_name)
 
+
+class PersonalData(models.Model):
+    name = models.CharField(max_length=100, null=True,blank=True,)
+    # resume = models.FileField(upload_to='uploads/personaldata/resume/%Y/%m/%d/', null=True,blank=True)
+    resume = models.FileField(upload_to='static/personaldata/resumes/%Y/%m/%d/', null=True,blank=True)
+    def __str__(self):
+        return "%s"%(self.name)
+
 class Category(MPTTModel):
     name = models.CharField(max_length=100, null=True,blank=True,)
     slug = models.SlugField(unique=True, null=True,blank=True,)
@@ -77,8 +85,6 @@ class Category(MPTTModel):
 
 class Item(models.Model):
     title = models.CharField(max_length=100, null=True,blank=True,)
-    # sub_title = models.TextField( null=True,blank=True,)
-    # references = models.TextField(null=True,blank=True,)
     summary = models.CharField(max_length=300,  null=True,blank=True,)
     item_image = models.ImageField(upload_to='uploads/items/%Y/%m/%d/', null=True)
     created_on = models.DateTimeField(auto_now_add=True, null=True,blank=True,)
@@ -112,11 +118,26 @@ class Service(Item):
         return self.title
 
 
+class Notes(Post):
+    notes = models.FileField(upload_to='uploads/notes/videos/%Y/%m/%d/', null=True,blank=True)
+    def get_searchset(self, term):
+         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) )
+    def get_category(self):
+        return self.category
+    def is_article(self):
+        return False
+    def is_tutorial(self):
+        return False
+    def __str__(self):
+        return self.title
+    def post_type(self):
+        return "notes"
+
 class Article(Post):
     main_image = models.ImageField(upload_to='uploads/articles/%Y/%m/%d/', null=True,blank=True,)
     article_content = models.TextField( null=True,blank=True,)
     sub_reqd = models.BooleanField(default=False)
-    sub_image = models.ImageField(upload_to='uploads/articles/%Y/%m/%d/', null=True,blank=True,)
+    sub_image = models.ImageField(upload_to='uploads/articles/sub_images/%Y/%m/%d/', null=True,blank=True,)
     sub_content = models.TextField( null=True,blank=True,)
     def get_searchset(self, term):
         return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term)  | Q(article_content__icontains=term)| Q(sub_content__icontains=term))
@@ -132,7 +153,8 @@ class Article(Post):
         return self.title
 
 class Tutorial(Post):
-    videoURL = EmbedVideoField(null=True,blank=True)
+    # video = models.FileField(upload_to='uploads/tutorials/videos/%Y/%m/%d/'null=True,blank=True)
+    video = models.FileField(upload_to='uploads/tutorials/videos/%Y/%m/%d/', null=True,blank=True)
     def get_searchset(self, term):
          return self.objects.filter( Q(title__icontains=term) | Q(summary__icontains=term) )
     def get_category(self):
@@ -164,7 +186,7 @@ class TutorialFieldContent(models.Model):
 class TutorialFieldContentMedia(models.Model):
     field_content = models.ForeignKey(TutorialFieldContent, related_name='images', null=True,blank=True, on_delete=models.CASCADE)
     name = models.CharField(max_length=100, null=True,blank=True,)
-    media = models.ImageField(upload_to='uploads/tutorials/%Y/%m/%d/', null=True,blank=True,)
+    media = models.ImageField(upload_to='uploads/tutorials/fieldmedia/%Y/%m/%d/', null=True,blank=True,)
     def __str__(self):
         return self.name
 

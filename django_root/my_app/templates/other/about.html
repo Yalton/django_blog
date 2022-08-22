@@ -26,7 +26,15 @@
             </div>
 
         </div>
-        <p><embed src="{% static 'resume.pdf' %}" type="application/pdf" height="700px" width="500"/></p>
+        {% comment %} <div class="content_block">
+            <div class="embed_block">
+                <embed class = "resume-embed" src="{% static 'resume.pdf' %}" type="application/pdf" /></p>
+            </div>
+        </div> {% endcomment %}
+        <br>
+        <a class="plain" href="/resume/">
+            <div class="comment_button">View Resume</div>
+        </a>
     </div>
 </section>
 

@@ -37,11 +37,13 @@
                 {% block heading %}{% endblock %}
             </h1>
         </div>
-        <div class="topnav-item">
-                <form method=POST action="/search/">
+    <div class="topnav-item">
+
+                <form action="/search/">
                     {% csrf_token %}
                 <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
-        </div>
+                {% comment %} <button type="submit"><i class="fa fa-search"></i></button> {% endcomment %}
+        </div> 
 
     </div>
     {% comment %} <div class="main heading">
@@ -102,3 +104,5 @@
 </body>
 
 </html>
+
+                {% comment %} <form method=POST action="/search/"> {% endcomment %}

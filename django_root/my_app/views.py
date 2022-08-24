@@ -72,10 +72,21 @@ def resume(request):
     return render(request, 'other/resume.html', context=context)
 
 def contact(request):
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            form.save()
+            email_subject = f'New contact {form.cleaned_data["email"]}: {form.cleaned_data["subject"]}'
+            email_message = form.cleaned_data['message']
+            send_mail(email_subject, email_message, settings.CONTACT_EMAIL, settings.ADMIN_EMAIL)
+            return render(request, 'contact/success.html')
+
+    form = ContactForm()
     page_title = "Contact"
     page_heading = "Contact"
     context = {
         'page_title': page_title,
+        'form': form, 
         'page_heading': page_heading,
     }
     return render(request, 'other/contact.html', context=context)

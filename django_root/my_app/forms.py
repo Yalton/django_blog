@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User as auth_user
 from django.core.validators import validate_slug, validate_email
-from my_app.models import NameModel
+from my_app.models import *
 
 from . import models
 
@@ -116,6 +116,10 @@ class CommentForm(forms.Form):
         comment_instance.rabbithole = rhole_instance
         comment_instance.save()
 
+class ContactForm(forms.ModelForm):
+    class Meta:
+        model = Contact
+        fields = '__all__'
 
 class UserForm(forms.Form):
     bio_field = forms.CharField(widget=forms.Textarea, label='Bio')

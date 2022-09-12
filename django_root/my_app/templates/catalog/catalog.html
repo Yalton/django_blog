@@ -2,11 +2,11 @@
 {% load static %}
 {% block title %}{{ page_title }}{% endblock %}
 <div id="heading-div" class="centered">
-    {% block heading %} 
+    {% block heading %}
     <div class="title_header">
         <div class="page_title">
             {{ page_heading }}
-       </div>
+        </div>
     </div>
     {% comment %} <span class="header_line"></span> {% endcomment %}
     {% endblock %}
@@ -15,48 +15,48 @@
 </div>
 {% block content %}
 
-<section class="sec_ctr" >
+<section class="sec_ctr">
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
 
-    <section class = "sec_ctr">
-        <div class="featured-image-block-grid">
-            <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
-            <div class="row large-up-4 small-up-2 align">
-                {% for cat in page_obj.object_list %}
-                    <div class="catalog_card" onclick="location.href='/{{cat_type}}/{{ cat.slug }}';"> 
-                        <div class="pad">
-                            <img class="catalog-img" src="{{ cat.image }}" alt="{{ cat.title }}">
-                            <h3 class="catalog-title">{{ cat.title }}</h3>
-                            <span class = "hline"></span>
-                            <p class="catalog-desc">
-                                {{ cat.desc }}
-                            </p>
-                        </div>
-                    </div>
-                {% endfor %}
+<section class="sec_ctr">
+    <div class="featured-image-block-grid">
+        <div class="featured-image-block-grid-header small-10 medium-8 large-7 columns text-center"></div>
+        <div class="row large-up-4 small-up-2 align">
+            {% for cat in page_obj.object_list %}
+            <div class="catalog_card" onclick="location.href='/{{cat_type}}/{{ cat.slug }}';">
+                <div class="pad">
+                    <img class="catalog-img" src="{{ cat.image }}" alt="{{ cat.title }}">
+                    <h3 class="catalog-title">{{ cat.title }}</h3>
+                    <span class="hline"></span>
+                    <p class="catalog-desc">
+                        {{ cat.desc }}
+                    </p>
+                </div>
             </div>
+            {% endfor %}
         </div>
-     
+    </div>
+
     <div class="paginationdiv">
-            <ul class="pagination pagination-circular"
-                role="navigation"
-                aria-label="Pagination">
-                {% if page_obj.has_previous %}
-                    {# whether the previous page exists #}
-                    <li class="previous show-for-sr">
-                        <a href="?page={{ page_obj.previous_page_number }}"><span class="show-for-sr">Previous page</span></a>
-                    </li>
-                {% endif %}
-                <li class="current">
-                    <span class="show-for-sr">Page</span> {{ page_obj.number }}
+        <ul class="pagination pagination-circular" role="navigation" aria-label="Pagination">
+            {% if page_obj.has_previous %}
+            {# whether the previous page exists #}
+            <li class="previous show-for-sr">
+                <a href="?page={{ page_obj.previous_page_number }}"><span class="show-for-sr">Previous page</span></a>
+            </li>
+            {% endif %}
+            <li class="current">
+                <span class="show-for-sr">Page</span> {{ page_obj.number }}
             </li>
             {% if page_obj.has_next %}
-                <li class="next">
-                    <a href="?page={{ page_obj.next_page_number }}"><EFBFBD> <span class="show-for-sr">Next page</span></a>
-                </li>
+            <li class="next">
+                <a href="?page={{ page_obj.next_page_number }}">
+                    <EFBFBD> <span class="show-for-sr">Next page</span>
+                </a>
+            </li>
             {% endif %}
         </ul>
     </div>
-    </section>
+</section>
 {% endblock %}

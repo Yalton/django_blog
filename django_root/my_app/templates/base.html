@@ -22,7 +22,7 @@
     <script type="text/javascript" src="{% static 'js/protovis-r3.3.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/n-body/OBJLoader.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/n-body/OrbitControls.js' %}"></script>
-    
+
     {% block css %}{% endblock %}
 </head>
 
@@ -37,19 +37,19 @@
                 {% block heading %}{% endblock %}
             </h1>
         </div>
-    <div class="topnav-item">
+        <div class="topnav-item">
 
-                <form action="/search/">
-                    {% csrf_token %}
+            <form action="/search/">
+                {% csrf_token %}
                 <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
                 {% comment %} <button type="submit"><i class="fa fa-search"></i></button> {% endcomment %}
-        </div> 
+        </div>
 
     </div>
     {% comment %} <div class="main heading">
-         <h1 class="centered">
+        <h1 class="centered">
             {% block heading %}{% endblock %}
-        </h1> 
+        </h1>
         <h2>
             {% block subheading %}{% endblock %}
         </h2>
@@ -65,33 +65,38 @@
         <a href="/404/">A_Game</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
-        
+
     </div>
     <section class="base-container">
-        
+
         <section class="page-container">
             {% block content %}{% endblock %}
         </section>
 
-        <section class = "rss-container">
+        <section class="rss-container">
             <div class="content_container">
                 <h2>RSS Placeholder</h2>
-                <span class = "hline"></span>
+                <span class="hline"></span>
                 <br>
                 <h4>Placeholder Subtitle:</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 <h4>Placeholder Subtitle:</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 <h4>Placeholder Subtitle:</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 <h4>Placeholder Subtitle:</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
                 <h4>Placeholder Subtitle:</h4>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
             </div>
         </section>
     </section>
-    
+
     <script src="https://threejs.org/build/three.min.js"></script>
     <script src="{% static 'js/vendor/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/foundations.js' %}"></script>
@@ -105,4 +110,4 @@
 
 </html>
 
-                {% comment %} <form method=POST action="/search/"> {% endcomment %}
+{% comment %} <form method=POST action="/search/"> {% endcomment %}

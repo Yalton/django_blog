@@ -3,10 +3,10 @@
 {% block title %}{{ page_title }}{% endblock %}
 <div id="heading-div" class="centered">
     {% block heading %}
-        <div class="profile_banner">
-            <div class="profile_title">{{ page_heading }}</div>
-        </div>
-        <span class="header_line"></span>
+    <div class="profile_banner">
+        <div class="profile_title">{{ page_heading }}</div>
+    </div>
+    <span class="header_line"></span>
     {% endblock %}
     {% comment %} {% block subheading %} {{page_subheading}}
     {% block supptext %} {{page_text}}{% endblock %} {% endcomment %}
@@ -28,39 +28,36 @@
         </section>
     </div>
 </div>
-    <div class="centered">
-        <div class="altportfolio chat">
+<div class="centered">
+    <div class="altportfolio chat">
 
-                <div >
-                    <div>
-                        <div class="field">
-                            <label>Room name</label>
-                            <div class="control">
-                                <input class="chat_input"
-                                       type="text"
-                                       placeholder="Room name"
-                                       id="room-name-input">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <label>Username</label>
-                            <div class="control">
-                                <input class="chat_input" type="text" placeholder="Username" id="username-input">
-                            </div>
-                        </div>
-                        <div class="field">
-                            <div class="control">
-                                <button>
-                                <a class="button is-info" id="room-name-submit">Submit</a>
-                                </button>
-                            </div>
-                        </div>
+        <div>
+            <div>
+                <div class="field">
+                    <label>Room name</label>
+                    <div class="control">
+                        <input class="chat_input" type="text" placeholder="Room name" id="room-name-input">
+                    </div>
+                </div>
+                <div class="field">
+                    <label>Username</label>
+                    <div class="control">
+                        <input class="chat_input" type="text" placeholder="Username" id="username-input">
+                    </div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <button>
+                            <a class="button is-info" id="room-name-submit">Submit</a>
+                        </button>
                     </div>
                 </div>
             </div>
-
+        </div>
     </div>
+
+</div>
 {% endblock %}
 {% block scripts %}
-    <script type="text/javascript" src="{% static 'js/chatLobby.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/chatLobby.js' %}"></script>
 {% endblock %}

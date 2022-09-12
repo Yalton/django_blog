@@ -1,3 +1,7 @@
+from my_app.models import *
+from my_app.forms import *
+from . import forms
+from . import models
 from django.shortcuts import render, redirect
 from django.http import JsonResponse, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
@@ -11,7 +15,8 @@ from django.shortcuts import get_list_or_404, get_object_or_404
 # from django.shortcuts import render_to_response
 from django.template import RequestContext
 from pathlib import Path
-import sys, os
+import sys
+import os
 
 import random
 from json import dumps
@@ -20,15 +25,12 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-from . import models
-from . import forms
-from my_app.forms import *
-from my_app.models import *
 # from my_app.forms import NameForm, RegistrationForm
 # from my_app.models import NameModel
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 DJANGO_ROOT = Path(__file__).resolve().parent.parent
+
 
 def index(request):
     page_title = "Dalton's Blog"
@@ -40,6 +42,7 @@ def index(request):
     }
     return render(request, 'index.html', context=context)
 
+
 def four_Oh_four(request):
     page_title = "Whoops"
     page_heading = "Whoops"
@@ -48,6 +51,7 @@ def four_Oh_four(request):
         'page_heading': page_heading,
     }
     return render(request, "404.html", context=context)
+
 
 def about(request):
     page_title = "About"
@@ -63,13 +67,14 @@ def about(request):
 def resume(request):
     page_title = "Resume"
     page_heading = "Resume"
-    data = PersonalData.objects.get(name="dalton") 
+    data = PersonalData.objects.get(name="dalton")
     context = {
         'page_title': page_title,
         'data': data,
         'page_heading': page_heading,
     }
     return render(request, 'other/resume.html', context=context)
+
 
 def contact(request):
     if request.method == 'POST':
@@ -78,7 +83,8 @@ def contact(request):
             form.save()
             email_subject = f'New contact {form.cleaned_data["email"]}: {form.cleaned_data["subject"]}'
             email_message = form.cleaned_data['message']
-            send_mail(email_subject, email_message, settings.CONTACT_EMAIL, settings.ADMIN_EMAIL)
+            send_mail(email_subject, email_message,
+                      settings.CONTACT_EMAIL, settings.ADMIN_EMAIL)
             return render(request, 'contact/success.html')
 
     form = ContactForm()
@@ -86,11 +92,10 @@ def contact(request):
     page_heading = "Contact"
     context = {
         'page_title': page_title,
-        'form': form, 
+        'form': form,
         'page_heading': page_heading,
     }
     return render(request, 'other/contact.html', context=context)
-
 
 
 def post(request, post_type, slug):
@@ -101,12 +106,12 @@ def post(request, post_type, slug):
             form.save(request, id)
             print("Received Valid comment with Request method POST")
             return HttpResponseRedirect(reverse('blogpost', args=[str(id)]))
-    else: 
+    else:
         print(request.GET)
         form = CommentForm()
         if post_type == "articles":
-            article = Article.objects.get(slug=slug) 
-            category =  article.get_category()
+            article = Article.objects.get(slug=slug)
+            category = article.get_category()
             ancestors = category.get_ancestors()
             page_title = article.title
             page_heading = article.title
@@ -140,13 +145,13 @@ def post(request, post_type, slug):
             return render(request, 'items/posts/article.html', context=context)
 
         elif post_type == "tutorials":
-            tutorial = Tutorial.objects.get(slug=slug) 
-            category =  tutorial.get_category()
+            tutorial = Tutorial.objects.get(slug=slug)
+            category = tutorial.get_category()
             ancestors = category.get_ancestors()
             page_title = tutorial.title
             sub_title = tutorial.sub_title
             page_heading = tutorial.title
-            videoURL =  tutorial.video
+            videoURL = tutorial.video
             field_list = tutorial.fields.all()
             field_content_dict = {}
             for field in tutorial.fields.all():
@@ -157,7 +162,7 @@ def post(request, post_type, slug):
                     for image in content.images.all():
                         image_list.append(image)
                     field_content_dict[field][content] = image_list
-                    
+
             refs = tutorial.references
             refLinks = refs.split('\n')
             comment_list = Comment.objects.filter(tutorial=tutorial)
@@ -175,7 +180,7 @@ def post(request, post_type, slug):
                 'form': form,
             }
             return render(request, 'items/posts/tutorial.html', context=context)
-        
+
         else:
             page_title = "Whoops"
             page_heading = "Whoops"
@@ -188,10 +193,10 @@ def post(request, post_type, slug):
 
 def catree(request):
     Blogpost_list = Blogpost.objects.filter(isProject=False)
-    p = Paginator(Blogpost_list, 8)  
+    p = Paginator(Blogpost_list, 8)
     page_number = request.GET.get('page')
     try:
-        page_obj = p.get_page(page_number) 
+        page_obj = p.get_page(page_number)
     except PageNotAnInteger:
         page_obj = p.page(1)
     except EmptyPage:
@@ -202,7 +207,7 @@ def catree(request):
         'page_obj': page_obj,
         'nodes': Category.objects.all()
     }
-    return render(request,'catalog/catree.html', context=context)
+    return render(request, 'catalog/catree.html', context=context)
 
 
 def catalog(request, slug):
@@ -214,12 +219,11 @@ def catalog(request, slug):
         category = None
         parent_id = None
         ancestors = None
-    else: 
+    else:
         category = Category.objects.get(slug=slug)
         cat_name = category.name
         parent_id = category.id
-        ancestors=category.get_ancestors()
-
+        ancestors = category.get_ancestors()
 
     category_list = Category.objects.filter(parent=parent_id)
     if category_list:
@@ -232,16 +236,16 @@ def catalog(request, slug):
                 cat_instance["image"] = cat.category_image.url
                 cat_instance["desc"] = cat.cat_summary
                 data_list["categories"].append(cat_instance)
-            
-        p = Paginator(data_list["categories"], 8)  
+
+        p = Paginator(data_list["categories"], 8)
         page_number = request.GET.get('page')
         try:
-            page_obj = p.get_page(page_number) 
+            page_obj = p.get_page(page_number)
         except PageNotAnInteger:
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-        
+
         logger.debug('Do dis show up in the logs doe')
         context = {
             'page_title': cat_name,
@@ -250,26 +254,26 @@ def catalog(request, slug):
             'ancestors': ancestors,
             'object': category,
             'page_obj': page_obj,
-            'categories':data_list["categories"]
+            'categories': data_list["categories"]
         }
         return render(request, 'catalog/catalog.html', context=context)
-    else:   
+    else:
         category = Category.objects.get(id=parent_id)
-        ancestors=category.get_ancestors()
+        ancestors = category.get_ancestors()
         post_list = category.post_in_cat()
-        if(len(post_list) > 0):
+        if (len(post_list) > 0):
             empty = False
         else:
             empty = True
-        p = Paginator(post_list, 8)  
+        p = Paginator(post_list, 8)
         page_number = request.GET.get('page')
         try:
-            page_obj = p.get_page(page_number) 
+            page_obj = p.get_page(page_number)
         except PageNotAnInteger:
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-            
+
         context = {
             'page_title': category.name,
             'page_heading': category.name,
@@ -290,11 +294,11 @@ def services(request, slug):
         category = None
         parent_id = None
         ancestors = None
-    else: 
+    else:
         category = Category.objects.get(slug=slug)
         cat_name = category.name
         parent_id = category.id
-        ancestors=category.get_ancestors()
+        ancestors = category.get_ancestors()
 
     category_list = Category.objects.filter(parent=parent_id)
     if category_list:
@@ -307,16 +311,16 @@ def services(request, slug):
                 cat_instance["image"] = cat.category_image.url
                 cat_instance["desc"] = cat.cat_summary
                 data_list["categories"].append(cat_instance)
-            
-        p = Paginator(data_list["categories"], 8)  
+
+        p = Paginator(data_list["categories"], 8)
         page_number = request.GET.get('page')
         try:
-            page_obj = p.get_page(page_number) 
+            page_obj = p.get_page(page_number)
         except PageNotAnInteger:
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-        
+
         logger.debug('Do dis show up in the logs doe')
         context = {
             'page_title': cat_name,
@@ -325,26 +329,26 @@ def services(request, slug):
             'ancestors': ancestors,
             'object': category,
             'page_obj': page_obj,
-            'categories':data_list["categories"]
+            'categories': data_list["categories"]
         }
         return render(request, 'catalog/catalog.html', context=context)
-    else:   
+    else:
         category = Category.objects.get(id=parent_id)
-        ancestors=category.get_ancestors()
+        ancestors = category.get_ancestors()
         serv_list = category.serv_in_cat()
-        if(len(serv_list) > 0):
+        if (len(serv_list) > 0):
             empty = False
         else:
             empty = True
-        p = Paginator(serv_list, 8)  
+        p = Paginator(serv_list, 8)
         page_number = request.GET.get('page')
         try:
-            page_obj = p.get_page(page_number) 
+            page_obj = p.get_page(page_number)
         except PageNotAnInteger:
             page_obj = p.page(1)
         except EmptyPage:
             page_obj = p.page(p.num_pages)
-            
+
         context = {
             'page_title': category.name,
             'page_heading': category.name,
@@ -366,8 +370,9 @@ def searchCatalog(request):
         data_list = {}
         data_list["posts"] = []
         data_list["services"] = []
-        
-        post_list = list(chain(Tutorial.get_searchset(Tutorial, term), Article.get_searchset(Article, term)))
+
+        post_list = list(chain(Tutorial.get_searchset(
+            Tutorial, term), Article.get_searchset(Article, term)))
         service_list = Service.get_searchset(Service, term)
         if len(post_list) > 0 or len(service_list) > 0:
             results = True
@@ -391,9 +396,9 @@ def searchCatalog(request):
             service_instance["title"] = service.title
             service_instance["desc"] = service.summary
             data_list["services"].append(service_instance)
-            
+
         context = {
-            'page_title': "Search: "+ term,
+            'page_title': "Search: " + term,
             'page_heading': term,
             'post_results': post_results,
             'service_results': service_results,
@@ -404,8 +409,9 @@ def searchCatalog(request):
             # 'services': data_list["services"],
         }
         return render(request, 'catalog/searchcatalog.html', context=context)
-    else: 
-       return HttpResponseRedirect(reverse('Blogpost', args=[str(id)]))
+    else:
+        return HttpResponseRedirect(reverse('Blogpost', args=[str(id)]))
+
 
 def chat(request):
     data_list = {}
@@ -415,13 +421,14 @@ def chat(request):
     messages = Message.objects.all()
     for message in messages:
         data_list["rooms"].append(message.room)
-    
+
     context = {
         'page_title': page_title,
         'page_heading': page_heading,
-        'rooms':data_list["rooms"]
+        'rooms': data_list["rooms"]
     }
     return render(request, 'chat/lobby.html', context=context)
+
 
 def chatRoom(request, room_name):
     username = request.GET.get('username', 'Anonymous')
@@ -459,7 +466,7 @@ def chatRoom(request, room_name):
 #         'page_subheading': page_subheading,
 #         'page_text': page_text,
 #     }
- 
+
 #     return render(request, "webassembly/webassembly.html", context=context)
 
 # def webassembly(request, page):
@@ -472,7 +479,7 @@ def chatRoom(request, room_name):
 #         'page_subheading': page_subheading,
 #     }
 #     url = 'webassembly/' + page + '.html'
- 
+
 #     return render(request, url, context=context)
 # def registration_view(request):
 #     if request.method == "POST":
@@ -491,10 +498,10 @@ def chatRoom(request, room_name):
 # def pagination(request):
 
 #     Blogpost_list = Blogpost.objects.all()
-#     p = Paginator(Blogpost_list, 8)  
+#     p = Paginator(Blogpost_list, 8)
 #     page_number = request.GET.get('page')
 #     try:
-#         page_obj = p.get_page(page_number) 
+#         page_obj = p.get_page(page_number)
 #     except PageNotAnInteger:
 #         page_obj = p.page(1)
 #     except EmptyPage:
@@ -505,8 +512,6 @@ def chatRoom(request, room_name):
 #         'page_obj': page_obj
 #     }
 #     return render(request, 'catalogs/pagination.html', context=context)
-
-
 
 
 # def category(request,hierarchy= None):
@@ -526,20 +531,15 @@ def chatRoom(request, room_name):
 #         return render(request, 'categories.html', {'instance':instance})
 
 
-
-
-
-
-
 # def categoryCatalogView(request, catid):
 #     data_list = {}
 #     data_list["Blogposts"] = []
 #     category = Category.objects.get(id=catid)
 #     Blogpost_list = Blogpost.objects.filter(category=catid, approved=True)
-#     p = Paginator(Blogpost_list, 8)  
+#     p = Paginator(Blogpost_list, 8)
 #     page_number = request.GET.get('page')
 #     try:
-#         page_obj = p.get_page(page_number) 
+#         page_obj = p.get_page(page_number)
 #     except PageNotAnInteger:
 #         page_obj = p.page(1)
 #     except EmptyPage:
@@ -569,37 +569,36 @@ def chatRoom(request, room_name):
 #     return render(request, "forms/comment.html", context=context)
 
 
-
 # @login_required
-# def LikeView(request, id): 
-#     rabbit_hole = Rabbithole.objects.get(id=id) 
+# def LikeView(request, id):
+#     rabbit_hole = Rabbithole.objects.get(id=id)
 #     if Like.objects.filter(user=request.user, rabbithole=rabbit_hole).exists():
 #         Like.objects.filter(user=request.user, rabbithole=rabbit_hole).delete()
-#     else: 
+#     else:
 #         new_like, created = Like.objects.get_or_create(user=request.user, rabbithole=rabbit_hole)
 #         Dislike.objects.filter(user=request.user, rabbithole=rabbit_hole).delete()
-        
+
 #     return HttpResponseRedirect(reverse('rabbithole', args=[str(id)]))
 
 # @login_required
-# def DisLikeView(request, id): 
-#     rabbit_hole = Rabbithole.objects.get(id=id) 
+# def DisLikeView(request, id):
+#     rabbit_hole = Rabbithole.objects.get(id=id)
 #     if Dislike.objects.filter(user=request.user, rabbithole=rabbit_hole).exists():
 #         Dislike.objects.filter(user=request.user, rabbithole=rabbit_hole).delete()
-#     else: 
+#     else:
 #         new_dislike, created = Dislike.objects.get_or_create(user=request.user, rabbithole=rabbit_hole)
 #         Like.objects.filter(user=request.user, rabbithole=rabbit_hole).delete()
 
 #     return HttpResponseRedirect(reverse('rabbithole', args=[str(id)]))
 
 # @login_required
-# def save_to_profile(request, id): 
-#     rabbit_hole = Rabbithole.objects.get(id=id) 
+# def save_to_profile(request, id):
+#     rabbit_hole = Rabbithole.objects.get(id=id)
 #     if SavetoProfile.objects.filter(user=request.user, rabbithole=rabbit_hole).exists():
 #         SavetoProfile.objects.filter(user=request.user, rabbithole=rabbit_hole).delete()
 #     else:
 #         new_save, created = SavetoProfile.objects.get_or_create(user=request.user, rabbithole=rabbit_hole)
-        
+
 #     return HttpResponseRedirect(reverse('rabbithole', args=[str(id)]))
 
 
@@ -625,10 +624,10 @@ def chatRoom(request, room_name):
 #             form.save(request, id)
 #             print("Received Valid comment with Request method POST")
 #             return HttpResponseRedirect(reverse('rabbithole', args=[str(id)]))
-#     else: 
+#     else:
 #         print(request.GET)
 #         form = CommentForm()
-#         rabbithole = Rabbithole.objects.get(id=hole_id) 
+#         rabbithole = Rabbithole.objects.get(id=hole_id)
 #         page_title = rabbithole.title
 #         page_heading = rabbithole.title
 #         intro = rabbithole.introduction
@@ -663,7 +662,7 @@ def chatRoom(request, room_name):
 #                 user_liked = False
 #                 user_disliked = False
 #         comment_list = Comment.objects.filter(rabbithole=rabbithole)
-        
+
 #         context = {
 #             'hole_id': hole_id,
 #             'page_title': page_title,
@@ -681,26 +680,26 @@ def chatRoom(request, room_name):
 #             'portfolio_image': portfolio_image,
 #             'likes': like_count,
 #             'user_liked': user_liked,
-#             'user_disliked': user_disliked, 
+#             'user_disliked': user_disliked,
 #             'profile_saved': profile_saved,
 #             'comment_list': comment_list,
 #             'form': form,
 #         }
-        
+
 #     return render(request, 'rabbitholes/rabbithole.html', context=context)
 
 
 # @login_required
 # def profile(request):
 #     if UserInfo.objects.filter(user=request.user).exists():
-#         user_info = UserInfo.objects.get(user=request.user) 
-#     else: 
+#         user_info = UserInfo.objects.get(user=request.user)
+#     else:
 #         UserInfo.objects.create(user=request.user)
 #         user_info = UserInfo.objects.get(user=request.user)
-#     saved_Blogposts = SavetoProfile.objects.filter(user=request.user) 
+#     saved_Blogposts = SavetoProfile.objects.filter(user=request.user)
 #     data_list = {}
 #     data_list["Blogposts"] = []
-    
+
 #     for saved in saved_Blogposts:
 #         hole_instance = {}
 #         hole_instance["id"] = saved.Blogpost.id
@@ -708,7 +707,7 @@ def chatRoom(request, room_name):
 #         hole_instance["image"] = saved.Blogpost.p_media.url
 #         hole_instance["desc"] = saved.Blogpost.summary
 #         data_list["Blogposts"].append(hole_instance)
-        
+
 #     page_title = request.user.username + "'s Profile"
 #     page_heading = request.user.username + "'s Profile"
 #     page_subheading =  request.user.username
@@ -736,7 +735,6 @@ def chatRoom(request, room_name):
 #         "form": form,
 #     }
 #     return render(request, "registration/edit_profile.html", context=context)
-
 
 
 # def logout_view(request):

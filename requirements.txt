@@ -16,3 +16,5 @@ django-redis
 redis-simple-cache
 mysqlclient
 django-mptt
+django-embed-video
+Markdownify

@@ -1,97 +1,98 @@
-{% extends "base.html" %} 
-{% load static %} 
+{% extends "base.html" %}
+{% load static %}
 {% block title %}
-  {{ page_title }}
+{{ page_title }}
 {%endblock %}
 <div id="heading-div" class="centered">
-  {% block heading %}
-  <div class="title_header">
-    <div class="page_title">{{ page_heading }}</div>
-  </div>
-  {% endblock %}
+    {% block heading %}
+    <div class="title_header">
+        <div class="page_title">{{ page_heading }}</div>
+    </div>
+    {% endblock %}
 </div>
 {% block content %}
 
-<section class="sec_ctr" >
+<section class="sec_ctr">
     {% include "catalog/_breadcrumbs.html" with ancestors=ancestors object=object%}
 </section>
-<section class = "sec_ctr">
+<section class="sec_ctr">
     <div class="content_container">
         <div class="padded-flexed-div">
-           
-                <div class="centertext card_name emphasized">{{sub_title}}</div>
-                <a href="{{ main_image }}">
-                    <img class="main_card_image" src="{{ main_image }}" alt="main_image" />
-                </a>
+
+            <div class="centertext card_name emphasized">{{sub_title}}</div>
+            <a href="{{ main_image }}">
+                <img class="main_card_image" src="{{ main_image }}" alt="main_image" />
+            </a>
             {% for paragraph in article_content_paragraphs %}
-                <p> {{paragraph}} </p>
+            <p> {{paragraph}} </p>
             {% endfor %}
             {% if sub_reqd %}
-                <a href="{{ sub_image.url }}">
-                    <img class="sub_image" src="{{ sub_image }}" alt="sub_image" />
-                </a>
-                <p> {{sub_content}} </p>
+            <a href="{{ sub_image.url }}">
+                <img class="sub_image" src="{{ sub_image }}" alt="sub_image" />
+            </a>
+            <p> {{sub_content}} </p>
 
             {% endif %}
             <div class="card_name emphasized buffer">References</div>
             <div class="card_title pad">
                 {% for ref in refs %}
-                    <li>
+                <li>
                     <a href="{{ ref }}">{{ ref }}</a>
-                    <br/><br />
-                    </li>
+                    <br /><br />
+                </li>
                 {% endfor %}
             </div>
         </div>
-        <!-- comments -->   
+        <!-- comments -->
         <button class="spoiler" title="Click to Show/Hide Content" type="button"
-        onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">
-        Show/Hide Comments
-    </button>
-            <div id="spoiler" style="display:none">
-                
-                <div class="pad invisible_box">
-                    <div class="card_name emphasized buffer">Comments ({{comment_list|length}})</div>
-                    {% for comm in comment_list %}
-                    <div>
-                        <div class="comment-section-author">
-                            <div class="comment-section-name">
-                                <div class="card_name buffer"><h5>
+            onclick="if(document.getElementById('spoiler') .style.display=='none') {document.getElementById('spoiler') .style.display=''}else{document.getElementById('spoiler') .style.display='none'}">
+            Show/Hide Comments
+        </button>
+        <div id="spoiler" style="display:none">
+
+            <div class="pad invisible_box">
+                <div class="card_name emphasized buffer">Comments ({{comment_list|length}})</div>
+                {% for comm in comment_list %}
+                <div>
+                    <div class="comment-section-author">
+                        <div class="comment-section-name">
+                            <div class="card_name buffer">
+                                <h5>
                                     <a href="">{{ comm.author }}</a>
-                                </h5></div>
-                                <div class="card_name">
-                                    {{ comm.created_on }}
-                                </div>
+                                </h5>
                             </div>
-                        </div>
-                        <div class="comment-section-text">
-                            <div class="card_title">
-                                {{ comm.comment }}
+                            <div class="card_name">
+                                {{ comm.created_on }}
                             </div>
                         </div>
                     </div>
-                    <span class="profile_line buffer short"></span>
-                    {% endfor %}
-                    <form class="comment-section-form">
-                        <div class="comment-section-box">
-                            <div class="row">
-                                <div class="small-12 column">
-                                     <form method="post">
-                                        {% csrf_token %}
-                                        {{ form }}
-                                    </form> 
-                                    <a class="plain" href="/comment/{{slug}}">
-                                        <div class="comment_button">Leave a Comment</div>
-                                    </a>
-                                </div>
+                    <div class="comment-section-text">
+                        <div class="card_title">
+                            {{ comm.comment }}
+                        </div>
+                    </div>
+                </div>
+                <span class="profile_line buffer short"></span>
+                {% endfor %}
+                <form class="comment-section-form">
+                    <div class="comment-section-box">
+                        <div class="row">
+                            <div class="small-12 column">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    {{ form }}
+                                </form>
+                                <a class="plain" href="/comment/{{slug}}">
+                                    <div class="comment_button">Leave a Comment</div>
+                                </a>
                             </div>
                         </div>
-                    </form>
-                    <!--/comment box-->
-                </div>
+                    </div>
+                </form>
+                <!--/comment box-->
             </div>
+        </div>
 
     </div>
 </section>
 {% endblock %}
-

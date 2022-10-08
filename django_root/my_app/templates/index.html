@@ -7,6 +7,10 @@
 {% endblock %}
 
 {% load static %}
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script> {% endcomment %}
+<script type="text/javascript" src="{% static 'js/protovis-r3.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/n-body/OBJLoader.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/n-body/OrbitControls.js' %}"></script>
 {% block content %}
 
 

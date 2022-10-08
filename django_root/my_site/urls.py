@@ -26,6 +26,7 @@ urlpatterns = [
     path('404/', views.four_Oh_four),
     path('',views.index, name="homepage"), 
     path('about/', views.about, name="about"),
+    path('a_game/', views.a_game, name="a_game"),
     path('resume/', views.resume, name="resume"),
     path('contact/', views.contact, name="contact"),
     

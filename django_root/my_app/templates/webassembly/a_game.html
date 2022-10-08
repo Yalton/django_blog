@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+    <script>
+      (async () => {
+        let response = await fetch("{% static 'js/wasm/rust/a_game/target/wasm32-unknown-unknown/release/a_game.wasm' %}");
+        let bytes = await response.arrayBuffer();
+        let { instance } = await WebAssembly.instantiate(bytes, { });
+        instance.exports.a_game()
+      })();
+    </script>
+{% endblock %}

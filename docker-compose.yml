@@ -1,17 +1,17 @@
  version: "3" 
  
  services:
-  redis:
-    image: redis:latest
-    ports:
-      - 6379:6379
+#  redis:
+#    image: redis:latest
+#    ports:
+#      - 6379:6379
       
   blog:
     image: dblog:latest
-    links:
-       - redis:redis
-    depends_on:
-       - redis
+#    links:
+#       - redis:redis
+#    depends_on:
+#       - redis
     ports:
       - 8000:8000
     volumes:

@@ -1,41 +1,49 @@
 {% extends "base.html" %} {% load static %} {% block title %}{{ page_title }}
 {%endblock %} {% block heading %}
-<div class="title_header"><div class="page_title">{{ page_heading }}</div></div>
+<div class="title_header">
+    <div class="page_title">{{ page_heading }}</div>
+</div>
 {% comment %} <span class="header_line"></span> {% endcomment %}
 {% endblock %}
 
 {% load static %}
+{% comment %} <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script> {% endcomment %}
+<script type="text/javascript" src="{% static 'js/protovis-r3.3.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/n-body/OBJLoader.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/n-body/OrbitControls.js' %}"></script>
 {% block content %}
 
 
-{% comment %} <section class="sec_ctr_alph" > {% endcomment %}
-<section class = "sec_ctr">
-<div class="content_container">
+{% comment %} <section class="sec_ctr_alph"> {% endcomment %}
+    <section class="sec_ctr">
+        <div class="content_container">
 
-    <div class="content_block">
+            <div class="content_block">
 
-{% comment %} 
-        <div class="lfloat sub_content_block">
-                <img class ="index-img" src="{% static 'img/main.JPG' %}" alt="MainPhoto"></a>
-        </div> {% endcomment %}
+                {% comment %}
+                <div class="lfloat sub_content_block">
+                    <img class="index-img" src="{% static 'img/main.JPG' %}" alt="MainPhoto"></a>
+                </div> {% endcomment %}
 
-        <div class="lalligned block">
-                <h2>Welcome.</h2>
-                <br>
-                <p> My name is Dalton bailey, and you have found your way onto my blog. I am currently studying Computer Science at Chico State, and I have a few hobbies I would like to share.</p>
-                <p> This blog is still very much under development, so please stay tuned for future improvements and articles.</p>
-                <p> For now enjoy this neat N-Body simulation</p>
+                <div class="lalligned block">
+                    <h2>Welcome.</h2>
+                    <br>
+                    <p> My name is Dalton Bailey, and you have found your way onto my blog. I am currently studying
+                        Computer Science at Chico State, and I have a few hobbies I would like to share.</p>
+                    <p> This blog is still very much under development, so please stay tuned for future improvements and
+                        articles.</p>
+                    <p> For now enjoy this neat N-Body simulation</p>
+                </div>
             </div>
-    </div>
-    
-    <div class="content_block">
-        {% comment %} <div class="simulation">
-            <p>N-body simulation will go here</p>
-        </div>  {% endcomment %}
-         <div class="simulation">
-            <script type="text/javascript+protovis">
 
-                var w = document.body.clientWidth * 0.565,
+            <div class="content_block">
+                {% comment %} <div class="simulation">
+                    <p>N-body simulation will go here</p>
+                </div> {% endcomment %}
+                <div class="simulation">
+                    <script type="text/javascript+protovis">
+
+                var w = document.body.clientWidth * 0.6,
                     h = document.body.clientWidth * 0.2,
                     nodes = pv.range(200).map(function(i) {
                     return {x: w * Math.random(),
@@ -72,13 +80,13 @@
                     vis.render();
                 }, 42);
             </script>
-        </div> 
-    </div>
-</div>
-</section>
+                </div>
+            </div>
+        </div>
+    </section>
 
-{% comment %} <div class="simulation">
-    <script type="text/javascript+protovis">
+    {% comment %} <div class="simulation">
+        <script type="text/javascript+protovis">
 
         var w = document.body.clientWidth * 0.85,
             h = document.body.clientWidth * 0.3625,
@@ -117,9 +125,9 @@
             vis.render();
           }, 42);
       </script>
-</div>  {% endcomment %}
+    </div> {% endcomment %}
 
 
 
 
-{% endblock %}
+    {% endblock %}

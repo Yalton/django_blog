@@ -17,10 +17,8 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/foundations.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r79/three.min.js"></script>
-    <script type="text/javascript" src="{% static 'js/protovis-r3.3.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/n-body/OBJLoader.js' %}"></script>
-    <script type="text/javascript" src="{% static 'js/n-body/OrbitControls.js' %}"></script>
+
+
 
     {% block css %}{% endblock %}
 </head>
@@ -28,25 +26,27 @@
 <body>
     <div id="loading"></div>
     <div id="topnav" class="topnav sticky">
-        <div class="topnav-right">
-            <div class="searchdiv">
-                <form method=POST action="/search/">
-                    {% csrf_token %}
-                <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
-            </div>
-        </div>
-        <div class="lfloat">
+        <div class="topnav-item">
             <a class="active" href="/">Home</a>
         </div>
-        <h1 class="centered">
-            {% block heading %}{% endblock %}
-        </h1>
+        <div class="topnav-item">
+            <h1 class="page_title">
+                {% block heading %}{% endblock %}
+            </h1>
+        </div>
+        <div class="topnav-item">
+
+            <form action="/search/">
+                {% csrf_token %}
+                <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
+                {% comment %} <button type="submit"><i class="fa fa-search"></i></button> {% endcomment %}
+        </div>
 
     </div>
     {% comment %} <div class="main heading">
-         <h1 class="centered">
+        <h1 class="centered">
             {% block heading %}{% endblock %}
-        </h1> 
+        </h1>
         <h2>
             {% block subheading %}{% endblock %}
         </h2>
@@ -59,42 +59,42 @@
         {% comment %} <a href="/404/">Search</a> {% endcomment %}
         <a href="/catalog/None/">Posts</a>
         <a href="/services/None/">Projects</a>
-        <a href="/404/">A_Game</a>
+        <a href="/a_game/">A_Game</a>
         <a href="/about/">About</a>
         <a href="/contact/">Contact</a>
-        {% comment %} <div class="searchdiv">
-            <form method=POST action="/search/">
-                {% csrf_token %}
-            <input class="searchbox" name="searchbox" type="text" placeholder="Search..." />
-        </div> {% endcomment %}
 
-         {% comment %} <button class="search-button">
-            <i class="fa fa-search"></i>
-        </button>  {% endcomment %}
-        
     </div>
-    <section class="page-container">
-        {% block content %}{% endblock %}
+    <section class="base-container">
+
+        <section class="page-container">
+            {% block content %}{% endblock %}
+        </section>
+
+        <section class="rss-container">
+            <div class="content_container">
+                <h2>RSS Placeholder</h2>
+                <span class="hline"></span>
+                <br>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
+                <h4>Placeholder Subtitle:</h4>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                    et dolore magna aliqua. Ut enim ad minim veniam.</p>
+            </div>
+        </section>
     </section>
 
-    <section class = "rss-container">
-        <div class="content_container">
-            <h2>RSS Placeholder</h2>
-            <span class = "hline"></span>
-            <br>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-            <h4>Placeholder Subtitle:</h4>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
-        </div>
-    </section>
-    <script src="http://threejs.org/build/three.min.js"></script>
+    <script src="https://threejs.org/build/three.min.js"></script>
     <script src="{% static 'js/vendor/jquery.js' %}"></script>
     <script type="text/javascript" src="{% static 'js/foundations.js' %}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -106,3 +106,5 @@
 </body>
 
 </html>
+
+{% comment %} <form method=POST action="/search/"> {% endcomment %}

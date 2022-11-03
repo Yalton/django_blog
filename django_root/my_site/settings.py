@@ -27,8 +27,8 @@ SECRET_KEY = 'django-insecure-(d#5ts)r_s%%brc9h26gjc6aeg*6@#lufgenv(+nzfka4we+kz
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['192.168.50.97', '192.168.50.111', 'daltonbailey.com','localhost', '127.0.0.1', '192.168.50.111:8000']
-
+ALLOWED_HOSTS = ['192.168.50.245', '192.168.50.111', 'daltonbailey.com','localhost', '127.0.0.1', '192.168.50.111:8000']
+CSRF_TRUSTED_ORIGINS = ['https://daltonbailey.com', 'http://daltonbailey.com']
 
 LOGIN_URL = "/login/"
 LOGIN_REDIRECT_URL = "/"
@@ -87,6 +87,7 @@ WSGI_APPLICATION = 'my_site.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
+<<<<<<< HEAD
      'default': {
          'ENGINE': 'django.db.backends.mysql',
          'NAME': 'django',
@@ -99,6 +100,20 @@ DATABASES = {
 #        'ENGINE': 'django.db.backends.sqlite3',
 #        'NAME': BASE_DIR / 'db.sqlite3',
 #    }
+=======
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'django',
+        'USER': 'django',
+        'PASSWORD': 'uKNeZTTo5xKiRHqyXxgCzVQkiccccK',
+        'HOST': '192.168.50.131',
+        'PORT': '3306',
+    }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+>>>>>>> 55399dd82bb1817ba0f6ad8c668068b71b1d45e6
 }
 
 
@@ -131,6 +146,8 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Static files (CSS, JavaScript, Images)

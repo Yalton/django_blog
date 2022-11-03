@@ -3,40 +3,73 @@
 {% block title %}{{ page_title }}{% endblock %}
 <div id="heading-div" class="centered">
     {% block heading %}
-        <div class="title_header">
-            <div class="page_title">{{ page_heading }}</div>
-        </div>
+    <div class="title_header">
+        <div class="page_title">{{ page_heading }}</div>
+    </div>
     {% endblock %}
 </div>
 {% block content %}
 
-<section class="sec_ctr" >
+<section class="sec_ctr">
     <div class=" content_container">
         <div class="content_block">
 
 
             <div class="rfloat sub_content_block">
-                    <img class ="index-img" src="{% static 'img/maybe_50.JPG' %}" alt="MainPhoto"></a>
+                <img class="index-img" src="{% static 'img/maybe_50.JPG' %}" alt="MainPhoto"></a>
             </div>
 
             <div class="lalligned sub_content_block">
-                    <h2 class="work-feature-block-header">Wanna get ahold of me?</h2>
-                    <p>Have some questions about my tutorials, or maybe a job offer? You can do so through a variety of methods listed below, you can also leave a comment on any post of mine with your email attached and I will reach out to you.</p>      
-                    <h3>Contact Methods</h3>
-                    <ul>
-                        
-                        <li><a href="mailto:drbailey117@protonmail.com">Email</a></li>
-                        <li><a href="https://discord.gg/whMVueTJUj">Discord</a></li>
-                    </ul>
+                <h2 class="work-feature-block-header">Wanna get ahold of me?</h2>
+                <p>Have some questions about my tutorials, or maybe a job offer? You can do so through a variety of
+                    methods listed below, you can also leave a comment on any post of mine with your email attached and
+                    I will reach out to you.</p>
+                <h3>Contact Methods</h3>
+                <ul>
+
+                    <li><a href="mailto:drbailey117@protonmail.com">Email</a></li>
+                    <li><a href="https://discord.gg/whMVueTJUj">Discord</a></li>
+                </ul>
             </div>
 
+        <br>
+        <h3 class="work-feature-block-header">Contact Form</h3>
+        <div class="content_block">
+          
+            <form action="/contact/" method="post">
+                {% csrf_token %}
+                <div class="registration">
+                    <div>
+                      <label class="register"> {{ form.email.label_tag }} </label>
+                      {{ form.email }}
+                    </div>
+                    <div>
+                      <label class="register"> {{ form.subject.label_tag }} </label>
+                      {{ form.subject }}
+                    </div>
+                    <div>
+                      <label class="register"> {{ form.message.label_tag }} </label>
+                      {{ form.message }}
+                    </div>
+                    <div>
+                      {% comment %} <button type="submit">Submit</button> {% endcomment %}
+                      <input type="submit" class="button expanded" value="Submit" />
+                    </div>
+                    <div class = "logregerrors">
+                      {{ form.errors }}
+                    </div>
+              </div>
+                
+                
+            </form>
         </div>
-
-
+    </div>
     </div>
 </section>
 {% endblock %}
 
 {% comment %} {% block scripts %}
-    <script type="text/javascript" src="{% static 'js/chatLobby.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/chatLobby.js' %}"></script>
 {% endblock %} {% endcomment %}
+
+{% comment %} {{form.as_div}} {% endcomment %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}{{ page_title }}{% endblock %}
+<div id="heading-div" class="centered">
+    {% block heading %}
+    <div class="title_header">
+        <div class="page_title">{{ page_heading }}</div>
+    </div>
+    {% endblock %}
+</div>
+{% block content %}
+
+<section class="sec_ctr">
+    <div class=" content_container">
+        <div class="content_block">
+            <h2 class="work-feature-block-header">My Resume</h2>
+            <span class="hline"></span>
+            <br>
+            <div class="embed_block">
+                <embed class="resume-embed" src="{% static 'resume.pdf' %}" type="application/pdf" /></p>
+            </div>
+            {% comment %} <div class="embed_block">
+                <embed class="resume-embed" src={{ data.resume.url }} type="application/pdf" /></p>
+            </div> {% endcomment %}
+        </div>
+    </div>
+</section>
+
+{% endblock %}
